@@ -1,53 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+/** Index of Notifsta **/
+
 'use strict';
 
 var React = require('react-native');
+
 var {
+  View,
   AppRegistry,
+  Navigator,
+  PixelRatio,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
+  TouchableHighlight,
 } = React;
 
-var NotifstaReact = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+Control+Z for dev menu
-        </Text>
-      </View>
+var Login = require('./login.ios');
+var Event = require('./event.ios');
+
+class NotifstaLaunch extends React.Component {
+
+  renderScene(route, nav) {
+    switch(route.id) {
+      case 'Login':
+        return <Login navigator={nav}/>;
+      case 'Event':
+        console.log("transitioning to event");
+        return <Event navigator={nav} email={route.email} token={route.token} eventId={route.eventId}/>
+    }
+  }
+
+  render() {
+    return(
+      <React.Navigator
+        style={styles.container}
+        sceneStyle={styles.sceneStyle}
+        configureScene={(route) => {
+          if (route.sceneConfig) {
+            return route.sceneConfig;
+          }
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        initialRoute={{id: 'Login'}}
+        renderScene={this.renderScene}
+      />
     );
   }
-});
+}
 
-var styles = StyleSheet.create({
+var styles = React.StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    paddingTop: 20,
+    backgroundColor: 'blue',
   },
 });
 
-AppRegistry.registerComponent('NotifstaReact', () => NotifstaReact);
+AppRegistry.registerComponent('NotifstaReact', () => NotifstaLaunch);
