@@ -51,7 +51,7 @@ class NotifstaLaunch extends React.Component {
 var styles = React.StyleSheet.create({
   container: {
     paddingTop: 20,
-    backgroundColor: 'blue',
+    backgroundColor: 'pink',
   },
 });
 

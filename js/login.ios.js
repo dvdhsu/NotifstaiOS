@@ -29,7 +29,7 @@ var styles = StyleSheet.create({
     paddingRight: 30,
     paddingLeft: 30,
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: 'pink',
   },
   loginInput: {
     height: 36,
