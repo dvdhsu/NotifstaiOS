@@ -21,6 +21,22 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		27C57B781AD11A2B00E5AA20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B761AD11A2B00E5AA20 /* Bolts.framework */; };
+		27C57B791AD11A2B00E5AA20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B771AD11A2B00E5AA20 /* Parse.framework */; };
+		27C57B7B1AD11A9C00E5AA20 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */; };
+		27C57B7D1AD11AA100E5AA20 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B7C1AD11AA100E5AA20 /* CFNetwork.framework */; };
+		27C57B7F1AD11AA800E5AA20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B7E1AD11AA800E5AA20 /* CoreGraphics.framework */; };
+		27C57B811AD11AAC00E5AA20 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B801AD11AAC00E5AA20 /* CoreLocation.framework */; };
+		27C57B831AD11AB200E5AA20 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B821AD11AB200E5AA20 /* MobileCoreServices.framework */; };
+		27C57B851AD11AB800E5AA20 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B841AD11AB800E5AA20 /* QuartzCore.framework */; };
+		27C57B871AD11ABF00E5AA20 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B861AD11ABF00E5AA20 /* Security.framework */; };
+		27C57B891AD11AC300E5AA20 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B881AD11AC300E5AA20 /* StoreKit.framework */; };
+		27C57B8B1AD11AC800E5AA20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B8A1AD11AC800E5AA20 /* SystemConfiguration.framework */; };
+		27C57B8D1AD11ACD00E5AA20 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B8C1AD11ACD00E5AA20 /* libz.dylib */; };
+		27C57B8F1AD11AD300E5AA20 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B8E1AD11AD300E5AA20 /* libsqlite3.dylib */; };
+		27C57B911AD11C2F00E5AA20 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B901AD11C2F00E5AA20 /* Social.framework */; };
+		27C57B931AD11C9E00E5AA20 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B921AD11C9E00E5AA20 /* Accounts.framework */; };
+		27EAD0271AD5172C00377C1B /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EAD0261AD5172C00377C1B /* libRCTPushNotification.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -91,24 +107,44 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00481BDB1AC0C7FA00671115 /* RCTWebSocketDebugger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocketDebugger.xcodeproj; path = node_modules/react-native/Libraries/RCTWebSocketDebugger/RCTWebSocketDebugger.xcodeproj; sourceTree = "<group>"; };
+		00481BDB1AC0C7FA00671115 /* RCTWebSocketDebugger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocketDebugger.xcodeproj; path = "node_modules/react-native/Libraries/RCTWebSocketDebugger/RCTWebSocketDebugger.xcodeproj"; sourceTree = "<group>"; };
 		00481BE91AC0C89D00671115 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = iOS/main.jsbundle; sourceTree = "<group>"; };
-		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj; sourceTree = "<group>"; };
-		00C302AF1ABCB8E700DB3ED1 /* RCTAdSupport.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAdSupport.xcodeproj; path = node_modules/react-native/Libraries/AdSupport/RCTAdSupport.xcodeproj; sourceTree = "<group>"; };
-		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj; sourceTree = "<group>"; };
-		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = node_modules/react-native/Libraries/Image/RCTImage.xcodeproj; sourceTree = "<group>"; };
-		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj; sourceTree = "<group>"; };
-		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* NotifstaReact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotifstaReact.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
+		00C302AF1ABCB8E700DB3ED1 /* RCTAdSupport.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAdSupport.xcodeproj; path = "node_modules/react-native/Libraries/AdSupport/RCTAdSupport.xcodeproj"; sourceTree = "<group>"; };
+		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
+		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
+		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* notifsta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notifsta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = iOS/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = iOS/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOS/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
-		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = node_modules/react-native/React/React.xcodeproj; sourceTree = "<group>"; };
-		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = node_modules/react-native/Libraries/Text/RCTText.xcodeproj; sourceTree = "<group>"; };
+		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		27C57B761AD11A2B00E5AA20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		27C57B771AD11A2B00E5AA20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		27C57B7C1AD11AA100E5AA20 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		27C57B7E1AD11AA800E5AA20 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		27C57B801AD11AAC00E5AA20 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		27C57B821AD11AB200E5AA20 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		27C57B841AD11AB800E5AA20 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		27C57B861AD11ABF00E5AA20 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		27C57B881AD11AC300E5AA20 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		27C57B8A1AD11AC800E5AA20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		27C57B8C1AD11ACD00E5AA20 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		27C57B8E1AD11AD300E5AA20 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		27C57B901AD11C2F00E5AA20 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		27C57B921AD11C9E00E5AA20 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		27EAD01B1AD50F0900377C1B /* PushNotificationIOS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = PushNotificationIOS.js; sourceTree = "<group>"; };
+		27EAD01C1AD50F0900377C1B /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		27EAD01F1AD50F0900377C1B /* RCTPushNotificationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTPushNotificationManager.h; sourceTree = "<group>"; };
+		27EAD0201AD50F0900377C1B /* RCTPushNotificationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTPushNotificationManager.m; sourceTree = "<group>"; };
+		27EAD0261AD5172C00377C1B /* libRCTPushNotification.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRCTPushNotification.a; path = "../../../../../../../../Library/Developer/Xcode/DerivedData/notifsta-bbwzdgtabqfsyrghwjmaplbgrkru/Build/Products/Debug-iphoneos/libRCTPushNotification.a"; sourceTree = "<group>"; };
+		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +152,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EAD0271AD5172C00377C1B /* libRCTPushNotification.a in Frameworks */,
+				27C57B931AD11C9E00E5AA20 /* Accounts.framework in Frameworks */,
+				27C57B911AD11C2F00E5AA20 /* Social.framework in Frameworks */,
+				27C57B8F1AD11AD300E5AA20 /* libsqlite3.dylib in Frameworks */,
+				27C57B8D1AD11ACD00E5AA20 /* libz.dylib in Frameworks */,
+				27C57B8B1AD11AC800E5AA20 /* SystemConfiguration.framework in Frameworks */,
+				27C57B891AD11AC300E5AA20 /* StoreKit.framework in Frameworks */,
+				27C57B871AD11ABF00E5AA20 /* Security.framework in Frameworks */,
+				27C57B851AD11AB800E5AA20 /* QuartzCore.framework in Frameworks */,
+				27C57B831AD11AB200E5AA20 /* MobileCoreServices.framework in Frameworks */,
+				27C57B811AD11AAC00E5AA20 /* CoreLocation.framework in Frameworks */,
+				27C57B7F1AD11AA800E5AA20 /* CoreGraphics.framework in Frameworks */,
+				27C57B7D1AD11AA100E5AA20 /* CFNetwork.framework in Frameworks */,
+				27C57B7B1AD11A9C00E5AA20 /* AudioToolbox.framework in Frameworks */,
 				00481BEA1AC0C89D00671115 /* libicucore.dylib in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00481BE81AC0C86700671115 /* libRCTWebSocketDebugger.a in Frameworks */,
@@ -124,7 +174,9 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				27C57B781AD11A2B00E5AA20 /* Bolts.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				27C57B791AD11A2B00E5AA20 /* Parse.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +243,7 @@
 		13B07FAE1A68108700A75B9A /* NotifstaReact */ = {
 			isa = PBXGroup;
 			children = (
+				27C57B751AD11A1E00E5AA20 /* Frameworks */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -210,9 +263,45 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		27C57B751AD11A1E00E5AA20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27C57B921AD11C9E00E5AA20 /* Accounts.framework */,
+				27C57B901AD11C2F00E5AA20 /* Social.framework */,
+				27C57B8C1AD11ACD00E5AA20 /* libz.dylib */,
+				27C57B8E1AD11AD300E5AA20 /* libsqlite3.dylib */,
+				27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */,
+				27C57B7C1AD11AA100E5AA20 /* CFNetwork.framework */,
+				27C57B7E1AD11AA800E5AA20 /* CoreGraphics.framework */,
+				27C57B801AD11AAC00E5AA20 /* CoreLocation.framework */,
+				27C57B841AD11AB800E5AA20 /* QuartzCore.framework */,
+				27C57B821AD11AB200E5AA20 /* MobileCoreServices.framework */,
+				27C57B861AD11ABF00E5AA20 /* Security.framework */,
+				27C57B881AD11AC300E5AA20 /* StoreKit.framework */,
+				27C57B8A1AD11AC800E5AA20 /* SystemConfiguration.framework */,
+				27C57B761AD11A2B00E5AA20 /* Bolts.framework */,
+				27C57B771AD11A2B00E5AA20 /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27EAD01A1AD50F0900377C1B /* PushNotificationIOS */ = {
+			isa = PBXGroup;
+			children = (
+				27EAD01B1AD50F0900377C1B /* PushNotificationIOS.js */,
+				27EAD0261AD5172C00377C1B /* libRCTPushNotification.a */,
+				27EAD01F1AD50F0900377C1B /* RCTPushNotificationManager.h */,
+				27EAD0201AD50F0900377C1B /* RCTPushNotificationManager.m */,
+			);
+			name = PushNotificationIOS;
+			path = "node_modules/react-native/Libraries/PushNotificationIOS";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				27EAD01A1AD50F0900377C1B /* PushNotificationIOS */,
+				27EAD01C1AD50F0900377C1B /* RCTPushNotification.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -238,8 +327,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* NotifstaReact */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				13B07FAE1A68108700A75B9A /* NotifstaReact */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 			);
 			indentWidth = 2;
@@ -249,7 +338,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* NotifstaReact.app */,
+				13B07F961A680F5B00A75B9A /* notifsta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,9 +346,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* NotifstaReact */ = {
+		13B07F861A680F5B00A75B9A /* notifsta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NotifstaReact" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "notifsta" */;
 			buildPhases = (
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -269,9 +358,9 @@
 			);
 			dependencies = (
 			);
-			name = NotifstaReact;
+			name = notifsta;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* NotifstaReact.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* notifsta.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,9 +370,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = H9Q9DT5435;
+					};
+				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NotifstaReact" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "notifsta" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -334,7 +428,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* NotifstaReact */,
+				13B07F861A680F5B00A75B9A /* notifsta */,
 			);
 		};
 /* End PBXProject section */
@@ -447,6 +541,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -454,8 +554,14 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/node_modules/react-native/Libraries/PushNotificationIOS/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/notifsta-bbwzdgtabqfsyrghwjmaplbgrkru/Build/Products/Debug-iphoneos",
+				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = NotifstaReact;
+				PRODUCT_NAME = notifsta;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -463,6 +569,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -470,8 +582,14 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/node_modules/react-native/Libraries/PushNotificationIOS/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/notifsta-bbwzdgtabqfsyrghwjmaplbgrkru/Build/Products/Debug-iphoneos",
+				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = NotifstaReact;
+				PRODUCT_NAME = notifsta;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -564,7 +682,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NotifstaReact" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "notifsta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -573,7 +691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NotifstaReact" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "notifsta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
