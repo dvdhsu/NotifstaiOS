@@ -26,8 +26,14 @@ class Event extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      channelNodes: [],
-      eventName: "",
+      channels: [],
+      name: "",
+      cover_photo_url: "",
+      start_time: null,
+      end_time: null,
+      description: "",
+      address: "",
+      updated_at: null,
     }
   }
 
@@ -39,15 +45,12 @@ class Event extends React.Component {
     // connect to server and request
     var response = ajax.getEvent(this.props.email, this.props.token, this.props.eventId);
     response.then((data) => {
-      this.setState({
-        channelNodes: data.data.channels,
-        eventName: data.data.name
-      });
+      this.setState(data.data);
     }).done();
   }
 
   render() {
-    var channels = this.state.channelNodes.map((channel) =>
+    var channels = this.state.channels.map((channel) =>
                                                <Channel channel={channel}/>)
     return (
       <View style={styles.container}>
@@ -56,6 +59,11 @@ class Event extends React.Component {
         </TouchableHighlight>
         <Carousel indicatorColor="yellow" styles={styles.carousel} width={width}>
           {channels}
+          <View style={styles.eventInfo}>
+            <Text> {this.state.name} </Text>
+            <Text> {this.state.cover_photo_url} </Text>
+            <Text> {this.state.address} </Text>
+          </View>
         </Carousel>
       </View>
     )
@@ -64,6 +72,10 @@ class Event extends React.Component {
 
 var styles = StyleSheet.create({
   carousel: {
+  },
+  eventInfo: {
+    width: width,
+    flex: 1,
   },
   container: {
     flex: 1,
