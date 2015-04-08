@@ -6,6 +6,10 @@ module.exports = Channel;
 
 var React = require('react-native');
 
+var Dimensions = require('Dimensions');
+
+var {width, height} = Dimensions.get('window');
+
 var {
   AppRegistry,
   Image,
@@ -18,31 +22,63 @@ var {
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    var dataSource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    this.state = {
-      dataSource: dataSource.cloneWithRows(this.props.channel.notifications)
-    };
   };
 
   renderNotification(notification) {
     return(
-      <View>
-        <Text> {notification.notification_guts} </Text>
+      <View style={styles.notification}>
+        <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
       </View>
     );
   }
 
   render() {
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: ((r1, r2) => false)
+    });
+    dataSource = dataSource.cloneWithRows(this.props.channel.notifications)
+
     return(
-      <View style={{width: 320}}>
+      <View style={styles.container}>
+        <Text style={styles.title}> {this.props.channel.name} </Text>
         <ListView
-          style={{padding: 50}}
-          dataSource={this.state.dataSource}
+          style={styles.channel}
+          dataSource={dataSource}
           renderRow={this.renderNotification.bind(this)}
         />
-     </View>
+      </View>
     )
   }
 }
+
+var styles = StyleSheet.create({
+  notification: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: 'pink',
+  },
+  notificationGuts: {
+    textAlign: 'center',
+    fontSize: 15,
+  },
+  channel: {
+    flex: 1,
+    width: width,
+    height: height - 50,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  container: {
+    paddingBottom: 50,
+    backgroundColor: 'pink',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingBottom: 20
+  },
+});
