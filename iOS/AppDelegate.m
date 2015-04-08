@@ -11,6 +11,9 @@
 
 #import "RCTRootView.h"
 
+#import "RCTPushNotificationManager.h"
+
+
 #import <Parse/Parse.h>
 
 @implementation AppDelegate
@@ -72,6 +75,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
   [PFPush handlePush:userInfo];
+  [RCTPushNotificationManager application:application didReceiveRemoteNotification:userInfo];
 }
 
 @end
