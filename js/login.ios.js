@@ -16,43 +16,6 @@ var {
   Component
 } = React;
 
-var styles = StyleSheet.create({
-  title: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  container: {
-    flex: 1,
-    paddingTop: 100,
-    paddingRight: 30,
-    paddingLeft: 30,
-    alignItems: 'center',
-    backgroundColor: 'pink',
-  },
-  loginInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 25,
-    flex: 3,
-    fontSize: 18,
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-  loginFieldRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    flexWrap: 'wrap'
-  },
-  loginText: {
-    flex: 1,
-    marginBottom: 25,
-  }
-});
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -84,12 +47,11 @@ class Login extends React.Component {
         }
         else if (data.status === "success") {
           console.log("Authentication sucesss!");
-          // transition on to the next screen here
           this.props.navigator.push({
+            id: 'EventList',
+            events: data.data.events,
             email: data.data.email,
             token: data.data.authentication_token,
-            eventId: data.data.events[0].id,
-            id: 'Event',
           });
         }
       }
@@ -116,3 +78,40 @@ class Login extends React.Component {
     )
   }
 }
+
+var styles = StyleSheet.create({
+  title: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  container: {
+    flex: 1,
+    paddingTop: 100,
+    paddingRight: 30,
+    paddingLeft: 30,
+    alignItems: 'center',
+    backgroundColor: '#FE6F5E',
+  },
+  loginInput: {
+    height: 36,
+    paddingLeft: 10,
+    marginRight: 5,
+    marginBottom: 25,
+    flex: 3,
+    fontSize: 18,
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+  loginFieldRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    flexWrap: 'wrap',
+  },
+  loginText: {
+    flex: 1,
+    marginBottom: 25,
+    paddingRight: 10,
+  }
+});

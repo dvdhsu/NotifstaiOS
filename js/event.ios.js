@@ -79,7 +79,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'pink',
+    backgroundColor: '#FE6F5E',
     paddingBottom: 30,
   },
   text: {

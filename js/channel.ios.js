@@ -59,7 +59,6 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: 'pink',
   },
   notificationGuts: {
     textAlign: 'center',
@@ -74,7 +73,6 @@ var styles = StyleSheet.create({
   },
   container: {
     paddingBottom: 50,
-    backgroundColor: 'pink',
   },
   title: {
     textAlign: 'center',
