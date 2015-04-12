@@ -8,6 +8,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>su.davidh.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To show you the nearest events.</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
