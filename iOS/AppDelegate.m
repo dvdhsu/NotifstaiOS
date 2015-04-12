@@ -62,6 +62,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
   return YES;
 }
 
