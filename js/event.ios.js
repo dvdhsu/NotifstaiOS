@@ -48,8 +48,9 @@ class Event extends React.Component {
   }
 
   render() {
-    var channels = this.state.channels.map((channel) =>
-                                               <Channel channel={channel}/>)
+    if (this.state.channels.length > 0) {
+      var channel = <Channel channel={this.state.channels[0]} />
+    }
     return (
       <View style={styles.container}>
         <View style={styles.coverPhotoContainer}>
@@ -60,12 +61,8 @@ class Event extends React.Component {
           </Image>
         </View>
         <Carousel indicatorColor="yellow" styles={styles.carousel} width={width}>
-          {channels}
-          <View style={styles.eventInfo}>
-            <Text> {this.state.name} </Text>
-            <Text> {this.state.cover_photo_url} </Text>
-            <Text> {this.state.address} </Text>
-          </View>
+          <EventInfo event={this.state}/>
+          {channel}
         </Carousel>
       </View>
     )
