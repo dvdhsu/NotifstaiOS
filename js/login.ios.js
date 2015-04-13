@@ -42,11 +42,9 @@ class Login extends React.Component {
     loginData.then(
       (data) => {
         if (data.status === "failure") {
-          console.log("Authentication failure");
           // do some animation here, or display a message
         }
         else if (data.status === "success") {
-          console.log("Authentication sucesss!");
           this.props.navigator.push({
             id: 'EventList',
             events: data.data.events,
