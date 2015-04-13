@@ -24,13 +24,10 @@ class NotifstaLaunch extends React.Component {
   renderScene(route, nav) {
     switch(route.id) {
       case 'Login':
-        console.log("transitioning to login");
         return <Login navigator={nav}/>;
       case 'Event':
-        console.log("transitioning to event");
         return <Event navigator={nav} email={route.email} token={route.token} eventId={route.eventId}/>
       case 'EventList':
-        console.log("transitioning to event list");
         return <EventList navigator={nav} email={route.email} token={route.token} events={route.events}/>
     }
   }
