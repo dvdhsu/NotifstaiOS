@@ -8,14 +8,12 @@ var Dimensions = require('Dimensions');
 
 var ajax = require('./ajax.ios');
 var Channel = require('./channel.ios');
+var EventInfo = require('./eventInfo.ios');
 
 var {
   StyleSheet,
   Text,
-  TextInput,
   View,
-  TouchableHighlight,
-  ActivityIndicatorIOS,
   Image,
   Component
 } = React;
@@ -54,9 +52,13 @@ class Event extends React.Component {
                                                <Channel channel={channel}/>)
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.refreshButton} onPress={() => this.updateEvent()}>
-          <Text> Update! </Text>
-        </TouchableHighlight>
+        <View style={styles.coverPhotoContainer}>
+          <Image source={{uri: this.state.cover_photo_url}} style={styles.coverPhoto}>
+            <View style={styles.coverPhotoInside}>
+              <Text style={styles.eventName}> {this.state.name} </Text>
+            </View>
+          </Image>
+        </View>
         <Carousel indicatorColor="yellow" styles={styles.carousel} width={width}>
           {channels}
           <View style={styles.eventInfo}>
@@ -71,23 +73,29 @@ class Event extends React.Component {
 }
 
 var styles = StyleSheet.create({
-  carousel: {
-  },
-  eventInfo: {
-    width: width,
-    flex: 1,
-  },
   container: {
     flex: 1,
     backgroundColor: '#FE6F5E',
     paddingBottom: 30,
   },
-  text: {
-    flex: 1,
+  coverPhotoContainer: {
+    paddingBottom: 20,
   },
-  refreshButton: {
-    paddingRight: 30,
-    paddingTop: 30,
-    alignItems: 'flex-end',
+  coverPhoto: {
+    width: width,
+    height: height / 3,
+    backgroundColor: 'transparent',
+  },
+  eventName: {
+    fontSize: 30,
+    color: 'white',
+    fontFamily: 'Avenir Next',
+  },
+  coverPhotoInside: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    paddingBottom: 10,
+    paddingLeft: 10,
   },
 });
