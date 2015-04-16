@@ -100,14 +100,14 @@ var styles = StyleSheet.create({
   eventName: {
     fontSize: 30,
     color: 'white',
-    fontWeight: '600',
+    fontWeight: '700',
     padding: 15,
     fontFamily: 'Avenir Next',
   },
   eventInfo: {
     fontSize: 15,
     color: 'white',
-    fontWeight: '500',
+    fontWeight: '600',
     fontFamily: 'Avenir Next',
   },
   coverPhoto: {
