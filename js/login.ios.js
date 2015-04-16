@@ -12,7 +12,6 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  Image,
   Component
 } = React;
 
