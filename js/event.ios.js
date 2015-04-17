@@ -3,35 +3,30 @@ module.exports = Event;
 'use strict';
 
 var React = require('react-native');
-var Carousel = require('react-native-carousel');
 var Dimensions = require('Dimensions');
+var SMXTabBarIOS = require('SMXTabBarIOS');
+var SMXTabBarItemIOS = SMXTabBarIOS.Item;
 
 var ajax = require('./ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
 
+var {width, height} = Dimensions.get('window');
+
 var {
   StyleSheet,
   Text,
   View,
-  Image,
+  ScrollView,
   Component
 } = React;
-
-var {width, height} = Dimensions.get('window');
 
 class Event extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      channels: [],
-      name: "",
-      cover_photo_url: "",
-      start_time: null,
-      end_time: null,
-      description: "",
-      address: "",
-      updated_at: null,
+      event: this.props.event,
+      selectedTab: 'info',
     }
   }
 
@@ -41,30 +36,82 @@ class Event extends React.Component {
 
   updateEvent() {
     // connect to server and request
-    var response = ajax.getEvent(this.props.email, this.props.token, this.props.eventId);
+    var response = ajax.getEvent(this.props.email, this.props.token, this.props.event.id);
     response.then((data) => {
-      this.setState(data.data);
+      this.setState({
+        event: data.data
+      });
     }).done();
   }
 
-  render() {
-    if (this.state.channels.length > 0) {
-      var channel = <Channel channel={this.state.channels[0]} />
+  _renderContent() {
+    switch(this.state.selectedTab) {
+      case 'info':
+        return (
+          <ScrollView style={styles.tabView}>
+            <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}/>
+          </ScrollView>
+      );
+      case "notifications":
+        return (
+          <Channel style={styles.tabView} channel={this.state.event.channels[0]} />
+        );
+      default:
+        return (
+          <View style={styles.tabView}>
+            <Text> Currently, {this.state.selectedTab} is selected. </Text>
+          </View>
+        );
     }
-    return (
-      <View style={styles.container}>
-        <View style={styles.coverPhotoContainer}>
-          <Image source={{uri: this.state.cover_photo_url}} style={styles.coverPhoto}>
-            <View style={styles.coverPhotoInside}>
-              <Text style={styles.eventName}> {this.state.name} </Text>
-            </View>
-          </Image>
-        </View>
-        <Carousel indicatorColor="yellow" styles={styles.carousel} width={width}>
-          <EventInfo event={this.state}/>
-          {channel}
-        </Carousel>
-      </View>
+  }
+
+  render() {
+    return(
+      <SMXTabBarIOS
+        selectedTab={this.state.selectedTab}>
+        <SMXTabBarItemIOS
+          name="info"
+          iconName={'ion|ios-information-outline'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Info Tab"
+          selected={this.state.selectedTab === 'info'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'info',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
+        <SMXTabBarItemIOS
+          name="notifications"
+          iconName={'ion|android-notifications-none'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Notifications Tab"
+          selected={this.state.selectedTab === 'notifications'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'notifications',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
+        <SMXTabBarItemIOS
+          name="map"
+          iconName={'ion|android-map'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'map'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'map',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
+      </SMXTabBarIOS>
     )
   }
 }
@@ -72,27 +119,10 @@ class Event extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FE6F5E',
+    backgroundColor: '#FFFFF0',
     paddingBottom: 30,
   },
-  coverPhotoContainer: {
-    paddingBottom: 20,
-  },
-  coverPhoto: {
-    width: width,
-    height: height / 3,
-    backgroundColor: 'transparent',
-  },
-  eventName: {
-    fontSize: 30,
-    color: 'white',
-    fontFamily: 'Avenir Next',
-  },
-  coverPhotoInside: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    paddingBottom: 10,
-    paddingLeft: 10,
+  tabView: {
+    height: 10,
   },
 });
