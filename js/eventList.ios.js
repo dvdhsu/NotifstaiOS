@@ -60,7 +60,7 @@ class EventList extends React.Component {
     this.props.navigator.push({
       email: this.props.email,
       token: this.props.token,
-      eventId: event.id,
+      event: event,
       id: 'Event',
     });
   }
