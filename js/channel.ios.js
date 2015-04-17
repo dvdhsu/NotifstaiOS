@@ -7,12 +7,12 @@ module.exports = Channel;
 var React = require('react-native');
 
 var Dimensions = require('Dimensions');
+var Moment = require('moment');
 
 var {width, height} = Dimensions.get('window');
 
 var {
   AppRegistry,
-  Image,
   ListView,
   StyleSheet,
   Text,
@@ -24,12 +24,21 @@ class Channel extends React.Component {
     super(props);
   };
 
-  renderNotification(notification) {
+  _renderNotification(notification) {
     return(
       <View style={styles.notification}>
         <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
+        <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
       </View>
     );
+  }
+
+  _renderHeader() {
+    return(
+      <View style={styles.header}>
+        <Text style={styles.title}> Notifications </Text>
+      </View>
+    )
   }
 
   render() {
@@ -40,11 +49,11 @@ class Channel extends React.Component {
 
     return(
       <View style={styles.container}>
-        <Text style={styles.title}> {this.props.channel.name} </Text>
         <ListView
           style={styles.channel}
           dataSource={dataSource}
-          renderRow={this.renderNotification.bind(this)}
+          renderRow={this._renderNotification}
+          renderHeader={this._renderHeader}
         />
       </View>
     )
@@ -55,28 +64,27 @@ var styles = StyleSheet.create({
   notification: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
+    justifyContent: 'space-between',
+    padding: 10,
+    marginBottom: 15,
+    backgroundColor: 'pink',
   },
   notificationGuts: {
-    textAlign: 'center',
+    color: 'black',
     fontSize: 15,
   },
-  channel: {
-    flex: 1,
-    width: width,
-    height: height - 50,
-    paddingLeft: 20,
-    paddingRight: 20,
+  notificationTime: {
+    color: 'black',
+    fontSize: 15,
   },
-  container: {
-    paddingBottom: 50,
+  header: {
+    padding: 30,
   },
   title: {
     textAlign: 'center',
     fontSize: 20,
     paddingBottom: 20
+  },
+  container: {
   },
 });
