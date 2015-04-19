@@ -15,6 +15,7 @@ var {
   TouchableHighlight,
 } = React;
 
+var LaunchCarousel = require('./launchCarousel.ios.js');
 var Login = require('./login.ios');
 var Event = require('./event.ios');
 var EventList = require('./eventList.ios');
@@ -23,6 +24,8 @@ class NotifstaLaunch extends React.Component {
 
   renderScene(route, nav) {
     switch(route.id) {
+      case 'LaunchCarousel':
+        return <LaunchCarousel navigator={nav}/>
       case 'Login':
         return <Login navigator={nav}/>;
       case 'Event':
@@ -44,7 +47,7 @@ class NotifstaLaunch extends React.Component {
           }
           return Navigator.SceneConfigs.FloatFromRight;
         }}
-        initialRoute={{id: 'Login'}}
+        initialRoute={{id: 'LaunchCarousel'}}
         renderScene={this.renderScene}
       />
     );
