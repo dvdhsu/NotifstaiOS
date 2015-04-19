@@ -3,7 +3,12 @@ module.exports = Login;
 'use strict';
 
 var React = require('react-native');
+var Icon = require('FAKIconImage');
+var Dimensions = require('Dimensions');
+
 var ajax = require('./ajax.ios');
+
+var {width, height} = Dimensions.get('window');
 
 var {
   StyleSheet,
@@ -19,8 +24,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "admin@example.com",
-      password: "asdf",
+      email: 'admin@example.com',
+      password: 'asdf',
     }
   }
 
@@ -40,10 +45,10 @@ class Login extends React.Component {
     var loginData = ajax.login(this.state.email, this.state.password);
     loginData.then(
       (data) => {
-        if (data.status === "failure") {
+        if (data.status === 'failure') {
           // do some animation here, or display a message
         }
-        else if (data.status === "success") {
+        else if (data.status === 'success') {
           this.props.navigator.push({
             id: 'EventList',
             events: data.data.events,
@@ -52,23 +57,31 @@ class Login extends React.Component {
           });
         }
       }
-    ).catch((err) => console.log("error " + err));
+    ).catch((err) => console.log('error ' + err));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}> Log in here! </Text>
+        <Icon
+          name='ion|social-windows'
+          size={40}
+          color='black'
+          style={styles.windows}
+        />
         <View style={styles.loginFieldRow}>
-          <Text style={styles.loginText}> E-mail </Text>
           <TextInput style={styles.loginInput} value='admin@example.com'
-           onChange={this.onEmailChange.bind(this)}/>
+            autoFocus={true} onChange={this.onEmailChange.bind(this)}
+            keyboardType='email-address' placeholder='Email'
+            autoCapitalize='none' autoCorrect={false} returnKeyType='next'/>
         </View>
         <View style={styles.loginFieldRow}>
-          <Text style={styles.loginText}> Password </Text>
-          <TextInput style={styles.loginInput} value='asdf' onChange={this.onPasswordChange.bind(this)}/>
+          <TextInput style={styles.loginInput} value='asdf'
+          onChange={this.onPasswordChange.bind(this)} password={true}
+          placeholder='Password' autoCapitalize='none' autoCorrect={false}
+          returnKeyType='go'/>
         </View>
-        <TouchableHighlight underlayColor='orange' onPress={this.login.bind(this)}>
+        <TouchableHighlight underlayColor='black' onPress={this.login.bind(this)}>
           <Text> Go! </Text>
         </TouchableHighlight>
       </View>
@@ -77,38 +90,34 @@ class Login extends React.Component {
 }
 
 var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 30,
+    alignItems: 'center',
+    backgroundColor: '#87CEEB',
+  },
   title: {
     marginBottom: 20,
     fontSize: 18,
     textAlign: 'center',
   },
-  container: {
-    flex: 1,
-    paddingTop: 100,
-    paddingRight: 30,
-    paddingLeft: 30,
-    alignItems: 'center',
-    backgroundColor: '#FE6F5E',
-  },
   loginInput: {
-    height: 36,
+    height: 50,
     paddingLeft: 10,
     marginRight: 5,
     marginBottom: 25,
-    flex: 3,
     fontSize: 18,
     borderWidth: 1,
-    borderRadius: 8,
+    flex: 1,
   },
   loginFieldRow: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
-    flexWrap: 'wrap',
   },
-  loginText: {
-    flex: 1,
-    marginBottom: 25,
-    paddingRight: 10,
-  }
+  windows: {
+      width: 70,
+      height: 70,
+      margin: 10
+    },
 });
