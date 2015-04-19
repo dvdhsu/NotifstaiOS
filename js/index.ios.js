@@ -13,6 +13,7 @@ var {
   StyleSheet,
   Text,
   TouchableHighlight,
+  PushNotificationIOS,
 } = React;
 
 var LaunchCarousel = require('./launchCarousel.ios.js');
@@ -21,6 +22,20 @@ var Event = require('./event.ios');
 var EventList = require('./eventList.ios');
 
 class NotifstaLaunch extends React.Component {
+
+  componentDidMount() {
+    PushNotificationIOS.addEventListener('notification', this._passNotification);
+  }
+
+  componentWillUnmount() {
+    PushNotificationIOS.removeEventListener('notification', this._passNotification);
+  }
+
+  _passNotification(notification) {
+    console.log(notification);
+    // pass the notification over to event, so that it can refresh
+    // also find some way of displaying the notification...
+  }
 
   renderScene(route, nav) {
     switch(route.id) {
@@ -57,7 +72,7 @@ class NotifstaLaunch extends React.Component {
 var styles = React.StyleSheet.create({
   container: {
     paddingTop: 20,
-    backgroundColor: '#FE6F5E',
+    backgroundColor: '#FFFFF0',
   },
 });
 
