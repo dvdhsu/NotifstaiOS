@@ -74,6 +74,7 @@ class LaunchCarousel extends React.Component {
       }
     });
   }
+
   _transition(nextScreen) {
     switch(nextScreen) {
       case 'LoginWithoutFacebook':
@@ -90,19 +91,28 @@ class LaunchCarousel extends React.Component {
     var pages = [
       <View style={styles.image}>
         <Image style={styles.image} source={{uri: "https://raw.githubusercontent.com/appintheair/react-native-buyscreen/master/Images/screen_3%402x.png"}}>
-          <Text style={styles.title}> Know your event. Inside and out. </Text>
+          <View style={styles.headerContainer}>
+            <Text style={[styles.text, styles.header]}> Know the venue. </Text>
+            <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
+            <Text style={[styles.text, styles.subheader]}> Food? Check.  </Text>
+            <Text style={[styles.text, styles.subheader]}> Drinks? Checkmate.  </Text>
+          </View>
         </Image>
       </View>,
       <View style={styles.image}>
         <Image style={styles.image} source={{uri: "https://raw.githubusercontent.com/appintheair/react-native-buyscreen/master/Images/screen_2%402x.png"}}>
-          <Text style={styles.title}> Receive notifications. Don't miss that act.</Text>
+          <View style={styles.headerContainer}>
+            <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
+              <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>
+              <Text style={[styles.text, styles.subheader]}> Before anybody else. </Text>
+          </View>
         </Image>
       </View>
     ];
 
     return (
       <View style={styles.container}>
-        <Carousel delay={2000} style={styles.carousel}>
+        <Carousel delay={3000} style={styles.carousel}>
           {pages}
         </Carousel>
         <View style={[styles.loginButtonsContainer, styles.loginButtonsContainerTop]}>
@@ -131,19 +141,28 @@ var styles = StyleSheet.create({
     width: width,
     height: height,
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   carousel: {
     height: height - 20,
   },
-  title: {
-    fontSize: 35,
-    fontWeight: '700',
+  headerContainer: {
+    paddingTop: height / 4,
+  },
+  text: {
     fontFamily: 'Avenir Next',
     textAlign: 'center',
     color: 'white',
-    padding: 30,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
+  header: {
+    fontSize: 35,
+    fontWeight: '700',
+  },
+  subheader: {
+    fontSize: 25,
+    fontWeight: '500',
   },
   loginButtonsContainer: {
     margin: 10,
@@ -160,6 +179,7 @@ var styles = StyleSheet.create({
     borderColor: 'white',
     height: 48,
     borderWidth: 1,
+    borderRadius: 3,
     flex: 1,
     margin: 4,
   },
