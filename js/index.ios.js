@@ -45,9 +45,10 @@ class NotifstaLaunch extends React.Component {
         return <Login navigator={nav}/>;
       case 'Event':
         return <Event navigator={nav} email={route.email} event={route.event}
-                 token={route.token} />
+                 token={route.token} />;
       case 'EventList':
-        return <EventList navigator={nav} email={route.email} token={route.token} events={route.events}/>
+        return <EventList navigator={nav} email={route.email} token={route.token}
+                 events={route.events}/>;
     }
   }
 
@@ -55,7 +56,6 @@ class NotifstaLaunch extends React.Component {
     return(
       <React.Navigator
         style={styles.container}
-        sceneStyle={styles.sceneStyle}
         configureScene={(route) => {
           if (route.sceneConfig) {
             return route.sceneConfig;
