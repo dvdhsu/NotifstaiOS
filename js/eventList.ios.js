@@ -6,7 +6,7 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Geolib = require('geolib');
 
-var ajax = require('./ajax.ios');
+var ajax = require('./lib/ajax.ios');
 
 var {
   StyleSheet,

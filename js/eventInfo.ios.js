@@ -7,7 +7,7 @@ var Dimensions = require('Dimensions');
 var Moment = require('moment');
 var Icon = require('FAKIconImage');
 
-var ajax = require('./ajax.ios');
+var ajax = require('./lib/ajax.ios');
 
 var Channel = require('./channel.ios');
 

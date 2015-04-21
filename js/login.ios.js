@@ -6,7 +6,7 @@ var React = require('react-native');
 var Icon = require('FAKIconImage');
 var Dimensions = require('Dimensions');
 
-var ajax = require('./ajax.ios');
+var ajax = require('./lib/ajax.ios');
 
 var {width, height} = Dimensions.get('window');
 
