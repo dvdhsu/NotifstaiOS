@@ -8,17 +8,40 @@ exports = module.exports = {};
 'use strict';
 
 exports.login = function(email, password) {
-  request_url = API_BASE + 'auth/login/?email=' + email + '&password=' + password;
+  requestUrl = API_BASE + 'auth/login/?email=' + email + '&password=' + password;
   return(
-    fetch(request_url)
+    fetch(requestUrl)
       .then((unparsed) => unparsed.json())
   )
 }
 
-exports.getEvent = function(email, token, eventId) {
-  request_url = API_BASE + 'events/' + eventId + '/?user_email=' + email + '&user_token=' + token;
+exports.loginWithToken = function(email, token) {
+  requestUrl = API_BASE + 'auth/login_with_token/?email=' + email + '&token=' + token;
   return(
-    fetch(request_url)
+    fetch(requestUrl)
+      .then((unparsed) => unparsed.json())
+  )
+}
+
+exports.facebookCreateOrLogin = function(email, facebookId, facebookToken) {
+  requestUrl = API_BASE + 'auth/facebook/?email=' + email + '&facebook_id=' + facebookId + '&facebook_token=' + facebookToken;
+
+  return(
+    fetch(requestUrl)
+      .then((unparsed) => unparsed.json())
+      .then(
+        (parsed) => {
+          console.log(parsed);
+          return parsed;
+        }
+      )
+  )
+}
+
+exports.getEvent = function(email, token, eventId) {
+  requestUrl = API_BASE + 'events/' + eventId + '/?user_email=' + email + '&user_token=' + token;
+  return(
+    fetch(requestUrl)
       .then((unparsed) => unparsed.json())
   )
 }
