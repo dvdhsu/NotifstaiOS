@@ -8,6 +8,7 @@ var Carousel = require('react-native-looped-carousel');
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 
+var ajax = require('./lib/ajax.ios');
 var {
   Navigator,
   StyleSheet,
