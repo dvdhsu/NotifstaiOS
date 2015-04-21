@@ -8,6 +8,7 @@ var Carousel = require('react-native-looped-carousel');
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 
+var FacebookLoginManager = require('NativeModules').FacebookLoginManager;
 var ajax = require('./lib/ajax.ios');
 var {
   Navigator,
@@ -20,6 +21,28 @@ var {
 } = React;
 
 class LaunchCarousel extends React.Component {
+  _loginWithFacebook() {
+    FacebookLoginManager.newSession((error, data) => {
+      if (error) {
+        console.log('error ' + error);
+      } else {
+        var loginData =
+          ajax.facebookCreateOrLogin(data.email, data.userId, data.token);
+        loginData.then(data => {
+          if (data.status === 'failure') {
+            // login failed, so animate something
+          } else if (data.status === 'success') {
+            this.props.navigator.push({
+              id: 'EventList',
+              events: data.data.events,
+              email: data.data.email,
+              token: data.data.authentication_token,
+            });
+          }
+        });
+      }
+    });
+  }
   _transition(nextScreen) {
     switch(nextScreen) {
       case 'LoginWithoutFacebook':
@@ -52,7 +75,7 @@ class LaunchCarousel extends React.Component {
           {pages}
         </Carousel>
         <View style={[styles.loginButtonsContainer, styles.loginButtonsContainerTop]}>
-          <TouchableHighlight style={[styles.loginButton, styles.topLoginButton]} onPress={() => this._transition("LoginWithoutFacebook")}>
+          <TouchableHighlight style={[styles.loginButton, styles.topLoginButton]} onPress={() => this._loginWithFacebook()}>
             <Text style={styles.loginButtonText}> Login with Facebook</Text>
           </TouchableHighlight>
         </View>
