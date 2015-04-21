@@ -9,7 +9,10 @@ var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window');
 
 var FacebookLoginManager = require('NativeModules').FacebookLoginManager;
+var NSUserDefaults = require('NativeModules').UserDefaultsManager;
+
 var ajax = require('./lib/ajax.ios');
+
 var {
   Navigator,
   StyleSheet,
@@ -21,6 +24,34 @@ var {
 } = React;
 
 class LaunchCarousel extends React.Component {
+  componentWillMount() {
+    NSUserDefaults.getDoubleString("email", "token",
+      (error, data) => {
+        if (!error) {
+          // managed to get email and token
+          var loginData = ajax.loginWithToken(data[0], data[1]);
+          console.log("email: " + data[0]);
+          console.log("token: " + data[1]);
+
+          loginData.then(data => {
+            console.log(data);
+            if (data.status === 'failure') {
+              // login failed, so animate something
+            } else if (data.status === 'success') {
+              console.log("successful login with saved");
+              this.props.navigator.push({
+                id: 'EventList',
+                events: data.data.events,
+                email: data.data.email,
+                token: data.data.authentication_token,
+              });
+            }
+          });
+        }
+      }
+    )
+  }
+
   _loginWithFacebook() {
     FacebookLoginManager.newSession((error, data) => {
       if (error) {

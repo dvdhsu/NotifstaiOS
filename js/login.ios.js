@@ -10,6 +10,8 @@ var ajax = require('./lib/ajax.ios');
 
 var {width, height} = Dimensions.get('window');
 
+var NSUserDefaults = require('NativeModules').UserDefaultsManager;
+
 var {
   StyleSheet,
   Text,
@@ -50,6 +52,9 @@ class Login extends React.Component {
           // do some animation here, or display a message
         }
         else if (data.status === 'success') {
+          // set for future logins
+          NSUserDefaults.storeString("email", data.data.email);
+          NSUserDefaults.storeString("token", data.data.authentication_token);
           this.props.navigator.push({
             id: 'EventList',
             events: data.data.events,
