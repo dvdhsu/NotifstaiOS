@@ -20,15 +20,17 @@ var {
   ScrollView,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  Component
+  Component,
+  VibrationIOS,
 } = React;
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'admin@example.com',
-      password: 'asdf',
+      email: '',
+      password: '',
+      error: '',
     }
   }
 
@@ -45,13 +47,18 @@ class Login extends React.Component {
   }
 
   login() {
-    var loginData = ajax.login(this.state.email, this.state.password);
+    var loginData = this.props.register ? ajax.register(this.state.email, this.state.password) :
+      ajax.login(this.state.email, this.state.password);
     loginData.then(
       (data) => {
         if (data.status === 'failure') {
-          // do some animation here, or display a message
+          this.setState({
+            error: 'Invalid email or password.',
+          });
+          VibrationIOS.vibrate();
         }
         else if (data.status === 'success') {
+          VibrationIOS.vibrate();
           // set for future logins
           NSUserDefaults.storeString("email", data.data.email);
           NSUserDefaults.storeString("token", data.data.authentication_token);
@@ -63,35 +70,38 @@ class Login extends React.Component {
           });
         }
       }
-    ).catch((err) => console.log('error ' + err));
+    ).catch((err) =>  {
+      this.setState({
+        error: "No internet connection."
+      });
+    });
   }
 
   render() {
+    var loginButtonText = this.props.register ? "Sign up" : "Login";
     return (
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
         bounces={false} keyboardDismissMode='onDrag'>
-        <Icon
-          name='ion|pizza'
-          size={100}
-          color='black'
-          style={styles.windows}
-        />
+        <Text style={styles.title}>{loginButtonText}</Text>
+        <Text style={styles.error}>{this.state.error}</Text>
         <View style={styles.loginFieldRow}>
-          <TextInput style={styles.loginInput} value='admin@example.com'
+          <TextInput style={styles.loginInput}
             autoFocus={true} onChange={this.onEmailChange.bind(this)}
             keyboardType='email-address' placeholder='Email'
             autoCapitalize='none' autoCorrect={false} returnKeyType='next'
-            onSubmitEditing={() => this.refs["password"].focus()}/>
+            onSubmitEditing={() => this.refs["password"].focus()}
+            onFocus={() => this.setState({error: ''})}/>
         </View>
         <View style={styles.loginFieldRow}>
-          <TextInput style={styles.loginInput} value='asdf' ref="password"
+          <TextInput style={styles.loginInput} ref="password"
           onChange={this.onPasswordChange.bind(this)} password={true}
           placeholder='Password' autoCapitalize='none' autoCorrect={false}
-          returnKeyType='go' onSubmitEditing={() => this.login()}/>
+          returnKeyType='go' onSubmitEditing={() => this.login()}
+          onFocus={() => this.setState({error: ''})}/>
         </View>
         <TouchableHighlight style={styles.loginButton}
           underlayColor='black' onPress={() => this.login()}>
-          <Text style={styles.loginButtonText}> Go! </Text>
+          <Text style={styles.loginButtonText}> {loginButtonText} </Text>
         </TouchableHighlight>
       </ScrollView>
     )
@@ -102,7 +112,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    backgroundColor: '#87CEEB',
+    backgroundColor: '#FD464D',
     alignItems: 'center',
   },
   loginInput: {
@@ -128,7 +138,7 @@ var styles = StyleSheet.create({
     margin: 10
   },
   loginButton: {
-    width: 100,
+    width: 150,
     height: 50,
     borderWidth: 1,
     borderRadius: 2,
@@ -136,11 +146,23 @@ var styles = StyleSheet.create({
   },
   loginButtonText: {
     paddingTop: 7,
-    color: 'black',
     fontSize: 25,
     fontWeight: '600',
     fontFamily: 'Avenir Next',
     flex: 1,
+    textAlign: 'center',
+  },
+  error: {
+    padding: 5,
+    fontSize: 20,
+    fontFamily: 'Avenir Next',
+    textAlign: 'center',
+  },
+  title: {
+    paddingTop: 10,
+    fontSize: 35,
+    fontWeight: '600',
+    fontFamily: 'Avenir Next',
     textAlign: 'center',
   },
 
