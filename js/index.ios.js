@@ -33,6 +33,9 @@ class NotifstaLaunch extends React.Component {
 
   _passNotification(notification) {
     console.log(notification);
+    PushNotificationIOS.getApplicationIconBadgeNumber(
+      (num) => PushNotificationIOS.setApplicationIconBadgeNumber(num + 1)
+    );
     // pass the notification over to event, so that it can refresh
     // also find some way of displaying the notification...
   }
@@ -42,7 +45,7 @@ class NotifstaLaunch extends React.Component {
       case 'LaunchCarousel':
         return <LaunchCarousel navigator={nav}/>
       case 'Login':
-        return <Login navigator={nav}/>;
+        return <Login navigator={nav} register={route.register}/>;
       case 'Event':
         return <Event navigator={nav} email={route.email} event={route.event}
                  token={route.token} />;

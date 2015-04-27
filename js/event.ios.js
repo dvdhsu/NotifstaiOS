@@ -11,6 +11,8 @@ var ajax = require('./lib/ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
 
+var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
+
 var {width, height} = Dimensions.get('window');
 
 var {
@@ -32,15 +34,18 @@ class Event extends React.Component {
 
   componentDidMount() {
     this.updateEvent();
+    PushSubscriptionManager.pushSubscribe(this.state.event.channels[0].guid);
   }
 
   updateEvent() {
     // connect to server and request
     var response = ajax.getEvent(this.props.email, this.props.token, this.props.event.id);
     response.then((data) => {
-      this.setState({
-        event: data.data
-      });
+      if (data) {
+        this.setState({
+          event: data.data
+        });
+      }
     }).done();
   }
 
@@ -52,20 +57,36 @@ class Event extends React.Component {
             <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}/>
           </ScrollView>
       );
-      case "notifications":
+      case 'notifications':
         return (
           <Channel style={styles.tabView} channel={this.state.event.channels[0]} />
         );
-      default:
+      case 'map':
         return (
           <View style={styles.tabView}>
-            <Text> Currently, {this.state.selectedTab} is selected. </Text>
+            <Image source={{uri: this.props.event_map}} style={this.styles.eventMap}>
+            </Image>
           </View>
         );
     }
   }
 
   render() {
+    var eventMap = this.props.event_map ? 
+        (<SMXTabBarItemIOS
+          name="map"
+          iconName={'ion|android-map'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'map'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'map',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>) : null
     return(
       <SMXTabBarIOS
         selectedTab={this.state.selectedTab}>
@@ -97,20 +118,7 @@ class Event extends React.Component {
           }}>
             {this._renderContent()}
         </SMXTabBarItemIOS>
-        <SMXTabBarItemIOS
-          name="map"
-          iconName={'ion|android-map'}
-          title={''}
-          iconSize={32}
-          accessibilityLabel="Map Tab"
-          selected={this.state.selectedTab === 'map'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'map',
-            });
-          }}>
-            {this._renderContent()}
-        </SMXTabBarItemIOS>
+        {eventMap}
       </SMXTabBarIOS>
     )
   }
@@ -124,5 +132,9 @@ var styles = StyleSheet.create({
   },
   tabView: {
     height: 10,
+  },
+  eventMap: {
+    height: height,
+    width: width,
   },
 });

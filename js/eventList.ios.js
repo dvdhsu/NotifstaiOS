@@ -40,15 +40,15 @@ class EventList extends React.Component {
   _renderEvent(event) {
     if (this.state.latitude) {
       var distance = geolib.getDistance(this.state, event, 100);
-      var distanceView = <Text style={styles.eventInfo}> {distance / 1000} km away </Text>;
+      var distanceView = <Text style={[styles.eventInfo, styles.eventText]}> {distance / 1000} km away </Text>;
     }
 
     return(
       <TouchableOpacity onPress={() => this._transitionToEvent(event)}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
-            <Text style={styles.eventName}> {event.name} </Text>
-            <Text style={styles.eventInfo}> {event.address} </Text>
+            <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
+            <Text style={[styles.eventInfo, styles.eventText]}> {event.address} </Text>
             {distanceView}
           </View>
         </Image>
@@ -97,18 +97,19 @@ var styles = StyleSheet.create({
     paddingBottom: 10,
     color: 'white',
   },
+  eventText: {
+    color: 'white',
+    fontFamily: 'Avenir Next',
+    textAlign: 'center',
+  },
   eventName: {
     fontSize: 30,
-    color: 'white',
     fontWeight: '700',
     padding: 15,
-    fontFamily: 'Avenir Next',
   },
   eventInfo: {
     fontSize: 15,
-    color: 'white',
     fontWeight: '600',
-    fontFamily: 'Avenir Next',
   },
   coverPhoto: {
     width: width,

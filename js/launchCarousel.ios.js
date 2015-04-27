@@ -30,15 +30,11 @@ class LaunchCarousel extends React.Component {
         if (!error) {
           // managed to get email and token
           var loginData = ajax.loginWithToken(data[0], data[1]);
-          console.log("email: " + data[0]);
-          console.log("token: " + data[1]);
 
           loginData.then(data => {
-            console.log(data);
             if (data.status === 'failure') {
               // login failed, so animate something
             } else if (data.status === 'success') {
-              console.log("successful login with saved");
               this.props.navigator.push({
                 id: 'EventList',
                 events: data.data.events,
@@ -77,20 +73,25 @@ class LaunchCarousel extends React.Component {
 
   _transition(nextScreen) {
     switch(nextScreen) {
-      case 'LoginWithoutFacebook':
+      case 'Login':
         this.props.navigator.push({
           sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
-          id: 'Login'
+          id: 'Login',
+          register: false,
         });
-  //    case 'LoginWithFacebook':
-   //   case 'Signup:
+      case 'Register':
+        this.props.navigator.push({
+          sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
+          id: 'Login',
+          register: true,
+        });
     }
   }
 
   render() {
     var pages = [
       <View style={styles.image}>
-        <Image style={styles.image} source={{uri: "https://raw.githubusercontent.com/appintheair/react-native-buyscreen/master/Images/screen_3%402x.png"}}>
+        <Image style={styles.image} source={{uri: "http://cdn.notifsta.com/images/eiffel6.jpg"}}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Know the venue. </Text>
             <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
@@ -100,7 +101,7 @@ class LaunchCarousel extends React.Component {
         </Image>
       </View>,
       <View style={styles.image}>
-        <Image style={styles.image} source={{uri: "https://raw.githubusercontent.com/appintheair/react-native-buyscreen/master/Images/screen_2%402x.png"}}>
+        <Image style={styles.image} source={{uri: "http://cdn.notifsta.com/images/party.jpg"}}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
               <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>
@@ -121,10 +122,10 @@ class LaunchCarousel extends React.Component {
           </TouchableHighlight>
         </View>
         <View style={styles.loginButtonsContainer}>
-          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("LoginWithoutFacebook")}>
+          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Login")}>
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableHighlight>
-          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("LoginWithoutFacebook")}>
+          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Register")}>
             <Text style={styles.loginButtonText}> Sign up </Text>
           </TouchableHighlight>
         </View>
@@ -147,7 +148,7 @@ var styles = StyleSheet.create({
     height: height - 20,
   },
   headerContainer: {
-    paddingTop: height / 4,
+    paddingTop: (height <= 480 ? 50 : height / 5),
   },
   text: {
     fontFamily: 'Avenir Next',

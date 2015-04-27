@@ -7,8 +7,26 @@ exports = module.exports = {};
 
 'use strict';
 
+var React = require('react-native');
+
+var {
+  StyleSheet,
+  View,
+  Text,
+  TouchableHighlight,
+  AlertIOS,
+} = React;
+
 exports.login = function(email, password) {
   requestUrl = API_BASE + 'auth/login/?email=' + email + '&password=' + password;
+  return(
+    fetch(requestUrl)
+      .then((unparsed) => unparsed.json())
+  )
+}
+
+exports.register = function(email, password) {
+  requestUrl = API_BASE + 'auth/register/?email=' + email + '&password=' + password;
   return(
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
@@ -29,12 +47,12 @@ exports.facebookCreateOrLogin = function(email, facebookId, facebookToken) {
   return(
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
-      .then(
-        (parsed) => {
-          console.log(parsed);
-          return parsed;
-        }
-      )
+      .then((parsed) => {
+        return parsed;
+      })
+      .catch((error) => {
+        AlertIOS.alert('No internet connection');
+      })
   )
 }
 
@@ -43,5 +61,8 @@ exports.getEvent = function(email, token, eventId) {
   return(
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
+      .catch((error) => {
+        AlertIOS.alert('Cannot load event - no internet connection');
+      })
   )
 }

@@ -134,6 +134,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Palatino',
     alignSelf: 'center',
     flex: 1,
+    textAlign: 'center',
   },
   coverPhotoContainer: {
     paddingBottom: 20,
@@ -148,6 +149,7 @@ var styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'Avenir Next',
     fontWeight: '700',
+    textAlign: 'center',
   },
   coverPhotoInside: {
     flex: 1,
