@@ -75,13 +75,11 @@ class LaunchCarousel extends React.Component {
     switch(nextScreen) {
       case 'Login':
         this.props.navigator.push({
-          sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
           id: 'Login',
           register: false,
         });
       case 'Register':
         this.props.navigator.push({
-          sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
           id: 'Login',
           register: true,
         });
