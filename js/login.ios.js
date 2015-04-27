@@ -82,6 +82,10 @@ class Login extends React.Component {
     return (
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
         bounces={false} keyboardDismissMode='onDrag'>
+        <TouchableHighlight style={[styles.closeIcon, styles.closeButton]}
+          onPress={this.props.navigator.pop}>
+          <Icon name='ion|ios-close-empty' size={50} color='black' style={styles.closeIcon} />
+        </TouchableHighlight>
         <Text style={styles.title}>{loginButtonText}</Text>
         <Text style={styles.error}>{this.state.error}</Text>
         <View style={styles.loginFieldRow}>
@@ -165,5 +169,13 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     textAlign: 'center',
   },
+  closeButton: {
+    alignSelf: 'flex-end',
+  },
+  closeIcon: {
+    height: 50,
+    width: 50,
+  },
+
 
 });
