@@ -9,6 +9,24 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Moment = require('moment');
 
+Moment.locale('en', {
+    relativeTime : {
+        future: "in %s",
+        past:   "%s",
+        s:  "1s",
+        m:  "1m",
+        mm: "%dm",
+        h:  "1h",
+        hh: "%dh",
+        d:  "1d",
+        dd: "%dd",
+        M:  "a month",
+        MM: "%d months",
+        y:  "a year",
+        yy: "%d years"
+    }
+});
+
 var {width, height} = Dimensions.get('window');
 
 var {
@@ -27,8 +45,8 @@ class Channel extends React.Component {
   _renderNotification(notification) {
     return(
       <View style={styles.notification}>
-        <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
         <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
+        <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
       </View>
     );
   }
@@ -65,26 +83,42 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
     marginBottom: 15,
-    backgroundColor: 'pink',
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 3,
   },
   notificationGuts: {
     color: 'black',
     fontSize: 15,
+    fontFamily: 'Palatino',
+    fontWeight: '500',
+    flex: 1,
+    textAlign: 'right',
   },
   notificationTime: {
     color: 'black',
     fontSize: 15,
+    fontFamily: 'Palatino',
+    fontWeight: '300',
   },
   header: {
     padding: 30,
   },
   title: {
-    textAlign: 'center',
-    fontSize: 20,
-    paddingBottom: 20
+    fontWeight: "800",
+    fontSize: 25,
+    fontFamily: 'Palatino',
+    alignSelf: 'center',
+    flex: 1,
+    padding: 20,
   },
   container: {
+    height: height,
+    width: width,
+    backgroundColor: '#FFFFF0',
+    paddingHorizontal: 10,
   },
 });
