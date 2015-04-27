@@ -24,6 +24,10 @@ var EventList = require('./eventList.ios');
 class NotifstaLaunch extends React.Component {
 
   componentDidMount() {
+    // reset badge count
+    PushNotificationIOS.getApplicationIconBadgeNumber(
+      (num) => PushNotificationIOS.setApplicationIconBadgeNumber(0)
+    );
     PushNotificationIOS.addEventListener('notification', this._passNotification);
   }
 
