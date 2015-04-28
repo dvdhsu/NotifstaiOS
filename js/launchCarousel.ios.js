@@ -59,6 +59,9 @@ class LaunchCarousel extends React.Component {
           if (data.status === 'failure') {
             // login failed, so animate something
           } else if (data.status === 'success') {
+            // set for future logins
+            NSUserDefaults.storeString("email", data.data.email);
+            NSUserDefaults.storeString("token", data.data.authentication_token);
             this.props.navigator.push({
               id: 'EventList',
               events: data.data.events,
