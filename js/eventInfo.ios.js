@@ -88,6 +88,8 @@ class EventInfo extends React.Component {
           </TouchableOpacity>
         </View>
         <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true} />
+        <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true}
+          scrollEnabled={false}/>
       </ScrollView>
     )
   }
