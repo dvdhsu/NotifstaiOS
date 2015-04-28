@@ -5,9 +5,12 @@ module.exports = EventInfo;
 var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Moment = require('moment');
+var HumanizeDuration = require('humanize-duration');
 var Icon = require('FAKIconImage');
 
 var ajax = require('./lib/ajax.ios');
+
+var Line = require('./lib/line.ios');
 
 var Channel = require('./channel.ios');
 
@@ -53,15 +56,15 @@ class EventInfo extends React.Component {
       subtitle: this.props.event.address,
     };
 
-    var navigate = <Icon name='ion|ios-navigate-outline' size={20} color='black' style={styles.informationIcon} />
 
     var startTime = Moment(this.props.event.start_time);
     var endTime = Moment(this.props.event.end_time);
 
-    var delta = Moment.duration(endTime.diff(startTime)).asHours();
+    var delta = HumanizeDuration(endTime.diff(startTime));
 
     return(
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}
+        contentContainerStyle={{alignItems: 'center'}}>
         <View style={styles.coverPhotoContainer}>
           <Image source={{uri: this.props.event.cover_photo_url}} style={styles.coverPhoto}>
             <View style={styles.coverPhotoInside}>
@@ -69,27 +72,43 @@ class EventInfo extends React.Component {
             </View>
           </Image>
         </View>
-        <Text style={styles.informationTitle}>Welcome!</Text>
-        <Text style={styles.description}> {this.props.event.description} </Text>
-        <Text style={styles.informationTitle}>When?</Text>
         <View style={styles.row}>
-          <Icon name='ion|ios-calendar-outline' size={20} color='black' style={styles.informationIcon} />
-          <Text style={styles.information}> {startTime.format("dddd, MMMM Do, h:mm a")} </Text>
+          <Text style={[styles.information, styles.description]}> {this.props.event.description} </Text>
         </View>
         <View style={styles.row}>
-          <Icon name='ion|ios-clock-outline' size={20} color='black' style={styles.informationIcon} />
-          <Text style={styles.information}> {delta} hours long, ending at {endTime.format("h a")}  </Text>
+          <Icon name='ion|ios-calendar-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <Text style={styles.information}> {startTime.format('dddd, MMMM Do, h:mm a')} </Text>
         </View>
-        <Text style={styles.informationTitle}>Where?</Text>
+        <Line style={{width: width - 30}}/>
         <View style={styles.row}>
-          {navigate}
-          <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}>
-            <Text style={styles.information}> {this.props.event.address} </Text>
+          <Icon name='ion|ios-clock-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <Text style={styles.information}> {delta} long, ending at {endTime.format('h:mm a')}  </Text>
+        </View>
+        <Line style={{width: width - 30}}/>
+        <View style={styles.row}>
+          <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}>
+            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.facebook_url} </Text>
           </TouchableOpacity>
         </View>
-        <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true} />
+        <Line style={{width: width - 30}}/>
+        <View style={styles.row}>
+          <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}>
+            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.website_url} </Text>
+          </TouchableOpacity>
+        </View>
+        <Line style={{width: width - 30}}/>
+        <View style={styles.row}>
+          <Icon name='ion|ios-navigate-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}>
+            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.address} </Text>
+          </TouchableOpacity>
+        </View>
         <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true}
-          scrollEnabled={false}/>
+          scrollEnabled={false}>
+          <Text> Hello! </Text>
+        </MapView>
       </ScrollView>
     )
   }
@@ -98,48 +117,40 @@ class EventInfo extends React.Component {
 var styles = StyleSheet.create({
   container: {
     width: width,
-    flexDirection: 'column',
+    flexDirection: 'row',
     paddingBottom: 100,
-    backgroundColor: '#FFFFF0',
-  },
-  map: {
-    width: width,
-    height: 200,
+    backgroundColor: '#FFF5EE',
+    flex: 1,
   },
   row: {
     flexDirection: 'row',
-    padding: 10,
-    alignSelf: 'center',
+    width: width,
+    paddingVertical: 8,
+    flex: 1,
+    paddingHorizontal: 30,
   },
   information: {
-    paddingTop: 3,
-    fontWeight: "400",
+    paddingTop: 5,
+    fontWeight: '400',
     fontFamily: 'Palatino',
-  },
-  informationIcon: {
-    width: 20,
-    height: 20,
-  },
-  informationTitle: {
-    fontWeight: "800",
-    fontSize: 25,
-    fontFamily: 'Palatino',
-    alignSelf: 'center',
+    fontSize: 15,
     flex: 1,
-    padding: 10,
-    paddingTop: 15,
+    textAlign: 'right',
   },
   description: {
-    fontWeight: "400",
-    padding: 10,
-    fontSize: 15,
-    fontFamily: 'Palatino',
-    alignSelf: 'center',
-    flex: 1,
+    marginRight: 8,
     textAlign: 'center',
+    fontWeight: '500',
+    flex: 1,
+  },
+  informationIcon: {
+    padding: 10,
+    width: 25,
+    height: 25,
+    marginRight: 20,
   },
   coverPhotoContainer: {
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
   coverPhoto: {
     width: width,
@@ -160,5 +171,19 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 10,
     paddingLeft: 10,
+  },
+  map: {
+    marginTop: 10,
+    width: width,
+    height: 300,
+  },
+  navigationButton: {
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 3,
+    borderColor: 'black',
+    width: width - 30,
+    height: 50,
+    textAlign: 'center',
   },
 });
