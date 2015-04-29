@@ -10,6 +10,7 @@ var SMXTabBarItemIOS = SMXTabBarIOS.Item;
 var ajax = require('./lib/ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
+var Subevent = require('./subevent.ios');
 
 var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
 
@@ -61,32 +62,24 @@ class Event extends React.Component {
         return (
           <Channel style={styles.tabView} channel={this.state.event.channels[0]} />
         );
+      case 'schedule':
+        return (
+          <Subevent style={styles.tabView} subevents={this.state.event.subevents} />
+      );
       case 'map':
         return (
           <View style={styles.tabView}>
-            <Image source={{uri: this.props.event_map}} style={this.styles.eventMap}>
+            <Image source={{uri: this.state.event.event_map_url}} style={styles.eventMap}
+              resizeMode={Image.resizeMode.contain}>
             </Image>
           </View>
         );
+      default:
+        return( <Text> Nothing to see here. </Text>);
     }
   }
 
   render() {
-    var eventMap = this.props.event_map ? 
-        (<SMXTabBarItemIOS
-          name="map"
-          iconName={'ion|android-map'}
-          title={''}
-          iconSize={32}
-          accessibilityLabel="Map Tab"
-          selected={this.state.selectedTab === 'map'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'map',
-            });
-          }}>
-            {this._renderContent()}
-        </SMXTabBarItemIOS>) : null
     return(
       <SMXTabBarIOS
         selectedTab={this.state.selectedTab}>
@@ -118,7 +111,34 @@ class Event extends React.Component {
           }}>
             {this._renderContent()}
         </SMXTabBarItemIOS>
-        {eventMap}
+        <SMXTabBarItemIOS
+          name="map"
+          iconName={'ion|android-map'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'map'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'map',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
+        <SMXTabBarItemIOS
+          name="schedule"
+          iconName={'ion|ios-calendar-outline'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'schedule'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'schedule',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
       </SMXTabBarIOS>
     )
   }
@@ -127,14 +147,13 @@ class Event extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFF0',
     paddingBottom: 30,
+    backgroundColor: '#FFFFF0',
   },
   tabView: {
     height: 10,
   },
   eventMap: {
     height: height,
-    width: width,
   },
 });
