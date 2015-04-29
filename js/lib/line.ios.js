@@ -26,7 +26,6 @@ var styles = StyleSheet.create({
   line: {
     height: 1,
     alignSelf: 'center',
-    backgroundColor: '#cccccc',
   },
 });
 
