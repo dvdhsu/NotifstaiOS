@@ -79,26 +79,26 @@ class EventInfo extends React.Component {
           <Icon name='ion|ios-calendar-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <Text style={styles.information}> {startTime.format('dddd, MMMM Do, h:mm a')} </Text>
         </View>
-        <Line style={{width: width - 30}}/>
+        <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|ios-clock-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <Text style={styles.information}> {delta} long, ending at {endTime.format('h:mm a')}  </Text>
         </View>
-        <Line style={{width: width - 30}}/>
+        <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}>
             <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.facebook_url} </Text>
           </TouchableOpacity>
         </View>
-        <Line style={{width: width - 30}}/>
+        <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}>
             <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.website_url} </Text>
           </TouchableOpacity>
         </View>
-        <Line style={{width: width - 30}}/>
+        <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|ios-navigate-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}>
@@ -144,7 +144,6 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   informationIcon: {
-    padding: 10,
     width: 25,
     height: 25,
     marginRight: 20,
@@ -185,5 +184,9 @@ var styles = StyleSheet.create({
     width: width - 30,
     height: 50,
     textAlign: 'center',
+  },
+  line: {
+    width: width - 30,
+    backgroundColor: '#cccccc',
   },
 });
