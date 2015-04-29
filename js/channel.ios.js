@@ -1,5 +1,3 @@
-/** A Channel. **/
-
 module.exports = Channel;
 
 'use strict';
@@ -9,21 +7,23 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Moment = require('moment');
 
+var Line = require('./lib/line.ios');
+
 Moment.locale('en', {
     relativeTime : {
-        future: "in %s",
-        past:   "%s",
-        s:  "1s",
-        m:  "1m",
-        mm: "%dm",
-        h:  "1h",
-        hh: "%dh",
-        d:  "1d",
-        dd: "%dd",
-        M:  "a month",
-        MM: "%d months",
-        y:  "a year",
-        yy: "%d years"
+        future: 'in %s',
+        past:   '%s ago',
+        s: '%d seconds',
+        m:  '1m',
+        mm: '%dm',
+        h:  '1h',
+        hh: '%dh',
+        d:  '1d',
+        dd: '%dd',
+        M:  'a month',
+        MM: '%d months',
+        y:  'a year',
+        yy: '%d years'
     }
 });
 
@@ -44,9 +44,12 @@ class Channel extends React.Component {
 
   _renderNotification(notification) {
     return(
-      <View style={styles.notification}>
-        <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
-        <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
+      <View>
+        <View style={styles.notification}>
+          <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
+          <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
+        </View>
+        <Line style={styles.line}/>
       </View>
     );
   }
@@ -61,7 +64,7 @@ class Channel extends React.Component {
 
   render() {
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => false)
+      rowHasChanged: ((r1, r2) => r1 !== r2)
     });
     dataSource = dataSource.cloneWithRows(this.props.channel.notifications)
 
@@ -83,34 +86,31 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 10,
-    paddingHorizontal: 5,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 3,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
   },
   notificationGuts: {
     color: 'black',
     fontSize: 15,
-    fontFamily: 'Palatino',
-    fontWeight: '500',
+    fontFamily: 'Avenir Next',
+    fontWeight: '600',
     flex: 1,
     textAlign: 'right',
   },
   notificationTime: {
     color: 'black',
     fontSize: 15,
-    fontFamily: 'Palatino',
-    fontWeight: '300',
+    fontFamily: 'Avenir Next',
+    fontWeight: '400',
   },
   header: {
-    padding: 30,
+    paddingHorizontal: 30,
   },
   title: {
-    fontWeight: "800",
-    fontSize: 25,
-    fontFamily: 'Palatino',
+    paddingTop: 30,
+    fontWeight: '600',
+    fontSize: 30,
+    fontFamily: 'Avenir Next',
     alignSelf: 'center',
     flex: 1,
     padding: 20,
@@ -118,7 +118,11 @@ var styles = StyleSheet.create({
   container: {
     height: height,
     width: width,
-    backgroundColor: '#FFFFF0',
     paddingHorizontal: 10,
+    backgroundColor: '#F5F6F5',
+  },
+  line: {
+    width: width - 30,
+    backgroundColor: '#167ac6',
   },
 });
