@@ -21,7 +21,8 @@ var {
   Text,
   View,
   ScrollView,
-  Component
+  Component,
+  Image,
 } = React;
 
 class Event extends React.Component {
