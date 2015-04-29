@@ -81,6 +81,23 @@ class Event extends React.Component {
   }
 
   render() {
+    var optionalMap = this.state.event.event_map_url ? 
+        <SMXTabBarItemIOS
+          name="map"
+          iconName={'ion|android-map'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'map'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'map',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS> :
+        null;
+
     return(
       <SMXTabBarIOS
         selectedTab={this.state.selectedTab}>
@@ -112,20 +129,7 @@ class Event extends React.Component {
           }}>
             {this._renderContent()}
         </SMXTabBarItemIOS>
-        <SMXTabBarItemIOS
-          name="map"
-          iconName={'ion|android-map'}
-          title={''}
-          iconSize={32}
-          accessibilityLabel="Map Tab"
-          selected={this.state.selectedTab === 'map'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'map',
-            });
-          }}>
-            {this._renderContent()}
-        </SMXTabBarItemIOS>
+        {optionalMap}
         <SMXTabBarItemIOS
           name="schedule"
           iconName={'ion|ios-calendar-outline'}
