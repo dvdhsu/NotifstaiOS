@@ -119,7 +119,7 @@ var styles = StyleSheet.create({
     width: width,
     flexDirection: 'row',
     paddingBottom: 100,
-    backgroundColor: '#FFF5EE',
+    backgroundColor: '#F5F6F5',
     flex: 1,
   },
   row: {
@@ -132,7 +132,7 @@ var styles = StyleSheet.create({
   information: {
     paddingTop: 5,
     fontWeight: '400',
-    fontFamily: 'Palatino',
+    fontFamily: 'Avenir Next',
     fontSize: 15,
     flex: 1,
     textAlign: 'right',
