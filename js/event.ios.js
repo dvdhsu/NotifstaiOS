@@ -153,7 +153,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: 30,
-    backgroundColor: '#FFFFF0',
+    backgroundColor: '#F5F6F5',
   },
   tabView: {
     height: 10,
