@@ -119,6 +119,7 @@ var styles = StyleSheet.create({
     paddingVertical: 20,
   },
   subeventRow: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
@@ -136,9 +137,11 @@ var styles = StyleSheet.create({
   },
   subeventName: {
     fontWeight: "700",
+    flex: 1,
   },
   subeventLocation: {
     fontWeight: "500",
+    flex: 1,
   },
   locationIcon: {
     marginTop: 3,
