@@ -131,6 +131,6 @@ var styles = StyleSheet.create({
   },
   container: {
     paddingBottom: 20,
-    backgroundColor: 'black',
+    backgroundColor: '#F5F6F5',
   },
 });
