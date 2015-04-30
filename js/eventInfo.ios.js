@@ -62,6 +62,34 @@ class EventInfo extends React.Component {
 
     var delta = HumanizeDuration(endTime.diff(startTime));
 
+    if (this.props.event.facebook_url) {
+      var facebook_url = this.props.event.facebook_url.replace(/https?:\/\//, "").replace("www.", "")
+      var facebook_url_info =
+        <View>
+          <Line style={styles.line}/>
+          <View style={styles.row}>
+            <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}>
+              <Text style={[styles.information, {color: '#fd474c'}]}> {facebook_url} </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+    }
+
+    if (this.props.event.website_url) {
+      var event_url = this.props.event.website_url.replace(/https?:\/\//, "").replace("www.", "")
+      var event_url_info =
+        <View>
+          <Line style={styles.line}/>
+          <View style={styles.row}>
+            <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
+            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.event_url)}>
+              <Text style={[styles.information, {color: '#fd474c'}]}> {event_url} </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+    }
+
     return(
       <ScrollView style={styles.container}
         contentContainerStyle={{alignItems: 'center'}}>
@@ -84,20 +112,8 @@ class EventInfo extends React.Component {
           <Icon name='ion|ios-clock-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <Text style={styles.information}> {delta} long, ending at {endTime.format('h:mm a')}  </Text>
         </View>
-        <Line style={styles.line}/>
-        <View style={styles.row}>
-          <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
-          <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}>
-            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.facebook_url} </Text>
-          </TouchableOpacity>
-        </View>
-        <Line style={styles.line}/>
-        <View style={styles.row}>
-          <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
-          <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}>
-            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.website_url} </Text>
-          </TouchableOpacity>
-        </View>
+        {facebook_url_info}
+        {event_url_info}
         <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|ios-navigate-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
