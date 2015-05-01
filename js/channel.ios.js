@@ -152,7 +152,7 @@ var styles = StyleSheet.create({
     width: width,
     paddingHorizontal: 10,
     backgroundColor: '#F5F6F5',
-    paddingBottom: 30,
+    paddingBottom: 50,
   },
   line: {
     width: width - 30,

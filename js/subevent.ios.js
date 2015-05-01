@@ -90,6 +90,7 @@ var styles = StyleSheet.create({
     height: height,
     width: width,
     backgroundColor: '#F5F6F5',
+    paddingBottom: 10,
   },
   title: {
     paddingTop: 30,
