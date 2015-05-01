@@ -28,7 +28,7 @@ exports.login = function(email, password) {
 exports.register = function(email, password) {
   requestUrl = API_BASE + 'auth/register/?email=' + email + '&password=' + password;
   return(
-    fetch(requestUrl)
+    fetch(requestUrl, { method: 'post' })
       .then((unparsed) => unparsed.json())
   )
 }
