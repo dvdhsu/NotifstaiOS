@@ -87,7 +87,7 @@ class Login extends React.Component {
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
           bounces={false} keyboardDismissMode='onDrag'>
           <TouchableHighlight style={[styles.closeIcon, styles.closeButton]}
-           underlayColor='red' onPress={this.props.navigator.pop}>
+           underlayColor='#889DC8' onPress={this.props.navigator.pop}>
             <Icon name='ion|ios-close-empty' size={50} color='black' style={styles.closeIcon} />
           </TouchableHighlight>
           <Text style={styles.title}>{loginButtonText}</Text>
@@ -110,7 +110,7 @@ class Login extends React.Component {
             onFocus={() => this.setState({error: ''})}/>
           </View>
           <TouchableHighlight style={styles.loginButton}
-            underlayColor='red' onPress={() => this.login()}>
+            underlayColor='#889DC8' onPress={() => this.login()}>
             <Text style={styles.loginButtonText}> {loginButtonText} </Text>
           </TouchableHighlight>
         </ScrollView>
