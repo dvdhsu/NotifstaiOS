@@ -23,6 +23,7 @@ var {
   ScrollView,
   Component,
   Image,
+  PushNotificationIOS,
 } = React;
 
 class Event extends React.Component {
@@ -34,9 +35,21 @@ class Event extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.updateEvent();
     PushSubscriptionManager.pushSubscribe(this.state.event.channels[0].guid);
+    PushNotificationIOS.addEventListener('notification', this._handleNotification.bind(this));
+  }
+
+  componentWillUnmount() {
+    PushNotificationIOS.removeEventListener('notification', this._handleNotification);
+  }
+
+  _handleNotification(notification) {
+    console.log(notification);
+    if (notification.$PushNotificationIOS_data.channel == this.state.event.channels[0].guid) {
+      this.updateEvent();
+    }
   }
 
   updateEvent() {
