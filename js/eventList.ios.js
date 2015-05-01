@@ -45,7 +45,7 @@ class EventList extends React.Component {
 
     return(
       <TouchableOpacity onPress={() => this._transitionToEvent(event)}
-        key={event.id}>
+        key={event.id} activeOpacity={.9}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
