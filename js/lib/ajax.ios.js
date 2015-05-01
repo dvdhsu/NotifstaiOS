@@ -66,3 +66,14 @@ exports.getEvent = function(email, token, eventId) {
       })
   )
 }
+
+exports.getNotifications = function(email, token, channelId) {
+  requestUrl = API_BASE + 'channels/' + channelId + '/notifications/?user_email=' + email + '&user_token=' + token;
+  return(
+    fetch(requestUrl)
+      .then((unparsed) => unparsed.json())
+      .catch((error) => {
+        AlertIOS.alert('Cannot load notifications - no internet connection');
+      })
+  )
+}
