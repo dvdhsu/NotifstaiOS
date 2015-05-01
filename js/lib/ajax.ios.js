@@ -18,7 +18,7 @@ var {
 } = React;
 
 exports.login = function(email, password) {
-  requestUrl = API_BASE + 'auth/login/?email=' + email + '&password=' + password;
+  requestUrl = API_BASE + 'auth/login/?email=' + email + '&password=' + password + '&ios=true';
   return(
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
@@ -26,7 +26,7 @@ exports.login = function(email, password) {
 }
 
 exports.register = function(email, password) {
-  requestUrl = API_BASE + 'auth/register/?email=' + email + '&password=' + password;
+  requestUrl = API_BASE + 'auth/register/?email=' + email + '&password=' + password + '&ios=true';
   return(
     fetch(requestUrl, { method: 'post' })
       .then((unparsed) => unparsed.json())
@@ -34,7 +34,7 @@ exports.register = function(email, password) {
 }
 
 exports.loginWithToken = function(email, token) {
-  requestUrl = API_BASE + 'auth/login_with_token/?email=' + email + '&token=' + token;
+  requestUrl = API_BASE + 'auth/login_with_token/?email=' + email + '&token=' + token + '&ios=true';
   return(
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
@@ -42,7 +42,7 @@ exports.loginWithToken = function(email, token) {
 }
 
 exports.facebookCreateOrLogin = function(email, facebookId, facebookToken) {
-  requestUrl = API_BASE + 'auth/facebook/?email=' + email + '&facebook_id=' + facebookId + '&facebook_token=' + facebookToken;
+  requestUrl = API_BASE + 'auth/facebook/?email=' + email + '&facebook_id=' + facebookId + '&facebook_token=' + facebookToken + '&ios=true';
 
   return(
     fetch(requestUrl)
@@ -62,7 +62,7 @@ exports.getEvent = function(email, token, eventId) {
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
       .catch((error) => {
-        AlertIOS.alert('Cannot load event - no internet connection');
+        AlertIOS.alert('Cannot update event - no internet connection');
       })
   )
 }
@@ -73,7 +73,7 @@ exports.getNotifications = function(email, token, channelId) {
     fetch(requestUrl)
       .then((unparsed) => unparsed.json())
       .catch((error) => {
-        AlertIOS.alert('Cannot load notifications - no internet connection');
+        AlertIOS.alert('Cannot update notifications - no internet connection');
       })
   )
 }
