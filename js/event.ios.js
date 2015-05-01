@@ -58,7 +58,7 @@ class Event extends React.Component {
     response.then((data) => {
       if (data) {
         this.setState({
-          event: data.data
+          event: data.data,
         });
       }
     }).done();
@@ -74,7 +74,8 @@ class Event extends React.Component {
       );
       case 'notifications':
         return (
-          <Channel style={styles.tabView} channel={this.state.event.channels[0]} />
+          <Channel style={styles.tabView} channel={this.state.event.channels[0]}
+            email={this.props.email} token={this.props.token} />
         );
       case 'schedule':
         return (
@@ -94,7 +95,7 @@ class Event extends React.Component {
   }
 
   render() {
-    var optionalMap = this.state.event.event_map_url ? 
+    var optionalMap = this.state.event.event_map_url ?
         <SMXTabBarItemIOS
           name="map"
           iconName={'ion|android-map'}
