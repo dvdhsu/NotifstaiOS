@@ -44,7 +44,8 @@ class EventList extends React.Component {
     }
 
     return(
-      <TouchableOpacity onPress={() => this._transitionToEvent(event)}>
+      <TouchableOpacity onPress={() => this._transitionToEvent(event)}
+        key={event.id}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
@@ -73,7 +74,7 @@ class EventList extends React.Component {
 
   render() {
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => false)
+      rowHasChanged: ((r1, r2) => r1 !== r2)
     });
     dataSource = dataSource.cloneWithRows(this.props.events);
 
