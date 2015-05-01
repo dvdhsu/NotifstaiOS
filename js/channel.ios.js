@@ -8,6 +8,7 @@ var Dimensions = require('Dimensions');
 var Moment = require('moment');
 
 var Line = require('./lib/line.ios');
+var ajax = require('./lib/ajax.ios');
 
 Moment.locale('en', {
     relativeTime : {
@@ -35,17 +36,53 @@ var {
   StyleSheet,
   Text,
   View,
+  PushNotificationIOS,
 } = React;
 
 class Channel extends React.Component {
   constructor(props) {
     super(props);
+
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: ((r1, r2) => r1 !== r2)
+    });
+    dataSource = dataSource.cloneWithRows(this.props.channel.notifications)
+    this.state = {
+      dataSource: dataSource,
+    };
+    this._getNotifications();
   };
+
+  componentWillMount() {
+    PushNotificationIOS.addEventListener('notification', this._handleNotification.bind(this));
+  }
+
+  componentWillUnmount() {
+    PushNotificationIOS.removeEventListener('notification', this._handleNotification);
+  }
+
+  _handleNotification(notification) {
+    if (notification.$PushNotificationIOS_data.channel == this.props.channel.guid) {
+      this._getNotifications();
+    }
+  }
+
+  _getNotifications() {
+    var response = ajax.getNotifications(this.props.email, this.props.token, this.props.channel.id)
+    response.then((data) => {
+      if (data) {
+        var dataSource = this.state.dataSource.cloneWithRows(data.data);
+        this.setState({
+          dataSource: dataSource,
+        });
+      }
+    }).done();
+  }
 
   _renderNotification(notification) {
     return(
       <View>
-        <View style={styles.notification}>
+        <View style={styles.notification} key={notification.id}>
           <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
           <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
         </View>
@@ -63,16 +100,11 @@ class Channel extends React.Component {
   }
 
   render() {
-    var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => r1 !== r2)
-    });
-    dataSource = dataSource.cloneWithRows(this.props.channel.notifications)
-
     return(
       <View style={styles.container}>
         <ListView
           style={styles.channel}
-          dataSource={dataSource}
+          dataSource={this.state.dataSource}
           renderRow={this._renderNotification}
           renderHeader={this._renderHeader}
         />
