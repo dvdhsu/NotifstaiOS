@@ -22,6 +22,7 @@ var {
   ActivityIndicatorIOS,
   Component,
   VibrationIOS,
+  Image,
 } = React;
 
 class Login extends React.Component {
@@ -52,8 +53,10 @@ class Login extends React.Component {
     loginData.then(
       (data) => {
         if (data.status === 'failure') {
+          var error = (!this.props.register) ? 'Invalid email or password' :
+            'Invalid email.';
           this.setState({
-            error: 'Invalid email or password.',
+            error: error,
           });
           VibrationIOS.vibrate();
         }
@@ -80,34 +83,38 @@ class Login extends React.Component {
   render() {
     var loginButtonText = this.props.register ? "Sign up" : "Login";
     return (
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
-        bounces={false} keyboardDismissMode='onDrag'>
-        <TouchableHighlight style={[styles.closeIcon, styles.closeButton]}
-          onPress={this.props.navigator.pop}>
-          <Icon name='ion|ios-close-empty' size={50} color='black' style={styles.closeIcon} />
-        </TouchableHighlight>
-        <Text style={styles.title}>{loginButtonText}</Text>
-        <Text style={styles.error}>{this.state.error}</Text>
-        <View style={styles.loginFieldRow}>
-          <TextInput style={styles.loginInput}
-            autoFocus={true} onChange={this.onEmailChange.bind(this)}
-            keyboardType='email-address' placeholder='Email'
-            autoCapitalize='none' autoCorrect={false} returnKeyType='next'
-            onSubmitEditing={() => this.refs["password"].focus()}
+      <Image source={{uri: "http://cdn.notifsta.com/images/login1.png"}} style={styles.backgroundPhoto}>
+        <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
+          bounces={false} keyboardDismissMode='onDrag'>
+          <TouchableHighlight style={[styles.closeIcon, styles.closeButton]}
+           underlayColor='red' onPress={this.props.navigator.pop}>
+            <Icon name='ion|ios-close-empty' size={50} color='black' style={styles.closeIcon} />
+          </TouchableHighlight>
+          <Text style={styles.title}>{loginButtonText}</Text>
+          <Text style={styles.error}>{this.state.error}</Text>
+          <View style={styles.loginFieldRow}>
+            <Icon name='ion|ios-at' size={30} color='black' style={styles.loginFieldIcon} />
+            <TextInput style={styles.loginInput}
+              autoFocus={true} onChange={this.onEmailChange.bind(this)}
+              keyboardType='email-address'
+              autoCapitalize='none' autoCorrect={false} returnKeyType='next'
+              onSubmitEditing={() => this.refs["password"].focus()}
+              onFocus={() => this.setState({error: ''})}/>
+          </View>
+          <View style={styles.loginFieldRow}>
+            <Icon name='ion|ios-locked' size={30} color='black' style={styles.loginFieldIcon} />
+            <TextInput style={styles.loginInput} ref="password"
+            onChange={this.onPasswordChange.bind(this)} password={true}
+            autoCapitalize='none' autoCorrect={false}
+            returnKeyType='go' onSubmitEditing={() => this.login()}
             onFocus={() => this.setState({error: ''})}/>
-        </View>
-        <View style={styles.loginFieldRow}>
-          <TextInput style={styles.loginInput} ref="password"
-          onChange={this.onPasswordChange.bind(this)} password={true}
-          placeholder='Password' autoCapitalize='none' autoCorrect={false}
-          returnKeyType='go' onSubmitEditing={() => this.login()}
-          onFocus={() => this.setState({error: ''})}/>
-        </View>
-        <TouchableHighlight style={styles.loginButton}
-          underlayColor='black' onPress={() => this.login()}>
-          <Text style={styles.loginButtonText}> {loginButtonText} </Text>
-        </TouchableHighlight>
-      </ScrollView>
+          </View>
+          <TouchableHighlight style={styles.loginButton}
+            underlayColor='red' onPress={() => this.login()}>
+            <Text style={styles.loginButtonText}> {loginButtonText} </Text>
+          </TouchableHighlight>
+        </ScrollView>
+      </Image>
     )
   }
 }
@@ -116,7 +123,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    backgroundColor: '#FD464D',
+    backgroundColor: 'transparent',
     alignItems: 'center',
   },
   loginInput: {
@@ -176,6 +183,14 @@ var styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-
-
+  loginFieldIcon: {
+    height: 30,
+    width: 30,
+    marginBottom: 25,
+    marginRight: 10,
+  },
+  backgroundPhoto: {
+    height: height,
+    width: width,
+  },
 });
