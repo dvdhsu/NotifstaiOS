@@ -83,7 +83,7 @@ class EventInfo extends React.Component {
           <Line style={styles.line}/>
           <View style={styles.row}>
             <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
-            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.event_url)}>
+            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}>
               <Text style={[styles.information, {color: '#fd474c'}]}> {event_url} </Text>
             </TouchableOpacity>
           </View>
