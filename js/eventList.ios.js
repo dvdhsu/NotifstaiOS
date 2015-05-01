@@ -5,6 +5,7 @@ module.exports = EventList;
 var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Geolib = require('geolib');
+var Moment = require('moment');
 
 var ajax = require('./lib/ajax.ios');
 
@@ -20,6 +21,24 @@ var {
 } = React;
 
 var {width, height} = Dimensions.get('window');
+
+Moment.locale('en', {
+    relativeTime : {
+        future: 'Starts in %s',
+        past:   '%s ago',
+        s: '%d seconds',
+        m:  '1 minute',
+        mm: '%d minutes',
+        h:  '1 hour',
+        hh: '%d hours',
+        d:  '1 day',
+        dd: '%d days',
+        M:  'a month',
+        MM: '%d months',
+        y:  'a year',
+        yy: '%d years'
+    }
+});
 
 class EventList extends React.Component {
   constructor(props) {
@@ -40,8 +59,12 @@ class EventList extends React.Component {
   _renderEvent(event) {
     if (this.state.latitude) {
       var distance = geolib.getDistance(this.state, event, 100);
-      var distanceView = <Text style={[styles.eventInfo, styles.eventText]}> {distance / 1000} km away </Text>;
+      var distanceString = (distance / 1000).toString() + "km away"
     }
+
+    var locationString = "Oxford, " + distanceString;
+
+    var timeDiff = Moment(event.start_time).fromNow();
 
     return(
       <TouchableOpacity onPress={() => this._transitionToEvent(event)}
@@ -49,8 +72,8 @@ class EventList extends React.Component {
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {event.address} </Text>
-            {distanceView}
+            <Text style={[styles.eventInfo, styles.eventText]}> {locationString} </Text>
+            <Text style={[styles.eventInfo, styles.eventText]}> {timeDiff} </Text>
           </View>
         </Image>
       </TouchableOpacity>
@@ -106,7 +129,8 @@ var styles = StyleSheet.create({
   eventName: {
     fontSize: 30,
     fontWeight: '700',
-    padding: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
   },
   eventInfo: {
     fontSize: 15,
