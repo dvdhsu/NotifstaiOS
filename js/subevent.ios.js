@@ -7,7 +7,6 @@ var Dimensions = require('Dimensions');
 var Icon = require('FAKIconImage');
 var Moment = require('moment');
 
-var ajax = require('./lib/ajax.ios');
 var Line = require('./lib/line.ios');
 
 var {
@@ -25,9 +24,11 @@ class Subevent extends React.Component {
     super(props);
 
     var ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-      sectionHeaderHasChanged: (h1, h2) => h1 !== h2,
+      rowHasChanged: ((r1, r2) => r1 !== r2),
+      sectionHeaderHasChanged: ((h1, h2) => h1 !== h2),
     });
+
+    console.log(this.props.subevents);
 
     this.state = {
       dataSource: ds.cloneWithRowsAndSections(this.props.subevents),
@@ -54,12 +55,12 @@ class Subevent extends React.Component {
     return(
       <View style={styles.subeventContainer}>
         <View style={styles.subeventRow}>
-          <Text style={[styles.subeventText, 
+          <Text style={[styles.subeventText,
             styles.subeventTime, styles.subeventStartTime]}>{startTimeText}</Text>
           <Text style={[styles.subeventText, styles.subeventName]}>{s.name}</Text>
         </View>
         <View style={styles.subeventRow}>
-          <Text style={[styles.subeventText, 
+          <Text style={[styles.subeventText,
             styles.subeventTime, styles.subeventEndTime]}>{endTimeText}</Text>
           <View style={styles.subeventRow}>
             <Icon name='ion|ios-location-outline' size={13} color='black' style={styles.locationIcon} />
