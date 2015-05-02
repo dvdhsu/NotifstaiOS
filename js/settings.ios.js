@@ -8,6 +8,8 @@ var Icon = require('FAKIconImage');
 
 var Line = require('./lib/line.ios');
 
+var NSUserDefaults = require('NativeModules').UserDefaultsManager;
+
 var {
   TouchableHighlight,
   StyleSheet,
@@ -23,6 +25,12 @@ var {
 var {width, height} = Dimensions.get('window');
 
 class Settings extends React.Component {
+  _logout() {
+    NSUserDefaults.removeKey("email");
+    NSUserDefaults.removeKey("token");
+    this.props.navigator.pop();
+  }
+
   render() {
     return(
       <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center'}}>
@@ -42,7 +50,7 @@ class Settings extends React.Component {
         </View>
         <Line style={styles.line}/>
         <TouchableHighlight style={styles.logoutButton}
-          underlayColor='#889DC8' onPress={() => this.props.navigator.pop()}>
+          underlayColor='#889DC8' onPress={() => this._logout()}>
           <Text style={styles.logoutButtonText}> Logout </Text>
         </TouchableHighlight>
       </ScrollView>
