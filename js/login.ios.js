@@ -66,7 +66,7 @@ class Login extends React.Component {
           NSUserDefaults.storeString("email", data.data.email);
           NSUserDefaults.storeString("token", data.data.authentication_token);
           this.props.navigator.push({
-            id: 'EventList',
+            id: 'Home',
             events: data.data.events,
             email: data.data.email,
             token: data.data.authentication_token,
