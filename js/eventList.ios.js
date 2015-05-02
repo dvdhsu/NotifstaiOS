@@ -55,9 +55,35 @@ class EventList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    navigator.geolocation.watchPosition(
-      (pos) => this.setState({ latitude: pos.coords.latitude, longitude: pos.coords.longitude }),
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        // hacky and crappy way of doing this...
+        var dataSource = new ListView.DataSource({
+          rowHasChanged: ((r1, r2) => r1 !== r2)
+        });
+        this.setState({ 
+          dataSource: dataSource.cloneWithRows(this.props.events),
+          latitude: pos.coords.latitude, 
+          longitude: pos.coords.longitude })
+      },
+      (error) => console.log("error in determining location" + JSON.stringify(error))
+    );
+    this.props.watchID = navigator.geolocation.watchPosition(
+      (pos) => {
+        // hacky and crappy way of doing this...
+        var dataSource = new ListView.DataSource({
+          rowHasChanged: ((r1, r2) => r1 !== r2)
+        });
+        this.setState({ 
+          dataSource: dataSource.cloneWithRows(this.props.events),
+          latitude: pos.coords.latitude, 
+          longitude: pos.coords.longitude })
+      },
       (error) => console.log("error in determining location" + JSON.stringify(error))
     )
   }
@@ -67,9 +93,7 @@ class EventList extends React.Component {
 
     if (this.state.latitude) {
       var distance = geolib.getDistance(this.state, event, 100);
-      if (distance) {
-        locationString = locationString + ', ' +  (distance / 1000).toString() + 'km away';
-      }
+      locationString = locationString + ', ' +  (distance / 1000).toString() + 'km away';
     }
 
     var timeDiff = Moment(event.start_time).fromNow();
