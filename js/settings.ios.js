@@ -52,6 +52,7 @@ class Settings extends React.Component {
 
 var styles = StyleSheet.create({
   container: {
+    height: height,
     width: width,
     flexDirection: 'row',
     paddingBottom: 50,

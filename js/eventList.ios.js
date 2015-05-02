@@ -74,13 +74,9 @@ class EventList extends React.Component {
       (error) => console.log("error in determining location" + JSON.stringify(error))
     );
     this.props.watchID = navigator.geolocation.watchPosition(
+      // ignore for now -- must fix later
       (pos) => {
-        // hacky and crappy way of doing this...
-        var dataSource = new ListView.DataSource({
-          rowHasChanged: ((r1, r2) => r1 !== r2)
-        });
         this.setState({ 
-          dataSource: dataSource.cloneWithRows(this.props.events),
           latitude: pos.coords.latitude, 
           longitude: pos.coords.longitude })
       },
