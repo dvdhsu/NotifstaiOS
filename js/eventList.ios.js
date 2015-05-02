@@ -62,7 +62,11 @@ class EventList extends React.Component {
       var distanceString = (distance / 1000).toString() + "km away"
     }
 
-    var locationString = "Oxford, " + distanceString;
+    if (distanceString) {
+      var locationString = "Oxford, " + distanceString;
+    } else {
+      locationString = "Oxford"
+    }
 
     var timeDiff = Moment(event.start_time).fromNow();
 
@@ -79,6 +83,7 @@ class EventList extends React.Component {
       </TouchableOpacity>
     )
   }
+
 
   _transitionToEvent(event) {
     this.props.navigator.push({
