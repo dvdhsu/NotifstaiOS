@@ -43,7 +43,13 @@ Moment.locale('en', {
 class EventList extends React.Component {
   constructor(props) {
     super(props);
+
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: ((r1, r2) => r1 !== r2)
+    });
+
     this.state = {
+      dataSource: dataSource.cloneWithRows(this.props.events),
       latitude: null,
       longitude: null
     }
@@ -57,15 +63,13 @@ class EventList extends React.Component {
   }
 
   _renderEvent(event) {
+    var locationString = "Oxford"
+
     if (this.state.latitude) {
       var distance = geolib.getDistance(this.state, event, 100);
-      var distanceString = (distance / 1000).toString() + "km away"
-    }
-
-    if (distanceString) {
-      var locationString = "Oxford, " + distanceString;
-    } else {
-      locationString = "Oxford"
+      if (distance) {
+        locationString = locationString + ', ' +  (distance / 1000).toString() + 'km away';
+      }
     }
 
     var timeDiff = Moment(event.start_time).fromNow();
@@ -101,16 +105,11 @@ class EventList extends React.Component {
   }
 
   render() {
-    var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => r1 !== r2)
-    });
-    dataSource = dataSource.cloneWithRows(this.props.events);
-
     return(
       <View style={styles.container}>
         <ListView
           style={styles.eventList}
-          dataSource={dataSource}
+          dataSource={this.state.dataSource}
           renderRow={this._renderEvent.bind(this)}
         />
       </View>
