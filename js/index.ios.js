@@ -19,6 +19,7 @@ var {
 var LaunchCarousel = require('./launchCarousel.ios.js');
 var Login = require('./login.ios');
 var Event = require('./event.ios');
+var EventNavigator = require('./eventNavigator.ios');
 var EventList = require('./eventList.ios');
 var Home = require('./home.ios');
 
@@ -53,6 +54,9 @@ class NotifstaLaunch extends React.Component {
       case 'Home':
         return <Home navigator={nav} email={route.email} token={route.token}
                  events={route.events}/>;
+      case 'EventNavigator':
+        return <EventNavigator navigator={nav} email={route.email} event={route.event}
+                 token={route.token} />;
       case 'Event':
         return <Event navigator={nav} email={route.email} event={route.event}
                  token={route.token} />;

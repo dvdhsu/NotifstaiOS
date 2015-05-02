@@ -145,14 +145,14 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     alignSelf: 'center',
     flex: 1,
-    padding: 20,
+    paddingBottom: 15,
   },
   container: {
     height: height,
     width: width,
     paddingHorizontal: 10,
     backgroundColor: '#F5F6F5',
-    paddingBottom: 50,
+    paddingBottom: 80,
   },
   line: {
     width: width - 30,

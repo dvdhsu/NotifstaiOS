@@ -69,13 +69,19 @@ class Subevent extends React.Component {
     );
   }
 
+  _renderHeader() {
+    return(
+      <Text style={styles.title}> Schedule </Text>
+    );
+  }
+
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.title}> Schedule </Text>
         <ListView
           style={styles.list}
           dataSource={this.state.dataSource}
+          renderHeader={this._renderHeader.bind(this)}
           renderRow={this._renderSubevent.bind(this)}
           renderSectionHeader={this._renderSectionHeader}
         />
@@ -86,12 +92,14 @@ class Subevent extends React.Component {
 
 var styles = StyleSheet.create({
   container: {
+    paddingTop: 15,
     height: height,
     width: width,
     backgroundColor: '#F5F6F5',
-    paddingBottom: 10,
+    paddingBottom: 80,
   },
   title: {
+    paddingBottom: 20,
     paddingTop: 30,
     fontWeight: '600',
     fontSize: 30,
@@ -100,7 +108,6 @@ var styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   list: {
-    marginVertical: 15,
     paddingHorizontal: 20,
   },
   sectionHeaderContainer: {

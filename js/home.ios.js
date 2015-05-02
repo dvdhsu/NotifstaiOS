@@ -16,6 +16,7 @@ var {width, height} = Dimensions.get('window');
 
 var {
   View,
+  StyleSheet,
   Component,
   Image,
 } = React;
@@ -32,12 +33,16 @@ class Home extends React.Component {
     switch(this.state.selectedTab) {
       case 'myEvents':
         return (
-          <EventList navigator={this.props.navigator} email={this.props.email}
+          <View style={styles.container}>
+            <EventList navigator={this.props.navigator} email={this.props.email}
             token={this.props.token} events={this.props.events} />
+          </View>
         );
       case 'settings':
         return (
-          <Settings navigator={this.props.navigator} />
+          <View style={styles.container}>
+            <Settings navigator={this.props.navigator} />
+          </View>
         )
       default:
         return( <Text> Nothing to see here. </Text>);
@@ -80,3 +85,9 @@ class Home extends React.Component {
     )
   }
 }
+
+styles = StyleSheet.create({
+  container: {
+    marginTop: -20,
+  },
+})

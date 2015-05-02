@@ -118,7 +118,7 @@ class EventList extends React.Component {
       email: this.props.email,
       token: this.props.token,
       event: event,
-      id: 'Event',
+      id: 'EventNavigator',
     });
   }
 
@@ -179,11 +179,11 @@ var styles = StyleSheet.create({
   },
   eventList: {
     width: width,
-    height: height - 20,
+    height: height,
+    paddingTop: 20,
     flexDirection: 'column',
   },
   container: {
-    paddingBottom: 20,
     backgroundColor: '#F5F6F5',
   },
 });

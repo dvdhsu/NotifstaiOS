@@ -163,12 +163,8 @@ class Event extends React.Component {
 }
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 30,
-    backgroundColor: '#F5F6F5',
-  },
   tabView: {
+    paddingTop: 12,
     height: 10,
   },
   eventMap: {

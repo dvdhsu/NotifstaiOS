@@ -134,7 +134,7 @@ var styles = StyleSheet.create({
   container: {
     width: width,
     flexDirection: 'row',
-    paddingBottom: 50,
+    paddingBottom: 80,
     backgroundColor: '#F5F6F5',
     flex: 1,
   },
