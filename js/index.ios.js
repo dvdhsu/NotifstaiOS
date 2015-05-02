@@ -36,7 +36,6 @@ class NotifstaLaunch extends React.Component {
   }
 
   _passNotification(notification) {
-    console.log(notification);
     PushNotificationIOS.getApplicationIconBadgeNumber(
       (num) => PushNotificationIOS.setApplicationIconBadgeNumber(num + 1)
     );

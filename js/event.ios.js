@@ -46,7 +46,6 @@ class Event extends React.Component {
   }
 
   _handleNotification(notification) {
-    console.log(notification);
     if (notification.$PushNotificationIOS_data.channel == this.state.event.channels[0].guid) {
       this.updateEvent();
     }

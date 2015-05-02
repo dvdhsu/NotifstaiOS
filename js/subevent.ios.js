@@ -28,8 +28,6 @@ class Subevent extends React.Component {
       sectionHeaderHasChanged: ((h1, h2) => h1 !== h2),
     });
 
-    console.log(this.props.subevents);
-
     this.state = {
       dataSource: ds.cloneWithRowsAndSections(this.props.subevents),
     }
