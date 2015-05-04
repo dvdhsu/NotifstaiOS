@@ -67,22 +67,22 @@ class Event extends React.Component {
     switch(this.state.selectedTab) {
       case 'info':
         return (
-          <ScrollView style={styles.tabView}>
+          <ScrollView>
             <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}/>
           </ScrollView>
       );
       case 'notifications':
         return (
-          <Channel style={styles.tabView} channel={this.state.event.channels[0]}
+          <Channel channel={this.state.event.channels[0]}
             email={this.props.email} token={this.props.token} />
         );
       case 'schedule':
         return (
-          <Subevent style={styles.tabView} subevents={this.state.event.subevents} />
+          <Subevent subevents={this.state.event.subevents} />
       );
       case 'map':
         return (
-          <ScrollView style={[styles.tabView]} contentContainerStyle={styles.map}
+          <ScrollView contentContainerStyle={styles.map}
             maximumZoomScale={2.0}>
             <Image source={{uri: this.state.event.event_map_url}} style={styles.eventMap}
               resizeMode={Image.resizeMode.contain}>
@@ -164,12 +164,10 @@ class Event extends React.Component {
 }
 
 var styles = StyleSheet.create({
-  tabView: {
-    height: 10,
-  },
   map: {
     flexDirection: 'column',
     justifyContent: 'center',
+    marginTop: -50,
   },
   eventMap: {
     height: height,
