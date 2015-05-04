@@ -62,12 +62,9 @@ class EventList extends React.Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        // hacky and crappy way of doing this...
-        var dataSource = new ListView.DataSource({
-          rowHasChanged: ((r1, r2) => true)
-        });
+        var newButActuallyOldEvents = JSON.parse(JSON.stringify(this.props.events));
         this.setState({ 
-          dataSource: dataSource.cloneWithRows(this.props.events),
+          dataSource: this.state.dataSource.cloneWithRows(newButActuallyOldEvents),
           latitude: pos.coords.latitude, 
           longitude: pos.coords.longitude })
       },
