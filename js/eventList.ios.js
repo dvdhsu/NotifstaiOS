@@ -66,16 +66,19 @@ class EventList extends React.Component {
         this.setState({ 
           dataSource: this.state.dataSource.cloneWithRows(newButActuallyOldEvents),
           latitude: pos.coords.latitude, 
-          longitude: pos.coords.longitude })
+          longitude: pos.coords.longitude,
+        })
       },
       (error) => console.log("error in determining location" + JSON.stringify(error))
     );
     this.props.watchID = navigator.geolocation.watchPosition(
-      // ignore for now -- must fix later
       (pos) => {
+        var newButActuallyOldEvents = JSON.parse(JSON.stringify(this.props.events));
         this.setState({ 
+          dataSource: this.state.dataSource.cloneWithRows(newButActuallyOldEvents),
           latitude: pos.coords.latitude, 
-          longitude: pos.coords.longitude })
+          longitude: pos.coords.longitude,
+        })
       },
       (error) => console.log("error in determining location" + JSON.stringify(error))
     )

@@ -82,11 +82,12 @@ class Event extends React.Component {
       );
       case 'map':
         return (
-          <View style={styles.tabView}>
+          <ScrollView style={[styles.tabView]} contentContainerStyle={styles.map}
+            maximumZoomScale={2.0}>
             <Image source={{uri: this.state.event.event_map_url}} style={styles.eventMap}
               resizeMode={Image.resizeMode.contain}>
             </Image>
-          </View>
+          </ScrollView>
         );
       default:
         return( <Text> Nothing to see here. </Text>);
@@ -164,8 +165,11 @@ class Event extends React.Component {
 
 var styles = StyleSheet.create({
   tabView: {
-    paddingTop: 12,
     height: 10,
+  },
+  map: {
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   eventMap: {
     height: height,
