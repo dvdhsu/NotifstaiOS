@@ -45,7 +45,7 @@ class EventList extends React.Component {
     super(props);
 
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => r1 !== r2)
+      rowHasChanged: ((r1, r2) => true)
     });
 
     this.state = {
@@ -64,7 +64,7 @@ class EventList extends React.Component {
       (pos) => {
         // hacky and crappy way of doing this...
         var dataSource = new ListView.DataSource({
-          rowHasChanged: ((r1, r2) => r1 !== r2)
+          rowHasChanged: ((r1, r2) => true)
         });
         this.setState({ 
           dataSource: dataSource.cloneWithRows(this.props.events),
