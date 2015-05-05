@@ -10,23 +10,6 @@ var Moment = require('moment');
 var Line = require('./lib/line.ios');
 var ajax = require('./lib/ajax.ios');
 
-Moment.locale('en', {
-    relativeTime : {
-        future: 'in %s',
-        past:   '%s ago',
-        s: 'seconds',
-        m:  '1m',
-        mm: '%dm',
-        h:  '1h',
-        hh: '%dh',
-        d:  '1d',
-        dd: '%dd',
-        M:  'a month',
-        MM: '%d months',
-        y:  'a year',
-        yy: '%d years'
-    }
-});
 
 var {width, height} = Dimensions.get('window');
 
@@ -56,6 +39,24 @@ class Channel extends React.Component {
     };
 
     this._getNotifications();
+
+    Moment.locale('en', {
+        relativeTime : {
+            future: "in %s",
+            past:   "%s",
+            s:  "now",
+            m:  "a minute ago",
+            mm: "%d minutes ago",
+            h:  "an hour ago",
+            hh: "%d hours ago",
+            d:  "a day ago",
+            dd: "%d days ago",
+            M:  "a month ago",
+            MM: "%d months ago",
+            y:  "a year ago",
+            yy: "%d years ago"
+        }
+    });
   };
 
   componentWillMount() {

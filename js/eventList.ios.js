@@ -22,23 +22,6 @@ var {
 
 var {width, height} = Dimensions.get('window');
 
-Moment.locale('en', {
-    relativeTime : {
-        future: 'Starts in %s',
-        past:   '%s ago',
-        s: '%d seconds',
-        m:  '1 minute',
-        mm: '%d minutes',
-        h:  '1 hour',
-        hh: '%d hours',
-        d:  '1 day',
-        dd: '%d days',
-        M:  'a month',
-        MM: '%d months',
-        y:  'a year',
-        yy: '%d years'
-    }
-});
 
 class EventList extends React.Component {
   constructor(props) {
@@ -53,6 +36,24 @@ class EventList extends React.Component {
       latitude: null,
       longitude: null
     }
+
+    Moment.locale('en', {
+      relativeTime : {
+        future: 'Starts in %s',
+        past:   '%s ago',
+        s: '%d seconds',
+        m:  '1 minute',
+        mm: '%d minutes',
+        h:  '1 hour',
+        hh: '%d hours',
+        d:  '1 day',
+        dd: '%d days',
+        M:  'a month',
+        MM: '%d months',
+        y:  'a year',
+        yy: '%d years'
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -98,8 +99,7 @@ class EventList extends React.Component {
     var timeDiff = Moment(event.start_time).fromNow();
 
     return(
-      <TouchableOpacity onPress={() => this._transitionToEvent(event)}
-        key={event.id} activeOpacity={.9}>
+      <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
@@ -133,8 +133,7 @@ class EventList extends React.Component {
         <ListView
           style={styles.eventList}
           dataSource={this.state.dataSource}
-          renderRow={this._renderEvent.bind(this)}
-        />
+          renderRow={this._renderEvent.bind(this)} />
       </View>
     )
   }
