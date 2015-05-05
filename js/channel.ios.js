@@ -14,7 +14,7 @@ Moment.locale('en', {
     relativeTime : {
         future: 'in %s',
         past:   '%s ago',
-        s: '%d seconds',
+        s: 'seconds',
         m:  '1m',
         mm: '%dm',
         h:  '1h',
@@ -44,17 +44,23 @@ class Channel extends React.Component {
     super(props);
 
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => r1 !== r2)
+      rowHasChanged: ((r1, r2) => true)
     });
-    dataSource = dataSource.cloneWithRows(this.props.channel.notifications)
+
+    var notificationsWithTime =
+      this._extendNotificationsWithTime(this.props.channel.notifications);
+
     this.state = {
-      dataSource: dataSource,
+      dataSource: dataSource.cloneWithRows(notificationsWithTime),
+      notifications: notificationsWithTime,
     };
+
     this._getNotifications();
   };
 
   componentWillMount() {
     PushNotificationIOS.addEventListener('notification', this._handleNotification.bind(this));
+    setInterval(this._updateTimes.bind(this), 60000);
   }
 
   componentWillUnmount() {
@@ -71,19 +77,36 @@ class Channel extends React.Component {
     var response = ajax.getNotifications(this.props.email, this.props.token, this.props.channel.id)
     response.then((data) => {
       if (data) {
-        var dataSource = this.state.dataSource.cloneWithRows(data.data);
+        var notificationsWithTime = this._extendNotificationsWithTime(data.data);
         this.setState({
-          dataSource: dataSource,
+          dataSource: this.state.dataSource.cloneWithRows(notificationsWithTime),
+          notifications: notificationsWithTime,
         });
       }
     }).done();
+  }
+
+  _extendNotificationsWithTime(notifications) {
+    notifications.map((n) =>
+      n.relativeTime = Moment(n.created_at).fromNow()
+    )
+    return notifications;
+  }
+
+  _updateTimes() {
+    var notificationsWithUpdatedTimes =
+      this._extendNotificationsWithTime(this.state.notifications);
+    this.setState({
+      notifications: notificationsWithUpdatedTimes,
+      dataSource: this.state.dataSource.cloneWithRows(notificationsWithUpdatedTimes)
+    });
   }
 
   _renderNotification(notification) {
     return(
       <View>
         <View style={styles.notification} key={notification.id}>
-          <Text style={styles.notificationTime}> {Moment(notification.created_at).fromNow()} </Text>
+          <Text style={styles.notificationTime}> {notification.relativeTime} </Text>
           <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
         </View>
         <Line style={styles.line}/>
@@ -103,6 +126,7 @@ class Channel extends React.Component {
     return(
       <View style={styles.container}>
         <ListView
+          pageSize={100}
           style={styles.channel}
           dataSource={this.state.dataSource}
           renderRow={this._renderNotification}
