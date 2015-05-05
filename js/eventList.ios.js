@@ -62,34 +62,37 @@ class EventList extends React.Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        var newButActuallyOldEvents = JSON.parse(JSON.stringify(this.props.events));
-        this.setState({ 
-          dataSource: this.state.dataSource.cloneWithRows(newButActuallyOldEvents),
-          latitude: pos.coords.latitude, 
-          longitude: pos.coords.longitude,
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(
+            this._extendEventsWithDistance(pos.coords, this.props.events)
+          )
         })
-      },
-      (error) => console.log("error in determining location" + JSON.stringify(error))
+      }
     );
     this.props.watchID = navigator.geolocation.watchPosition(
       (pos) => {
-        var newButActuallyOldEvents = JSON.parse(JSON.stringify(this.props.events));
-        this.setState({ 
-          dataSource: this.state.dataSource.cloneWithRows(newButActuallyOldEvents),
-          latitude: pos.coords.latitude, 
-          longitude: pos.coords.longitude,
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(
+            this._extendEventsWithDistance(pos.coords, this.props.events)
+          )
         })
-      },
-      (error) => console.log("error in determining location" + JSON.stringify(error))
+      }
     )
+  }
+
+  _extendEventsWithDistance(coords, events) {
+    events.map((e) => {
+      var distance = Geolib.getDistance(coords, e, 100);
+      e.distanceFromMe = distance;
+    })
+    return events;
   }
 
   _renderEvent(event) {
     var locationString = "Oxford"
 
-    if (this.state.latitude) {
-      var distance = geolib.getDistance(this.state, event, 100);
-      locationString = locationString + ', ' +  (distance / 1000).toString() + 'km away';
+    if (event.distanceFromMe) {
+      locationString = locationString + ', ' +  (event.distanceFromMe / 1000).toString() + 'km away';
     }
 
     var timeDiff = Moment(event.start_time).fromNow();
