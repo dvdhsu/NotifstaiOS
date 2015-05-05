@@ -37,7 +37,7 @@ class Settings extends React.Component {
         <Text style={styles.title}> Settings </Text>
         <View style={styles.row}>
           <Icon name='ion|paper-airplane' size={25} color='#8c8c8c' style={styles.settingsIcon} />
-          <TouchableOpacity onPress={() => LinkingIOS.openURL("mailto:support@notifsta.com")}>
+          <TouchableOpacity onPress={() => LinkingIOS.openURL("mailto:hi@notifsta.com")}>
             <Text style={[styles.settings, {color: '#fd474c'}]}> Get in touch </Text>
           </TouchableOpacity>
         </View>
@@ -53,7 +53,7 @@ class Settings extends React.Component {
           underlayColor='#889DC8' onPress={() => this._logout()}>
           <Text style={styles.logoutButtonText}> Logout </Text>
         </TouchableHighlight>
-        <Text style={[styles.title, {fontSize: 20}]}> Version 0.1.0 </Text>
+        <Text style={[styles.title, {fontSize: 20}]}> Version 0.1.1 </Text>
       </ScrollView>
     )
   }
