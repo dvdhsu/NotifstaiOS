@@ -27,7 +27,7 @@ class Channel extends React.Component {
     super(props);
 
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => true)
+      rowHasChanged: ((r1, r2) => r1.id != r2.id)
     });
 
     var notificationsWithTime =
@@ -61,7 +61,7 @@ class Channel extends React.Component {
 
   componentWillMount() {
     PushNotificationIOS.addEventListener('notification', this._handleNotification.bind(this));
-    setInterval(this._updateTimes.bind(this), 60000);
+    //setInterval(this._updateTimes.bind(this), 60000);
   }
 
   componentWillUnmount() {
@@ -88,9 +88,12 @@ class Channel extends React.Component {
   }
 
   _extendNotificationsWithTime(notifications) {
-    notifications.map((n) =>
-      n.relativeTime = Moment(n.created_at).fromNow()
-    )
+    notifications.map((n) => {
+      var staticTime = Moment(n.created_at);
+
+      n.relativeTime = Moment(n.created_at).fromNow();
+      n.staticTimeString = staticTime.format('ddd, h:mm a');
+    })
     return notifications;
   }
 
@@ -107,7 +110,7 @@ class Channel extends React.Component {
     return(
       <View>
         <View style={styles.notification} key={notification.id}>
-          <Text style={styles.notificationTime}> {notification.relativeTime} </Text>
+          <Text style={styles.notificationTime}> {notification.staticTimeString} </Text>
           <Text style={styles.notificationGuts}> {notification.notification_guts} </Text>
         </View>
         <Line style={styles.line}/>
