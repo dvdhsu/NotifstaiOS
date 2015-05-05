@@ -28,13 +28,14 @@ class EventList extends React.Component {
     super(props);
 
     var dataSource = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => true)
+     rowHasChanged: ((r1, r2) => true)
     });
 
+    var eventsWithTime = this._extendEventsWithTime(this.props.events);
+
     this.state = {
-      dataSource: dataSource.cloneWithRows(this.props.events),
-      latitude: null,
-      longitude: null
+      dataSource: dataSource.cloneWithRows(eventsWithTime),
+      events: eventsWithTime,
     }
 
     Moment.locale('en', {
@@ -70,6 +71,7 @@ class EventList extends React.Component {
         })
       }
     );
+
     this.props.watchID = navigator.geolocation.watchPosition(
       (pos) => {
         this.setState({
@@ -84,27 +86,27 @@ class EventList extends React.Component {
   _extendEventsWithDistance(coords, events) {
     events.map((e) => {
       var distance = Geolib.getDistance(coords, e, 100);
-      e.distanceFromMe = distance;
+      // e.relativeDistance = (distance / 1000).toString() + 'km away';
+      e.relativeDistance = e.address;
+    })
+    return events;
+  }
+
+  _extendEventsWithTime(events) {
+    events.map((e) => {
+      e.relativeTime = Moment(e.start_time).fromNow();
     })
     return events;
   }
 
   _renderEvent(event) {
-    var locationString = "Oxford"
-
-    if (event.distanceFromMe) {
-      locationString = locationString + ', ' +  (event.distanceFromMe / 1000).toString() + 'km away';
-    }
-
-    var timeDiff = Moment(event.start_time).fromNow();
-
     return(
       <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {locationString} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {timeDiff} </Text>
+            <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeDistance} </Text>
+            <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeTime} </Text>
           </View>
         </Image>
       </TouchableOpacity>
