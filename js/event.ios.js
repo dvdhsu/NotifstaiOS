@@ -112,6 +112,23 @@ class Event extends React.Component {
         </SMXTabBarItemIOS> :
         null;
 
+    var optionalSubevents = optionalSubevents = this.state.event.subevents.length > 0 ?
+        <SMXTabBarItemIOS
+          name="schedule"
+          iconName={'ion|ios-calendar-outline'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Map Tab"
+          selected={this.state.selectedTab === 'schedule'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'schedule',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS> :
+        null;
+
     return(
       <SMXTabBarIOS
         selectedTab={this.state.selectedTab}>
@@ -143,21 +160,8 @@ class Event extends React.Component {
           }}>
             {this._renderContent()}
         </SMXTabBarItemIOS>
+        {optionalSubevents}
         {optionalMap}
-        <SMXTabBarItemIOS
-          name="schedule"
-          iconName={'ion|ios-calendar-outline'}
-          title={''}
-          iconSize={32}
-          accessibilityLabel="Map Tab"
-          selected={this.state.selectedTab === 'schedule'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'schedule',
-            });
-          }}>
-            {this._renderContent()}
-        </SMXTabBarItemIOS>
       </SMXTabBarIOS>
     )
   }
