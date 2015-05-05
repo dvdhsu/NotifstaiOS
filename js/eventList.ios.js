@@ -27,17 +27,6 @@ class EventList extends React.Component {
   constructor(props) {
     super(props);
 
-    var dataSource = new ListView.DataSource({
-     rowHasChanged: ((r1, r2) => true)
-    });
-
-    var eventsWithTime = this._extendEventsWithTime(this.props.events);
-
-    this.state = {
-      dataSource: dataSource.cloneWithRows(eventsWithTime),
-      events: eventsWithTime,
-    }
-
     Moment.locale('en', {
       relativeTime : {
         future: 'Starts in %s',
@@ -55,6 +44,17 @@ class EventList extends React.Component {
         yy: '%d years'
       }
     });
+
+    var dataSource = new ListView.DataSource({
+     rowHasChanged: ((r1, r2) => true)
+    });
+
+    var eventsWithTime = this._extendEventsWithTime(this.props.events);
+
+    this.state = {
+      dataSource: dataSource.cloneWithRows(eventsWithTime),
+      events: eventsWithTime,
+    }
   }
 
   componentWillUnmount() {
@@ -62,6 +62,7 @@ class EventList extends React.Component {
   }
 
   componentWillMount() {
+/**
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         this.setState({
@@ -80,14 +81,13 @@ class EventList extends React.Component {
           )
         })
       }
-    )
+    ) **/
   }
 
   _extendEventsWithDistance(coords, events) {
     events.map((e) => {
       var distance = Geolib.getDistance(coords, e, 100);
-      // e.relativeDistance = (distance / 1000).toString() + 'km away';
-      e.relativeDistance = e.address;
+      e.relativeDistance = (distance / 1000).toString() + 'km away';
     })
     return events;
   }
@@ -105,7 +105,7 @@ class EventList extends React.Component {
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeDistance} </Text>
+            <Text style={[styles.eventInfo, styles.eventText]}> {event.address} </Text>
             <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeTime} </Text>
           </View>
         </Image>
