@@ -112,7 +112,7 @@ class Event extends React.Component {
         </SMXTabBarItemIOS> :
         null;
 
-    var optionalSubevents = optionalSubevents = this.state.event.subevents.length > 0 ?
+    var optionalSubevents = optionalSubevents = Object.keys(this.state.event.subevents).length > 0 ?
         <SMXTabBarItemIOS
           name="schedule"
           iconName={'ion|ios-calendar-outline'}
