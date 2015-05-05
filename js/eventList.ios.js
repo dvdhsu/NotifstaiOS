@@ -46,7 +46,7 @@ class EventList extends React.Component {
     });
 
     var dataSource = new ListView.DataSource({
-     rowHasChanged: ((r1, r2) => true)
+     rowHasChanged: ((r1, r2) => r1 !== r2)
     });
 
     var eventsWithTime = this._extendEventsWithTime(this.props.events);
