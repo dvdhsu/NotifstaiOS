@@ -35,7 +35,14 @@ class Home extends React.Component {
         return (
           <View style={styles.container}>
             <EventList navigator={this.props.navigator} email={this.props.email}
-            token={this.props.token} events={this.props.events} />
+            token={this.props.token} events={this.props.events}  type="subscribed"/>
+          </View>
+        );
+      case 'allEvents':
+        return (
+          <View style={styles.container}>
+            <EventList navigator={this.props.navigator} email={this.props.email}
+            token={this.props.token} events={this.props.events}  type="all"/>
           </View>
         );
       case 'settings':
@@ -63,6 +70,20 @@ class Home extends React.Component {
           onPress={() => {
             this.setState({
               selectedTab: 'myEvents',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS>
+        <SMXTabBarItemIOS
+          name="allEvents"
+          iconName={'ion|ios-cog-outline'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Settings Tab"
+          selected={this.state.selectedTab === 'allEvents'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'allEvents',
             });
           }}>
             {this._renderContent()}

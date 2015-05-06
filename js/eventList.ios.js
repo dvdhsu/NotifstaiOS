@@ -9,11 +9,14 @@ var Moment = require('moment');
 
 var ajax = require('./lib/ajax.ios');
 
+var Line = require('./lib/line.ios');
+
 var {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableHighlight,
   View,
   Image,
   Component,
@@ -100,17 +103,37 @@ class EventList extends React.Component {
   }
 
   _renderEvent(event) {
-    return(
-      <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
-        <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
-          <View style={styles.event}>
-            <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {event.address} </Text>
-            <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeTime} </Text>
+    if (this.props.type == 'subscribed') {
+      return(
+        <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
+          <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
+            <View style={styles.event}>
+              <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
+              <Text style={[styles.eventInfo, styles.eventText]}> {event.address} </Text>
+              <Text style={[styles.eventInfo, styles.eventText]}> {event.relativeTime} </Text>
+            </View>
+          </Image>
+        </TouchableOpacity>
+      )
+    } else {
+      var startTimeString = Moment(event.start_time).format('ddd, MMMM D, h:mm a');
+      return (
+        <View>
+          <View style={styles.indexEvent} key={event.id}>
+            <Text style={[styles.indexEventInfo, styles.indexEventTitle]}> {event.name} </Text>
+            <View style={styles.indexEventRow}>
+              <Text style={[styles.indexEventInfo]}> {startTimeString} </Text>
+              <TouchableHighlight style={styles.subscribeButton}
+                underlayColor='#889DC8'>
+                <Text style={[styles.subscribeButtonText, styles.indexEventInfo]}> Subscribe </Text>
+              </TouchableHighlight>
+            </View>
+            <Text style={[styles.indexEventInfo]}> {event.address} </Text>
           </View>
-        </Image>
-      </TouchableOpacity>
-    )
+          <Line style={styles.line}/>
+        </View>
+      );
+    }
   }
 
 
@@ -185,5 +208,44 @@ var styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#F5F6F5',
+  },
+  line: {
+    width: width - 30,
+    backgroundColor: '#167ac6',
+  },
+  indexEvent: {
+    flex: 1,
+    flexDirection: 'column',
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  },
+  indexEventTitle: {
+    fontSize: 17,
+    fontWeight: '500',
+  },
+  indexEventInfo : {
+    paddingVertical: 4,
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Avenir Next',
+    fontWeight: '400',
+    flex: 1,
+  },
+  indexEventRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  subscribeButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: 'black',
+  },
+  subscribeButtonText: {
+    fontSize: 17,
+    paddingRight: 2,
+    paddingVertical: 3,
   },
 });
