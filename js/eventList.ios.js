@@ -7,6 +7,9 @@ var Dimensions = require('Dimensions');
 var Geolib = require('geolib');
 var Moment = require('moment');
 
+var _ = require('underscore');
+var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
+
 var ajax = require('./lib/ajax.ios');
 
 var {
@@ -46,19 +49,37 @@ class EventList extends React.Component {
     });
 
     var dataSource = new ListView.DataSource({
-     rowHasChanged: ((r1, r2) => r1 !== r2)
+     rowHasChanged: ((r1, r2) => r1 !== r2),
+    sectionHeaderHasChanged: ((h1, h2) => h1 !== h2),
     });
 
-    var eventsWithTime = this._extendEventsWithTime(this.props.events);
+    var subscribedEventsWithTime = this._extendEventsWithTime(this.props.events.subscribed);
+    var unsubscribedEventsWithTime = this._extendEventsWithTime(this.props.events.not_subscribed);
+
+    subscribedEventsWithTime = subscribedEventsWithTime.map(
+      (e) => {
+        PushSubscriptionManager.pushSubscribe(e.channels[0].guid);
+        e.subscribed = true;
+        return e; 
+      }
+    )
+
+    unsubscribedEventsWithTime = unsubscribedEventsWithTime.map(
+      (e) => { e.subscribed = false; return e; }
+    )
 
     this.state = {
-      dataSource: dataSource.cloneWithRows(eventsWithTime),
-      events: eventsWithTime,
+      dataSource: dataSource.cloneWithRowsAndSections({
+        "Your Events": subscribedEventsWithTime,
+        "All Events": unsubscribedEventsWithTime
+      }),
+      subscribedEvents: subscribedEventsWithTime,
+      unsubscribedEvents: unsubscribedEventsWithTime,
     }
   }
 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+    //navigator.geolocation.clearWatch(this.watchID);
   }
 
   componentWillMount() {
@@ -99,6 +120,31 @@ class EventList extends React.Component {
     return events;
   }
 
+  updateSubscriptions(wasSubscribed, eventId) {
+    if (wasSubscribed) {
+      var [newSubscribed, toUnsubscribe] = _.partition(this.state.subscribedEvents, (e) => e.id != eventId);
+      var newUnsubscribed = this.state.unsubscribedEvents;
+      newUnsubscribed.push(toUnsubscribe[0]);
+    } else {
+      var [newUnsubscribed, toSubscribe] = _.partition(this.state.unsubscribedEvents, (e) => e.id != eventId);
+      var newSubscribed = this.state.subscribedEvents;
+      newSubscribed.push(toSubscribe[0]);
+    }
+    console.log(newUnsubscribed);
+    console.log(newSubscribed);
+    var subscribedEventsWithTime = this._extendEventsWithTime(newSubscribed);
+    var unsubscribedEventsWithTime = this._extendEventsWithTime(newUnsubscribed);
+
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRowsAndSections({
+        "Your Events": subscribedEventsWithTime,
+        "All Events": unsubscribedEventsWithTime
+      }),
+      subscribedEvents: subscribedEventsWithTime,
+      unsubscribedEvents: unsubscribedEventsWithTime,
+    })
+  }
+
   _renderEvent(event) {
     return(
       <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
@@ -119,13 +165,16 @@ class EventList extends React.Component {
       email: this.props.email,
       token: this.props.token,
       event: event,
+      updateSubscriptions: this.updateSubscriptions.bind(this),
       id: 'EventNavigator',
     });
   }
 
-  _renderHeader() {
+  _renderSectionHeader(data, section) {
     return(
-      <Text style={styles.title}> Events </Text>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.headerText}> {section.toString()} </Text>
+      </View>
     )
   }
 
@@ -135,19 +184,39 @@ class EventList extends React.Component {
         <ListView
           style={styles.eventList}
           dataSource={this.state.dataSource}
-          renderRow={this._renderEvent.bind(this)} />
+          renderRow={this._renderEvent.bind(this)}
+          renderSectionHeader={this._renderSectionHeader}
+        />
       </View>
     )
   }
 }
 
 var styles = StyleSheet.create({
+  sectionHeader: {
+    backgroundColor: '#F5F6F5',
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderBottomColor: '#167ac6',
+    borderWidth: 1,
+    height: 45,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
+    fontWeight: '600',
+    fontSize: 22,
+    fontFamily: 'Avenir Next',
+    color: '#167ac6',
+  },
   title: {
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 15,
     paddingTop: 10,
     paddingBottom: 10,
-    color: 'white',
+    color: 'black',
   },
   eventText: {
     color: 'white',

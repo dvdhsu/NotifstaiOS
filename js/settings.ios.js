@@ -53,7 +53,7 @@ class Settings extends React.Component {
           underlayColor='#889DC8' onPress={() => this._logout()}>
           <Text style={styles.logoutButtonText}> Logout </Text>
         </TouchableHighlight>
-        <Text style={[styles.title, {fontSize: 20}]}> Version 0.1.1 </Text>
+        <Text style={[styles.title, {fontSize: 20}]}> Version 0.1.2 </Text>
       </ScrollView>
     )
   }

@@ -31,13 +31,13 @@ class Event extends React.Component {
     super(props);
     this.state = {
       event: this.props.event,
+      subscribed: this.props.event.subscribed,
       selectedTab: 'info',
     }
   }
 
   componentWillMount() {
     this.updateEvent();
-    PushSubscriptionManager.pushSubscribe(this.state.event.channels[0].guid);
     PushNotificationIOS.addEventListener('notification', this._handleNotification.bind(this));
   }
 
@@ -55,12 +55,43 @@ class Event extends React.Component {
     // connect to server and request
     var response = ajax.getEvent(this.props.email, this.props.token, this.props.event.id);
     response.then((data) => {
-      if (data) {
+      if (data.status == "success") {
+        if (data.data.subscribed) {
+          PushSubscriptionManager.pushSubscribe(this.props.event.channels[0].guid);
+        }
+
         this.setState({
           event: data.data,
+          subscribed: data.data.subscribed,
         });
       }
     }).done();
+  }
+
+  _updateSubscription() {
+    if (this.state.subscribed) {
+      var response = ajax.unsubscribe(this.props.email, this.props.token, this.props.event.id);
+      response.then((data) => {
+        if (data && data.status == "success") {
+          this.setState({
+            subscribed: false,
+          });
+          PushSubscriptionManager.pushUnsubscribe(this.props.event.channels[0].guid);
+          this.props.updateSubscriptions(true, this.props.event.id);
+        }
+      }).done();
+    } else {
+      var response = ajax.subscribe(this.props.email, this.props.token, this.props.event.id);
+      response.then((data) => {
+        if (data && data.status == "success") {
+          this.setState({
+            subscribed: true,
+          });
+          PushSubscriptionManager.pushSubscribe(this.props.event.channels[0].guid);
+          this.props.updateSubscriptions(false, this.props.event.id);
+        }
+      }).done();
+    }
   }
 
   _renderContent() {
@@ -68,7 +99,9 @@ class Event extends React.Component {
       case 'info':
         return (
           <ScrollView>
-            <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}/>
+            <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}
+              subscribed={this.state.subscribed}
+              subscribeMethod={this._updateSubscription.bind(this)}/>
           </ScrollView>
       );
       case 'notifications':

@@ -56,10 +56,10 @@ class NotifstaLaunch extends React.Component {
                  events={route.events}/>;
       case 'EventNavigator':
         return <EventNavigator navigator={nav} email={route.email} event={route.event}
-                 token={route.token} />;
+                 token={route.token} updateSubscriptions={route.updateSubscriptions} />;
       case 'Event':
         return <Event navigator={nav} email={route.email} event={route.event}
-                 token={route.token} />;
+                 token={route.token} updateSubscriptions={route.updateSubscriptions} />;
       case 'EventList':
         return <EventList navigator={nav} email={route.email} token={route.token}
                  events={route.events}/>;

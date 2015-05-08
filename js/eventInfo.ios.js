@@ -15,6 +15,7 @@ var Line = require('./lib/line.ios');
 var Channel = require('./channel.ios');
 
 var {
+  SwitchIOS,
   Image,
   StyleSheet,
   TouchableOpacity,
@@ -103,6 +104,12 @@ class EventInfo extends React.Component {
         <View style={styles.row}>
           <Text style={[styles.information, styles.description]}> {this.props.event.description} </Text>
         </View>
+        <View style={[styles.row, {justifyContent: 'space-between'}]}>
+          <Icon name='ion|ios-bell-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
+          <SwitchIOS value={this.props.subscribed} onValueChange={this.props.subscribeMethod}
+            style={{alignSelf: 'flex-end'}}/>
+        </View>
+        <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|ios-calendar-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <Text style={styles.information}> {startTime.format('dddd, MMMM Do, h:mm a')} </Text>

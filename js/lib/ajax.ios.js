@@ -77,3 +77,25 @@ exports.getNotifications = function(email, token, channelId) {
       })
   )
 }
+
+exports.subscribe = function(email, token, eventId) {
+  requestUrl = API_BASE + 'subscriptions/?user_email=' + email + '&user_token=' + token + '&event_id=' + eventId;
+  return(
+    fetch(requestUrl, { method: 'post' })
+      .then((unparsed) => unparsed.json())
+      .catch((error) => {
+        AlertIOS.alert('Cannot subscribe - no internet connection.');
+      })
+  )
+}
+
+exports.unsubscribe = function(email, token, eventId) {
+  requestUrl = API_BASE + '/events/' + eventId + '/subscription/?user_email=' + email + '&user_token=' + token;
+  return(
+    fetch(requestUrl, { method: 'delete' })
+      .then((unparsed) => unparsed.json())
+      .catch((error) => {
+        AlertIOS.alert('Cannot unsubscribe - no internet connection.');
+      })
+  )
+}

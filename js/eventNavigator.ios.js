@@ -50,7 +50,7 @@ class EventNavigator extends React.Component {
 
   renderScene(route, nav) {
     return <Event navigator={nav} email={route.email} event={route.event}
-    token={route.token} />;
+    token={route.token} updateSubscriptions={route.updateSubscriptions} />;
   }
 
   render() {
@@ -62,6 +62,7 @@ class EventNavigator extends React.Component {
           token: this.props.token,
           event: this.props.event,
           id: 'Event',
+          updateSubscriptions: this.props.updateSubscriptions,
         }}
         renderScene={this.renderScene}
         navigationBar={

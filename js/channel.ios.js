@@ -77,7 +77,7 @@ class Channel extends React.Component {
   _getNotifications() {
     var response = ajax.getNotifications(this.props.email, this.props.token, this.props.channel.id)
     response.then((data) => {
-      if (data) {
+      if (data && data.status == "success") {
         var notificationsWithTime = this._extendNotificationsWithTime(data.data);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(notificationsWithTime),
