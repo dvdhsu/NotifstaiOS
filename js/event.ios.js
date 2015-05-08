@@ -55,11 +55,10 @@ class Event extends React.Component {
     // connect to server and request
     var response = ajax.getEvent(this.props.email, this.props.token, this.props.event.id);
     response.then((data) => {
-      if (data.status == "success") {
+      if (data && data.status == "success") {
         if (data.data.subscribed) {
           PushSubscriptionManager.pushSubscribe(this.props.event.channels[0].guid);
         }
-
         this.setState({
           event: data.data,
           subscribed: data.data.subscribed,

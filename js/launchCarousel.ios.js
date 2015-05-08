@@ -32,9 +32,9 @@ class LaunchCarousel extends React.Component {
           var loginData = ajax.loginWithToken(data[0], data[1]);
 
           loginData.then(data => {
-            if (data.status === 'failure') {
+            if (data && data.status === 'failure') {
               // login failed, so animate something
-            } else if (data.status === 'success') {
+            } else if (data && data.status === 'success') {
               this.props.navigator.push({
                 id: 'Home',
                 events: data.data.events,
@@ -56,9 +56,9 @@ class LaunchCarousel extends React.Component {
         var loginData =
           ajax.facebookCreateOrLogin(data.email, data.userId, data.token);
         loginData.then(data => {
-          if (data.status === 'failure') {
+          if (data && data.status === 'failure') {
             // login failed, so animate something
-          } else if (data.status === 'success') {
+          } else if (data && data.status === 'success') {
             // set for future logins
             NSUserDefaults.storeString("email", data.data.email);
             NSUserDefaults.storeString("token", data.data.authentication_token);
