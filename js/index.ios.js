@@ -27,9 +27,6 @@ class NotifstaLaunch extends React.Component {
 
   componentDidMount() {
     // reset badge count
-    PushNotificationIOS.getApplicationIconBadgeNumber(
-      (num) => PushNotificationIOS.setApplicationIconBadgeNumber(0)
-    );
     PushNotificationIOS.addEventListener('notification', this._passNotification);
   }
 
@@ -38,9 +35,6 @@ class NotifstaLaunch extends React.Component {
   }
 
   _passNotification(notification) {
-    PushNotificationIOS.getApplicationIconBadgeNumber(
-      (num) => PushNotificationIOS.setApplicationIconBadgeNumber(num + 1)
-    );
     // pass the notification over to event, so that it can refresh
     // also find some way of displaying the notification...
   }
