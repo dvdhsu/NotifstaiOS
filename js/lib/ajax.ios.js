@@ -99,3 +99,16 @@ exports.unsubscribe = function(email, token, eventId) {
       })
   )
 }
+
+exports.sendNotification = function(email, token, channelId, notificationGuts) {
+  requestUrl = API_BASE + 'channels/' + channelId + '/notifications/?user_email=' + email +
+    '&user_token=' + token + '&notification[notification_guts]=' + encodeURIComponent(notificationGuts) + '&notification[type]=Message'
+  console.log(requestUrl);
+  return(
+    fetch(requestUrl, { method: 'post' })
+      .then((unparsed) => unparsed.json())
+      .catch((error) => {
+        AlertIOS.alert('Cannot send message - no internet connection.');
+      })
+  )
+}

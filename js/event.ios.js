@@ -11,6 +11,7 @@ var ajax = require('./lib/ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
 var Subevent = require('./subevent.ios');
+var Admin = require('./admin.ios');
 
 var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
 
@@ -24,6 +25,7 @@ var {
   Component,
   Image,
   PushNotificationIOS,
+  TextInput,
 } = React;
 
 class Event extends React.Component {
@@ -56,13 +58,19 @@ class Event extends React.Component {
     var response = ajax.getEvent(this.props.email, this.props.token, this.props.event.id);
     response.then((data) => {
       if (data && data.status == "success") {
-        if (data.data.subscribed) {
+        if (data.data.subscription) {
           PushSubscriptionManager.pushSubscribe(this.props.event.channels[0].guid);
+          this.setState({
+            event: data.data,
+            subscribed: true,
+          });
         }
-        this.setState({
-          event: data.data,
-          subscribed: data.data.subscribed,
-        });
+        else {
+          this.setState({
+            event: data.data,
+            subscribed: false,
+          });
+        }
       }
     }).done();
   }
@@ -121,12 +129,36 @@ class Event extends React.Component {
             </Image>
           </ScrollView>
         );
+      case 'admin':
+        return (
+          <Admin email={this.props.email} token={this.props.token}
+            channelId={this.state.event.channels[0].id}
+            transitionToChannels={() => { this.setState({selectedTab: 'notifications'}); }}
+          />
+        );
       default:
         return( <Text> Nothing to see here. </Text>);
     }
   }
 
   render() {
+    var optionalAdmin = (this.state.event.subscription && this.state.event.subscription.admin) ?
+        <SMXTabBarItemIOS
+          name="admin"
+          iconName={'ion|social-rss-outline'}
+          title={''}
+          iconSize={32}
+          accessibilityLabel="Admin Tab"
+          selected={this.state.selectedTab === 'admin'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'admin',
+            });
+          }}>
+            {this._renderContent()}
+        </SMXTabBarItemIOS> :
+        null;
+
     var optionalMap = this.state.event.event_map_url ?
         <SMXTabBarItemIOS
           name="map"
@@ -194,6 +226,7 @@ class Event extends React.Component {
         </SMXTabBarItemIOS>
         {optionalSubevents}
         {optionalMap}
+        {optionalAdmin}
       </SMXTabBarIOS>
     )
   }
