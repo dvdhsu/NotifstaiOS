@@ -118,15 +118,18 @@ class LaunchCarousel extends React.Component {
           {pages}
         </Carousel>
         <View style={[styles.loginButtonsContainer, styles.loginButtonsContainerTop]}>
-          <TouchableHighlight style={[styles.loginButton, styles.topLoginButton]} onPress={() => this._loginWithFacebook()}>
+          <TouchableHighlight style={[styles.loginButton, styles.topLoginButton]} 
+            onPress={() => this._loginWithFacebook()} underlayColor='#3B0B0B'>
             <Text style={styles.loginButtonText}> Login with Facebook</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.loginButtonsContainer}>
-          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Login")}>
+          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Login")}
+            underlayColor='#3B0B0B'>
             <Text style={styles.loginButtonText}> Login </Text>
           </TouchableHighlight>
-          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Register")}>
+          <TouchableHighlight style={[styles.loginButton]} onPress={() => this._transition("Register")}
+            underlayColor='#3B0B0B'>
             <Text style={styles.loginButtonText}> Sign up </Text>
           </TouchableHighlight>
         </View>
