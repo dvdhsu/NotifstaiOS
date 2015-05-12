@@ -7,9 +7,8 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Moment = require('moment');
 
-var Line = require('./lib/line.ios');
-var ajax = require('./lib/ajax.ios');
-
+var Line = require('../lib/line.ios');
+var ajax = require('../lib/ajax.ios');
 
 var {width, height} = Dimensions.get('window');
 

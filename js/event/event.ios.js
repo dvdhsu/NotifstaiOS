@@ -7,7 +7,7 @@ var Dimensions = require('Dimensions');
 var SMXTabBarIOS = require('SMXTabBarIOS');
 var SMXTabBarItemIOS = SMXTabBarIOS.Item;
 
-var ajax = require('./lib/ajax.ios');
+var ajax = require('../lib/ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
 var Subevent = require('./subevent.ios');

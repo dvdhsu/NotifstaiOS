@@ -8,9 +8,9 @@ var Moment = require('moment');
 var HumanizeDuration = require('humanize-duration');
 var Icon = require('FAKIconImage');
 
-var ajax = require('./lib/ajax.ios');
+var ajax = require('../lib/ajax.ios');
 
-var Line = require('./lib/line.ios');
+var Line = require('../lib/line.ios');
 
 var Channel = require('./channel.ios');
 
@@ -26,7 +26,6 @@ var {
   MapView,
   LinkingIOS,
 } = React;
-
 
 var {width, height} = Dimensions.get('window');
 

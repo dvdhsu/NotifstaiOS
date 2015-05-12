@@ -18,8 +18,8 @@ var {
 
 var LaunchCarousel = require('./launchCarousel.ios.js');
 var Login = require('./login.ios');
-var Event = require('./event.ios');
-var EventNavigator = require('./eventNavigator.ios');
+var Event = require('./event/event.ios');
+var EventNavigator = require('./event/eventNavigator.ios');
 var EventList = require('./eventList.ios');
 var Home = require('./home.ios');
 

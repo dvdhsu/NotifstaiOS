@@ -7,7 +7,7 @@ var Dimensions = require('Dimensions');
 var Icon = require('FAKIconImage');
 var Moment = require('moment');
 
-var Line = require('./lib/line.ios');
+var Line = require('../lib/line.ios');
 
 var {
   StyleSheet,
