@@ -4,8 +4,11 @@ module.exports = EventNavigator;
 
 var React = require('react-native');
 var Dimensions = require('Dimensions');
+var Icon = require('FAKIconImage');
 
 var Event = require('./event.ios');
+
+var {width, height} = Dimensions.get('window');
 
 var {
   Text,
@@ -30,27 +33,100 @@ var routeMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
-    return (null);
+    if (route.id != 'Help') {
+      return (
+        <TouchableOpacity style={styles.backButton}
+          onPress={() => navigator.push({
+            id: 'Help',
+            subscription: route.event.subscription,
+            name: route.event.name
+          })}>
+          <Text style={[styles.navBarText, styles.navBarTitleText]}>
+            Help
+          </Text>
+        </TouchableOpacity>
+      );
+    }
   },
 
   Title: function(route, navigator, index, navState) {
-    return (
-      <TouchableOpacity style={styles.backButton}
-        onPress={() => navigator.replace(route)}>
-        <Text style={[styles.navBarText, styles.navBarTitleText]}>
-          {route.event.name}
-        </Text>
-      </TouchableOpacity>
-    );
+    if (route.id == 'Help') {
+      return(
+        <TouchableOpacity style={styles.backButton}
+          onPress={() => navigator.pop()}>
+          <Text style={[styles.navBarText, styles.navBarTitleText]}>
+            {route.name}
+          </Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <TouchableOpacity style={styles.backButton}
+          onPress={() => navigator.replace(route)}>
+          <Text style={[styles.navBarText, styles.navBarTitleText]}>
+            {route.event.name}
+          </Text>
+        </TouchableOpacity>
+      );
+    }
   },
 
 };
 
 class EventNavigator extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      subscription: this.props.event.subscription,
+    }
+  }
 
   renderScene(route, nav) {
-    return <Event navigator={nav} email={route.email} event={route.event}
-    token={route.token} updateSubscriptions={route.updateSubscriptions} />;
+    switch(route.id) {
+      case 'Help':
+        var currentText = this.state.subscription ?
+          <Text style={[styles.helpText]}>
+            You are currently
+              <Text style={{fontWeight:'700'}}> subscribed </Text>
+            to notifications from <Text style={{fontStyle: 'italic'}}>{route.name}</Text>.
+          </Text> :
+          <Text style={[styles.helpText]}>
+            You are currently
+              <Text style={{fontWeight:'700'}}> not subscribed </Text>
+            to notifications from <Text style={{fontStyle: 'italic'}}>{route.name}</Text>.
+          </Text> ;
+
+        var instructionText = this.state.subscription ?
+          `To unsubscribe, please disable` :
+          `To subscribe, please enable`;
+
+        return(
+          <View style={styles.helpContainer}>
+            <Text style={[styles.helpText, styles.helpTitle]}>Help</Text>
+            {currentText}
+            <View style={{flexDirection: 'row'}}>
+              <Text style={[styles.helpText]}>
+                {instructionText}
+              </Text>
+              <Icon name='ion|ios-bell-outline' size={20} color='#8c8c8c' style={styles.informationIcon} />
+            </View>
+          </View>
+        );
+      case 'Event':
+        return (
+          <Event navigator={nav} email={route.email} event={route.event}
+            token={route.token} updateSubscriptions={route.updateSubscriptions} />
+        );
+    }
+  }
+
+  updateSubscriptions(wasSubscbibed, eventId) {
+    this.props.updateSubscriptions(wasSubscbibed, eventId);
+    if (eventId == this.props.event.id) {
+      this.setState({
+        subscription: !this.state.subscription,
+      });
+    };
   }
 
   render() {
@@ -62,9 +138,9 @@ class EventNavigator extends React.Component {
           token: this.props.token,
           event: this.props.event,
           id: 'Event',
-          updateSubscriptions: this.props.updateSubscriptions,
+          updateSubscriptions: this.updateSubscriptions.bind(this),
         }}
-        renderScene={this.renderScene}
+        renderScene={this.renderScene.bind(this)}
         navigationBar={
           <Navigator.NavigationBar
             routeMapper={routeMapper}
@@ -105,5 +181,32 @@ var styles = React.StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Avenir Next',
   },
-
+  helpContainer: {
+    flexDirection: 'column',
+    backgroundColor: '#F5F6F5',
+    height: height,
+    alignItems: 'center',
+  },
+  helpText : {
+    fontFamily: 'Avenir Next',
+    alignSelf: 'center',
+    fontWeight: '500',
+    textAlign: 'center',
+    fontSize: 15,
+    paddingTop: 30,
+    paddingHorizontal: 30,
+  },
+  helpTitle: {
+    paddingTop: 30,
+    fontWeight: '600',
+    fontSize: 30,
+  },
+  informationIcon: {
+    marginTop: 30,
+    marginLeft: -20,
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    marginRight: 35,
+  },
 });
