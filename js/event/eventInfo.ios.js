@@ -50,8 +50,8 @@ class EventInfo extends React.Component {
     var region = {
       latitude: e.latitude,
       longitude: e.longitude,
-      latitudeDelta: .005,
-      longitudeDelta: .005,
+      latitudeDelta: .0035,
+      longitudeDelta: .003,
       title: this.props.event.name,
       subtitle: this.props.event.address,
     };
