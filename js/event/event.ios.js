@@ -146,7 +146,7 @@ class Event extends React.Component {
         <SMXTabBarItemIOS
           name="admin"
           iconName={'ion|social-rss-outline'}
-          title={''}
+          title={'Admin'}
           iconSize={32}
           accessibilityLabel="Admin Tab"
           selected={this.state.selectedTab === 'admin'}
@@ -163,7 +163,7 @@ class Event extends React.Component {
         <SMXTabBarItemIOS
           name="map"
           iconName={'ion|android-map'}
-          title={''}
+          title={'Map'}
           iconSize={32}
           accessibilityLabel="Map Tab"
           selected={this.state.selectedTab === 'map'}
@@ -180,7 +180,7 @@ class Event extends React.Component {
         <SMXTabBarItemIOS
           name="schedule"
           iconName={'ion|ios-calendar-outline'}
-          title={''}
+          title={'Schedule'}
           iconSize={32}
           accessibilityLabel="Map Tab"
           selected={this.state.selectedTab === 'schedule'}
@@ -199,7 +199,7 @@ class Event extends React.Component {
         <SMXTabBarItemIOS
           name="info"
           iconName={'ion|ios-information-outline'}
-          title={''}
+          title={'Info'}
           iconSize={32}
           accessibilityLabel="Info Tab"
           selected={this.state.selectedTab === 'info'}
@@ -213,7 +213,7 @@ class Event extends React.Component {
         <SMXTabBarItemIOS
           name="notifications"
           iconName={'ion|android-notifications-none'}
-          title={''}
+          title={'Notifications'}
           iconSize={32}
           accessibilityLabel="Notifications Tab"
           selected={this.state.selectedTab === 'notifications'}
