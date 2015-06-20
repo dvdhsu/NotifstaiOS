@@ -25,8 +25,8 @@
 		2717EB8C1AE36FD10053252D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717EB8A1AE36FD00053252D /* FBSDKCoreKit.framework */; };
 		2717EB8D1AE36FD10053252D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2717EB8B1AE36FD00053252D /* FBSDKLoginKit.framework */; };
 		2786DD8B1AE1CB65001F35FC /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2786DD831AE1CB52001F35FC /* libRCTLinking.a */; };
-		27B636521AE1AFB3007150B0 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B636511AE1AFA2007150B0 /* libReactNativeIcons.a */; };
-		27B636541AE1B017007150B0 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27B636531AE1B017007150B0 /* ionicons.ttf */; };
+		27A9B19F1B35E4F600B55D47 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A9B19E1B35E4D900B55D47 /* libReactNativeIcons.a */; };
+		27A9B1A11B35E51100B55D47 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A9B1A01B35E51100B55D47 /* ionicons.ttf */; };
 		27C57B781AD11A2B00E5AA20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B761AD11A2B00E5AA20 /* Bolts.framework */; };
 		27C57B791AD11A2B00E5AA20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B771AD11A2B00E5AA20 /* Parse.framework */; };
 		27C57B7B1AD11A9C00E5AA20 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */; };
@@ -112,19 +112,19 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTLinking;
 		};
+		27A9B19D1B35E4D900B55D47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A9B1991B35E4D900B55D47 /* ReactNativeIcons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2F5A3EB81ACDBF8000439386;
+			remoteInfo = ReactNativeIcons;
+		};
 		27B636461AE1AA7C007150B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27EAD01C1AD50F0900377C1B /* RCTPushNotification.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTPushNotification;
-		};
-		27B636501AE1AFA2007150B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27B6364C1AE1AFA2007150B0 /* ReactNativeIcons.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2F5A3EB81ACDBF8000439386;
-			remoteInfo = ReactNativeIcons;
 		};
 		832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -157,8 +157,8 @@
 		2717EB8A1AE36FD00053252D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		2717EB8B1AE36FD00053252D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		2786DD7A1AE1CB52001F35FC /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		27B6364C1AE1AFA2007150B0 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
-		27B636531AE1B017007150B0 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ionicons.ttf; path = "node_modules/react-native-icons/ios/Libraries/FontAwesomeKit/ionicons.ttf"; sourceTree = "<group>"; };
+		27A9B1991B35E4D900B55D47 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
+		27A9B1A01B35E51100B55D47 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ionicons.ttf; path = "node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/ionicons.ttf"; sourceTree = "<group>"; };
 		27C57B761AD11A2B00E5AA20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		27C57B771AD11A2B00E5AA20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -191,12 +191,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A9B19F1B35E4F600B55D47 /* libReactNativeIcons.a in Frameworks */,
 				27C57B8B1AD11AC800E5AA20 /* SystemConfiguration.framework in Frameworks */,
 				27C57B781AD11A2B00E5AA20 /* Bolts.framework in Frameworks */,
 				2786DD8B1AE1CB65001F35FC /* libRCTLinking.a in Frameworks */,
 				2717EB8D1AE36FD10053252D /* FBSDKLoginKit.framework in Frameworks */,
 				2717EB8C1AE36FD10053252D /* FBSDKCoreKit.framework in Frameworks */,
-				27B636521AE1AFB3007150B0 /* libReactNativeIcons.a in Frameworks */,
 				27EAD0271AD5172C00377C1B /* libRCTPushNotification.a in Frameworks */,
 				27C57B931AD11C9E00E5AA20 /* Accounts.framework in Frameworks */,
 				27C57B911AD11C2F00E5AA20 /* Social.framework in Frameworks */,
@@ -319,18 +319,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		27B6363E1AE1AA7C007150B0 /* Products */ = {
+		27A9B19A1B35E4D900B55D47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27B636471AE1AA7C007150B0 /* libRCTPushNotification.a */,
+				27A9B19E1B35E4D900B55D47 /* libReactNativeIcons.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		27B6364D1AE1AFA2007150B0 /* Products */ = {
+		27B6363E1AE1AA7C007150B0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27B636511AE1AFA2007150B0 /* libReactNativeIcons.a */,
+				27B636471AE1AA7C007150B0 /* libRCTPushNotification.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,10 +372,10 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				27A9B1991B35E4D900B55D47 /* ReactNativeIcons.xcodeproj */,
 				2717EB8A1AE36FD00053252D /* FBSDKCoreKit.framework */,
 				2717EB8B1AE36FD00053252D /* FBSDKLoginKit.framework */,
 				2786DD7A1AE1CB52001F35FC /* RCTLinking.xcodeproj */,
-				27B6364C1AE1AFA2007150B0 /* ReactNativeIcons.xcodeproj */,
 				27EAD01A1AD50F0900377C1B /* PushNotificationIOS */,
 				27EAD01C1AD50F0900377C1B /* RCTPushNotification.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -403,7 +403,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				27B636531AE1B017007150B0 /* ionicons.ttf */,
+				27A9B1A01B35E51100B55D47 /* ionicons.ttf */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				13B07FAE1A68108700A75B9A /* NotifstaReact */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -511,8 +511,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 27B6364D1AE1AFA2007150B0 /* Products */;
-					ProjectRef = 27B6364C1AE1AFA2007150B0 /* ReactNativeIcons.xcodeproj */;
+					ProductGroup = 27A9B19A1B35E4D900B55D47 /* Products */;
+					ProjectRef = 27A9B1991B35E4D900B55D47 /* ReactNativeIcons.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -586,18 +586,18 @@
 			remoteRef = 2786DD821AE1CB52001F35FC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		27A9B19E1B35E4D900B55D47 /* libReactNativeIcons.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeIcons.a;
+			remoteRef = 27A9B19D1B35E4D900B55D47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		27B636471AE1AA7C007150B0 /* libRCTPushNotification.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTPushNotification.a;
 			remoteRef = 27B636461AE1AA7C007150B0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27B636511AE1AFA2007150B0 /* libReactNativeIcons.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeIcons.a;
-			remoteRef = 27B636501AE1AFA2007150B0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		832341B51AAA6A8300B99B32 /* libRCTText.a */ = {
@@ -614,7 +614,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B636541AE1B017007150B0 /* ionicons.ttf in Resources */,
+				27A9B1A11B35E51100B55D47 /* ionicons.ttf in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
