@@ -27,6 +27,7 @@
 		2786DD8B1AE1CB65001F35FC /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2786DD831AE1CB52001F35FC /* libRCTLinking.a */; };
 		27A9B19F1B35E4F600B55D47 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A9B19E1B35E4D900B55D47 /* libReactNativeIcons.a */; };
 		27A9B1A11B35E51100B55D47 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A9B1A01B35E51100B55D47 /* ionicons.ttf */; };
+		27A9B1CE1B362FC500B55D47 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A9B1CD1B362FC500B55D47 /* loading.png */; };
 		27C57B781AD11A2B00E5AA20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B761AD11A2B00E5AA20 /* Bolts.framework */; };
 		27C57B791AD11A2B00E5AA20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B771AD11A2B00E5AA20 /* Parse.framework */; };
 		27C57B7B1AD11A9C00E5AA20 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */; };
@@ -159,6 +160,7 @@
 		2786DD7A1AE1CB52001F35FC /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		27A9B1991B35E4D900B55D47 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
 		27A9B1A01B35E51100B55D47 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ionicons.ttf; path = "node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/ionicons.ttf"; sourceTree = "<group>"; };
+		27A9B1CD1B362FC500B55D47 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		27C57B761AD11A2B00E5AA20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		27C57B771AD11A2B00E5AA20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		27C57B7A1AD11A9C00E5AA20 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -289,6 +291,7 @@
 				27C57B751AD11A1E00E5AA20 /* Frameworks */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				27A9B1CD1B362FC500B55D47 /* loading.png */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				27ED6E8D1AE5F5B5008CCA11 /* PushSubscriptionManager.h */,
 				27ED6E8E1AE5F5D3008CCA11 /* PushSubscriptionManager.m */,
@@ -614,6 +617,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A9B1CE1B362FC500B55D47 /* loading.png in Resources */,
 				27A9B1A11B35E51100B55D47 /* ionicons.ttf in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
