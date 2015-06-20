@@ -48,14 +48,13 @@ class EventInfo extends React.Component {
     var e = this.props.event;
 
     var region = {
-      latitude: e.latitude,
-      longitude: e.longitude,
+      latitude: Number(e.latitude),
+      longitude: Number(e.longitude),
       latitudeDelta: .0035,
       longitudeDelta: .003,
       title: this.props.event.name,
       subtitle: this.props.event.address,
     };
-
 
     var startTime = Moment(this.props.event.start_time);
     var endTime = Moment(this.props.event.end_time);
@@ -128,9 +127,7 @@ class EventInfo extends React.Component {
           </TouchableOpacity>
         </View>
         <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true}
-          scrollEnabled={false}>
-          <Text> Hello! </Text>
-        </MapView>
+          scrollEnabled={false} />
       </ScrollView>
     )
   }
