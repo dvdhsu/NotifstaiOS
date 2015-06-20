@@ -125,7 +125,7 @@ class Event extends React.Component {
           <ScrollView contentContainerStyle={styles.map}
             maximumZoomScale={2.0}>
             <Image source={{uri: this.state.event.event_map_url}} style={styles.eventMap}
-              resizeMode={Image.resizeMode.contain} defaultSource={{uri: "loading.png"}}>
+              resizeMode={Image.resizeMode.contain} defaultSource={require('image!loading')}>
 
             </Image>
           </ScrollView>
