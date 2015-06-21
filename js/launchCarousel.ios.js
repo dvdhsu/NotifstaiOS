@@ -92,7 +92,7 @@ class LaunchCarousel extends React.Component {
   render() {
     var pages = [
       <View style={styles.image} key={1}>
-        <Image style={styles.image} source={{uri: "http://cdn.notifsta.com/images/eiffel7.jpg"}}>
+        <Image style={styles.image} source={require('image!eiffel')}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Know the venue. </Text>
             <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
@@ -102,7 +102,7 @@ class LaunchCarousel extends React.Component {
         </Image>
       </View>,
       <View style={styles.image} key={2}>
-        <Image style={styles.image} source={{uri: "http://cdn.notifsta.com/images/party.jpg"}}>
+        <Image style={styles.image} source={require('image!party')}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
               <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>
