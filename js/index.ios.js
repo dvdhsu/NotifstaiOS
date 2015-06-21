@@ -5,6 +5,7 @@
 var React = require('react-native');
 
 var {
+  AlertIOS,
   View,
   AppRegistry,
   Navigator,
@@ -27,16 +28,16 @@ class NotifstaLaunch extends React.Component {
 
   componentDidMount() {
     // reset badge count
-    PushNotificationIOS.addEventListener('notification', this._passNotification);
+    PushNotificationIOS.addEventListener('notification', this._displayNotification);
   }
 
   componentWillUnmount() {
-    PushNotificationIOS.removeEventListener('notification', this._passNotification);
+    PushNotificationIOS.removeEventListener('notification', this._displayNotification);
   }
 
-  _passNotification(notification) {
-    // pass the notification over to event, so that it can refresh
-    // also find some way of displaying the notification...
+  _displayNotification(notification) {
+    AlertIOS.alert(notification.$PushNotificationIOS_data.event_name,
+                   notification.$PushNotificationIOS_alert);
   }
 
   renderScene(route, nav) {

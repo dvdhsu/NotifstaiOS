@@ -23,7 +23,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-  
   [Parse setApplicationId:@"zV50kkuGI8esJY0D6eAoy90bMgX3G2jWeTOTe1Rw"
                 clientKey:@"HeijZwtl4a5uNo5yLTdBhHhe5keZ1bR2SfFaWYEi"];
   
@@ -72,10 +71,6 @@
     jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   }
 
-  
-
-
-
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"NotifstaReact"
                                                    launchOptions:launchOptions];
@@ -109,7 +104,6 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-  [PFPush handlePush:userInfo];
   [RCTPushNotificationManager application:application didReceiveRemoteNotification:userInfo];
 }
 
