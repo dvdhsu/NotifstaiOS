@@ -17,4 +17,10 @@ RCT_EXPORT_METHOD(pushUnsubscribe:(NSString *)id) {
   [currentInstallation saveInBackground];
 }
 
+RCT_EXPORT_METHOD(pushUnsubscribeAll) {
+  PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+  currentInstallation.channels = @[ @"global" ];
+  [currentInstallation saveInBackground];
+}
+
 @end

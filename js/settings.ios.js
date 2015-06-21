@@ -22,6 +22,7 @@ var {
 } = React;
 
 var FacebookLoginManager = require('NativeModules').FacebookLoginManager;
+var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
 
 var {width, height} = Dimensions.get('window');
 
@@ -30,6 +31,7 @@ class Settings extends React.Component {
     NSUserDefaults.removeKey("email");
     NSUserDefaults.removeKey("token");
     FacebookLoginManager.logout();
+    PushSubscriptionManager.pushUnsubscribeAll();
     this.props.navigator.pop();
   }
 
