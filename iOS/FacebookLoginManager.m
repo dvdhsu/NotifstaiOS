@@ -7,6 +7,10 @@
 
 RCT_EXPORT_MODULE();
 
+RCT_EXPORT_METHOD(logout) {
+  [[[FBSDKLoginManager alloc] init] logOut];
+};
+
 RCT_EXPORT_METHOD(newSession:(RCTResponseSenderBlock)callback) {
 
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];

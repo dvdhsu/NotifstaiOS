@@ -21,6 +21,7 @@ var {
   LinkingIOS,
 } = React;
 
+var FacebookLoginManager = require('NativeModules').FacebookLoginManager;
 
 var {width, height} = Dimensions.get('window');
 
@@ -28,6 +29,7 @@ class Settings extends React.Component {
   _logout() {
     NSUserDefaults.removeKey("email");
     NSUserDefaults.removeKey("token");
+    FacebookLoginManager.logout();
     this.props.navigator.pop();
   }
 
