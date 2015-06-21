@@ -81,6 +81,7 @@ class LaunchCarousel extends React.Component {
           id: 'Login',
           register: false,
         });
+        break;
       case 'Register':
         this.props.navigator.push({
           id: 'Login',
