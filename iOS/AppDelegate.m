@@ -42,7 +42,7 @@
   }
 
   
-  NSURL *scriptUrl = [NSURL URLWithString:@"http://cdn.notifsta.com"];
+  NSURL *scriptUrl = [NSURL URLWithString:@"http://google.com"];
   NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
   if (data) {
     // load code from server
@@ -56,7 +56,7 @@
     //
     // To run on device, change `localhost` to the IP address of your computer, and make sure your computer and
     // iOS device are on the same Wi-Fi network.
-    jsCodeLocation = [NSURL URLWithString:@"http://cdn.notifsta.com/main.jsbundle"];
+    jsCodeLocation = [NSURL URLWithString:@"http://cdn.notifsta.com/main.jsbundle.v1.1.0"];
     //jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/js/index.ios.bundle?dev=true"];
   } else {
     // OPTION 2
