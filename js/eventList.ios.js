@@ -25,7 +25,6 @@ var {
 
 var {width, height} = Dimensions.get('window');
 
-
 class EventList extends React.Component {
   constructor(props) {
     super(props);
@@ -49,8 +48,8 @@ class EventList extends React.Component {
     });
 
     var dataSource = new ListView.DataSource({
-     rowHasChanged: ((r1, r2) => r1 !== r2),
-    sectionHeaderHasChanged: ((h1, h2) => h1 !== h2),
+      rowHasChanged: ((r1, r2) => r1 !== r2),
+      sectionHeaderHasChanged: ((h1, h2) => h1 !== h2),
     });
 
     var subscribedEventsWithTime = this._extendEventsWithTime(this.props.events.subscribed);
