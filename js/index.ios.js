@@ -17,12 +17,6 @@ var {
   PushNotificationIOS,
 } = React;
 
-var LaunchCarousel = require('./launchCarousel.ios.js');
-var Login = require('./login.ios');
-var Event = require('./event/event.ios');
-var EventNavigator = require('./event/eventNavigator.ios');
-var EventList = require('./eventList.ios');
-var Home = require('./home.ios');
 
 class NotifstaLaunch extends React.Component {
 
@@ -41,6 +35,12 @@ class NotifstaLaunch extends React.Component {
   }
 
   renderScene(route, nav) {
+    var LaunchCarousel = require('./launchCarousel.ios.js');
+    var Login = require('./login.ios');
+    var Event = require('./event/event.ios');
+    var EventNavigator = require('./event/eventNavigator.ios');
+    var EventList = require('./eventList.ios');
+    var Home = require('./home.ios');
     switch(route.id) {
       case 'LaunchCarousel':
         return <LaunchCarousel navigator={nav}/>
