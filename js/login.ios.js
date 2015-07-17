@@ -1,4 +1,3 @@
-
 'use strict';
 
 var React = require('react-native');
@@ -193,3 +192,5 @@ var styles = StyleSheet.create({
     width: width,
   },
 });
+
+module.exports = Login;

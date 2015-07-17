@@ -1,5 +1,3 @@
-module.exports = Event;
-
 'use strict';
 
 var React = require('react-native');
@@ -244,3 +242,5 @@ var styles = StyleSheet.create({
     height: height,
   },
 });
+
+module.exports = Event;

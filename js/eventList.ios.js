@@ -1,5 +1,3 @@
-module.exports = EventList;
-
 'use strict';
 
 var React = require('react-native');
@@ -259,3 +257,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5F6F5',
   },
 });
+
+module.exports = EventList;

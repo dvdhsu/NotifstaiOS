@@ -1,5 +1,3 @@
-module.exports = LaunchCarousel;
-
 'use strict';
 
 var React = require('react-native');
@@ -199,3 +197,5 @@ var styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+module.exports = LaunchCarousel;

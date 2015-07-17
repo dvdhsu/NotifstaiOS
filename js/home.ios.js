@@ -1,5 +1,3 @@
-module.exports = Home;
-
 'use strict';
 
 var React = require('react-native');
@@ -92,3 +90,5 @@ styles = StyleSheet.create({
     marginTop: -20,
   },
 })
+
+module.exports = Home;

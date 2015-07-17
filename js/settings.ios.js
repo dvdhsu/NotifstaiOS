@@ -1,5 +1,3 @@
-module.exports = Settings;
-
 'use strict';
 
 var React = require('react-native');
@@ -120,3 +118,5 @@ var styles = StyleSheet.create({
     marginRight: 20,
   },
 });
+
+module.exports = Settings;

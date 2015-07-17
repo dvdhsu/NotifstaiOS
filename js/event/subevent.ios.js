@@ -1,5 +1,3 @@
-module.exports = Subevent;
-
 'use strict';
 
 var React = require('react-native');
@@ -159,3 +157,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#82898D',
   },
 });
+
+module.exports = Subevent;

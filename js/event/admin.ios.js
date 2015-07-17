@@ -1,5 +1,3 @@
-module.exports = Admin;
-
 'use strict';
 
 var React = require('react-native');
@@ -132,3 +130,5 @@ var styles = StyleSheet.create({
     paddingBottom: 15,
   },
 });
+
+module.exports = Admin;
