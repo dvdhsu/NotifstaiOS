@@ -4,8 +4,8 @@ module.exports = Event;
 
 var React = require('react-native');
 var Dimensions = require('Dimensions');
-var SMXTabBarIOS = require('SMXTabBarIOS');
-var SMXTabBarItemIOS = SMXTabBarIOS.Item;
+var { TabBarIOS } = require('react-native-icons');
+var TabBarItemIOS = TabBarIOS.Item;
 
 var ajax = require('../lib/ajax.ios');
 var Channel = require('./channel.ios');
@@ -144,7 +144,7 @@ class Event extends React.Component {
 
   render() {
     var optionalAdmin = (this.state.event.subscription && this.state.event.subscription.admin) ?
-        <SMXTabBarItemIOS
+        <TabBarItemIOS
           name="admin"
           iconName={'ion|social-rss-outline'}
           title={'Admin'}
@@ -157,11 +157,11 @@ class Event extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS> :
+        </TabBarItemIOS> :
         null;
 
     var optionalMap = this.state.event.event_map_url ?
-        <SMXTabBarItemIOS
+        <TabBarItemIOS
           name="map"
           iconName={'ion|android-map'}
           title={'Map'}
@@ -174,11 +174,11 @@ class Event extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS> :
+        </TabBarItemIOS> :
         null;
 
     var optionalSubevents = optionalSubevents = Object.keys(this.state.event.subevents).length > 0 ?
-        <SMXTabBarItemIOS
+        <TabBarItemIOS
           name="schedule"
           iconName={'ion|ios-calendar-outline'}
           title={'Schedule'}
@@ -191,14 +191,14 @@ class Event extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS> :
+        </TabBarItemIOS> :
         null;
 
     return(
-      <SMXTabBarIOS
-        selectedTab={this.state.selectedTab}
+      <TabBarIOS
         tintColor={'#FF5A5F'}>
-        <SMXTabBarItemIOS
+        selectedTab={this.state.selectedTab}>
+        <TabBarItemIOS
           name="info"
           iconName={'ion|ios-information-outline'}
           title={'Info'}
@@ -211,8 +211,8 @@ class Event extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS>
-        <SMXTabBarItemIOS
+        </TabBarItemIOS>
+        <TabBarItemIOS
           name="notifications"
           iconName={'ion|android-notifications-none'}
           title={'Notifications'}
@@ -225,11 +225,11 @@ class Event extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS>
+        </TabBarItemIOS>
         {optionalSubevents}
         {optionalMap}
         {optionalAdmin}
-      </SMXTabBarIOS>
+      </TabBarIOS>
     )
   }
 }

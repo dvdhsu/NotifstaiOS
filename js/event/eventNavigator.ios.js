@@ -4,7 +4,7 @@ module.exports = EventNavigator;
 
 var React = require('react-native');
 var Dimensions = require('Dimensions');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons');
 
 var Event = require('./event.ios');
 

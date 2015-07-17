@@ -3,7 +3,7 @@ module.exports = Admin;
 'use strict';
 
 var React = require('react-native');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons');
 var Dimensions = require('Dimensions');
 
 var ajax = require('../lib/ajax.ios');

@@ -6,7 +6,7 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Moment = require('moment');
 var HumanizeDuration = require('humanize-duration');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons');
 
 var ajax = require('../lib/ajax.ios');
 

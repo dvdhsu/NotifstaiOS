@@ -4,7 +4,7 @@ module.exports = Subevent;
 
 var React = require('react-native');
 var Dimensions = require('Dimensions');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons');
 var Moment = require('moment');
 
 var Line = require('../lib/line.ios');

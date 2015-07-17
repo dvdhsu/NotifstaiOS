@@ -4,8 +4,8 @@ module.exports = Home;
 
 var React = require('react-native');
 var Dimensions = require('Dimensions');
-var SMXTabBarIOS = require('SMXTabBarIOS');
-var SMXTabBarItemIOS = SMXTabBarIOS.Item;
+var { TabBarIOS } = require('react-native-icons');
+var TabBarItemIOS = TabBarIOS.Item;
 
 var ajax = require('./lib/ajax.ios');
 
@@ -51,10 +51,10 @@ class Home extends React.Component {
 
   render() {
     return(
-      <SMXTabBarIOS
-        selectedTab={this.state.selectedTab}
+      <TabBarIOS
         tintColor={'#ff5a5f'}>
-        <SMXTabBarItemIOS
+        selectedTab={this.state.selectedTab}>
+        <TabBarItemIOS
           name="myEvents"
           iconName={'ion|ios-home-outline'}
           title={''}
@@ -67,8 +67,8 @@ class Home extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS>
-        <SMXTabBarItemIOS
+        </TabBarItemIOS>
+        <TabBarItemIOS
           name="settings"
           iconName={'ion|ios-cog-outline'}
           title={''}
@@ -81,8 +81,8 @@ class Home extends React.Component {
             });
           }}>
             {this._renderContent()}
-        </SMXTabBarItemIOS>
-      </SMXTabBarIOS>
+        </TabBarItemIOS>
+      </TabBarIOS>
     )
   }
 }

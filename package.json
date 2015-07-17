@@ -10,7 +10,7 @@
     "humanize-duration": "^2.6.0",
     "moment": "^2.10.2",
     "react-native": "0.5.0",
-    "react-native-icons": "0.1.0",
+    "react-native-icons": "^0.2.0",
     "react-native-looped-carousel": "0.0.3",
     "underscore": "^1.8.3"
   }
