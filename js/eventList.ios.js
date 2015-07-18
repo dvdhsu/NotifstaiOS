@@ -67,6 +67,11 @@ class EventList extends React.Component {
       (e) => { e.subscribed = false; return e; }
     )
 
+    // do not display unpublished events
+    unsubscribedEventsWithTime = unsubscribedEventsWithTime.filter(
+      (e) => { return e.published }
+    );
+
     this.state = {
       dataSource: dataSource.cloneWithRowsAndSections({
         "Your Events": subscribedEventsWithTime,
