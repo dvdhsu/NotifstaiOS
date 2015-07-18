@@ -196,7 +196,8 @@ class Event extends React.Component {
 
     return(
       <SMXTabBarIOS
-        selectedTab={this.state.selectedTab}>
+        selectedTab={this.state.selectedTab}
+        tintColor={'#FF5A5F'}>
         <SMXTabBarItemIOS
           name="info"
           iconName={'ion|ios-information-outline'}

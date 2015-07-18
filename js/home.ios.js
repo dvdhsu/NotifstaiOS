@@ -52,7 +52,8 @@ class Home extends React.Component {
   render() {
     return(
       <SMXTabBarIOS
-        selectedTab={this.state.selectedTab}>
+        selectedTab={this.state.selectedTab}
+        tintColor={'#ff5a5f'}>
         <SMXTabBarItemIOS
           name="myEvents"
           iconName={'ion|ios-home-outline'}
