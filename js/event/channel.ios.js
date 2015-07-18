@@ -183,6 +183,6 @@ var styles = StyleSheet.create({
   },
   line: {
     width: width - 30,
-    backgroundColor: '#167ac6',
+    backgroundColor: '#82898D',
   },
 });

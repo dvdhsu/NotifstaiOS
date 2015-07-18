@@ -197,7 +197,7 @@ var styles = StyleSheet.create({
     borderTopColor: 'transparent',
     borderRightColor: 'transparent',
     borderLeftColor: 'transparent',
-    borderBottomColor: '#167ac6',
+    borderBottomColor: '#82898D',
     borderWidth: 1,
     height: 45,
     flexDirection: 'column',
@@ -208,7 +208,6 @@ var styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 22,
     fontFamily: 'Avenir Next',
-    color: '#167ac6',
   },
   title: {
     textAlign: 'center',

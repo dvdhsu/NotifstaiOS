@@ -163,7 +163,7 @@ var styles = React.StyleSheet.create({
     borderTopColor: 'transparent',
     borderRightColor: 'transparent',
     borderLeftColor: 'transparent',
-    borderBottomColor: '#167ac6',
+    borderBottomColor: '#82898D',
     borderWidth: 1,
     height: 60,
     flexDirection: 'column',

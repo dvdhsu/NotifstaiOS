@@ -118,7 +118,6 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     flex: 1,
     fontWeight: '500',
-    color: '#167ac6',
   },
   subeventContainer: {
     flexDirection: 'column',
@@ -157,6 +156,6 @@ var styles = StyleSheet.create({
   },
   line: {
     width: width - 30,
-    backgroundColor: '#167ac6',
+    backgroundColor: '#82898D',
   },
 });
