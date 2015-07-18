@@ -23,24 +23,29 @@ var {
 
 class LaunchCarousel extends React.Component {
   componentWillMount() {
-    NSUserDefaults.getDoubleString("email", "token",
-      (error, data) => {
+    NSUserDefaults.getString("email",
+      (error, email) => {
         if (!error) {
-          // managed to get email and token
-          var loginData = ajax.loginWithToken(data[0], data[1]);
+          NSUserDefaults.getString("token", (error2, token) => {
+              if (!error) {
+                // managed to get email and token
+                var loginData = ajax.loginWithToken(email, token);
 
-          loginData.then(data => {
-            if (data && data.status === 'failure') {
-              // login failed, so animate something
-            } else if (data && data.status === 'success') {
-              this.props.navigator.push({
-                id: 'Home',
-                events: data.data.events,
-                email: data.data.email,
-                token: data.data.authentication_token,
-              });
+                loginData.then(data => {
+                  if (data && data.status === 'failure') {
+                    // login failed, so animate something
+                  } else if (data && data.status === 'success') {
+                    this.props.navigator.push({
+                      id: 'Home',
+                      events: data.data.events,
+                      email: data.data.email,
+                      token: data.data.authentication_token,
+                    });
+                  }
+                });
+              }
             }
-          });
+          );
         }
       }
     )

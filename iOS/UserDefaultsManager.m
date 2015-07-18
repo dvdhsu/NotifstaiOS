@@ -15,17 +15,15 @@ RCT_EXPORT_METHOD(removeKey:(NSString *)key) {
   [defaults removeObjectForKey:key];
 }
 
-RCT_EXPORT_METHOD(getDoubleString:(NSString *)key1 key2:(NSString *)key2 callback:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(getString:(NSString *) key callback:(RCTResponseSenderBlock)callback) {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *res1 = [defaults objectForKey:key1];
-  NSString *res2 = [defaults objectForKey:key2];
-
-  if (res1 == nil || res2 == nil) {
+  NSString *res = [defaults objectForKey:key];
+  if (res == nil) {
     callback(@[@"key not found", [NSNull null]]);
     NSLog(@"key not found");
   }
   else {
-    callback(@[[NSNull null], @[res1, res2]]);
+    callback(@[[NSNull null], res]);
   }
 }
 
