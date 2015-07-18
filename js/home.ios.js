@@ -85,7 +85,7 @@ class Home extends React.Component {
   }
 }
 
-styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     marginTop: -20,
   },
