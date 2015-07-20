@@ -17,59 +17,6 @@ var {
   TouchableOpacity,
 } = React;
 
-var routeMapper = {
-
-  LeftButton: function(route, navigator, index, navState) {
-    return (
-      <TouchableOpacity style={styles.backButton}
-        onPress={() => navigator.pop()}>
-        <Text style={[styles.navBarText, styles.navBarTitleText]}>
-          Back
-        </Text>
-      </TouchableOpacity>
-    );
-  },
-
-  RightButton: function(route, navigator, index, navState) {
-    if (route.id != 'Help') {
-      return (
-        <TouchableOpacity style={styles.backButton}
-          onPress={() => navigator.push({
-            id: 'Help',
-            subscription: route.event.subscription,
-            name: route.event.name
-          })}>
-          <Text style={[styles.navBarText, styles.navBarTitleText]}>
-            Help
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-  },
-
-  Title: function(route, navigator, index, navState) {
-    if (route.id == 'Help') {
-      return(
-        <TouchableOpacity style={styles.backButton}
-          onPress={() => navigator.pop()}>
-          <Text style={[styles.navBarText, styles.navBarTitleText]}>
-            {route.name}
-          </Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return (
-        <TouchableOpacity style={styles.backButton}
-          onPress={() => navigator.replace(route)}>
-          <Text style={[styles.navBarText, styles.navBarTitleText]}>
-            {route.event.name}
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-  },
-
-};
 
 class EventNavigator extends React.Component {
   constructor(props) {
@@ -77,6 +24,61 @@ class EventNavigator extends React.Component {
     this.state = {
       subscription: this.props.event.subscription,
     }
+
+    // bind this
+    var self = this;
+    this.routeMapper = {
+      LeftButton: function(route, navigator, index, navState) {
+        return (
+          <TouchableOpacity style={styles.backButton}
+            onPress={() => self.props.navigator.pop()}>
+            <Text style={[styles.navBarText, styles.navBarTitleText]}>
+              Back
+            </Text>
+          </TouchableOpacity>
+        );
+      },
+
+      RightButton: function(route, navigator, index, navState) {
+        if (route.id != 'Help') {
+          return (
+            <TouchableOpacity style={styles.backButton}
+              onPress={() => navigator.push({
+                id: 'Help',
+                subscription: route.event.subscription,
+                name: route.event.name
+              })}>
+              <Text style={[styles.navBarText, styles.navBarTitleText]}>
+                Help
+              </Text>
+            </TouchableOpacity>
+          );
+        }
+      },
+
+      Title: function(route, navigator, index, navState) {
+        if (route.id == 'Help') {
+          return(
+            <TouchableOpacity style={styles.backButton}
+              onPress={() => navigator.pop()}>
+              <Text style={[styles.navBarText, styles.navBarTitleText]}>
+                {route.name}
+              </Text>
+            </TouchableOpacity>
+          )
+        } else {
+          return (
+            <TouchableOpacity style={styles.backButton}
+              onPress={() => navigator.replace(route)}>
+              <Text style={[styles.navBarText, styles.navBarTitleText]}>
+                {route.event.name}
+              </Text>
+            </TouchableOpacity>
+          );
+        }
+      },
+
+    };
   }
 
   renderScene(route, nav) {
@@ -141,7 +143,7 @@ class EventNavigator extends React.Component {
         renderScene={this.renderScene.bind(this)}
         navigationBar={
           <Navigator.NavigationBar
-            routeMapper={routeMapper}
+            routeMapper={this.routeMapper}
             style={styles.navBar}
           />
         }
