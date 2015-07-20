@@ -50,7 +50,7 @@ class Home extends React.Component {
   render() {
     return(
       <TabBarIOS
-        tintColor={'#ff5a5f'}>
+        tintColor={'#ff5a5f'}
         selectedTab={this.state.selectedTab}>
         <TabBarItemIOS
           name="myEvents"

@@ -194,7 +194,7 @@ class Event extends React.Component {
 
     return(
       <TabBarIOS
-        tintColor={'#FF5A5F'}>
+        tintColor={'#FF5A5F'}
         selectedTab={this.state.selectedTab}>
         <TabBarItemIOS
           name="info"
