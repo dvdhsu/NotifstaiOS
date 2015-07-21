@@ -22,6 +22,31 @@ var {
 } = React;
 
 class LaunchCarousel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.pages = [
+      <View style={styles.image} key={1}>
+        <Image style={styles.image} source={require('image!eiffel')}>
+          <View style={styles.headerContainer}>
+            <Text style={[styles.text, styles.header]}> Know the venue. </Text>
+            <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
+            <Text style={[styles.text, styles.subheader]}> Food? Check.  </Text>
+            <Text style={[styles.text, styles.subheader]}> Drinks? Checkmate.  </Text>
+          </View>
+        </Image>
+      </View>,
+      <View style={styles.image} key={2}>
+        <Image style={styles.image} source={require('image!party')}>
+          <View style={styles.headerContainer}>
+            <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
+              <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>
+              <Text style={[styles.text, styles.subheader]}> Before anybody else. </Text>
+          </View>
+        </Image>
+      </View>
+    ];
+  }
+
   componentWillMount() {
     NSUserDefaults.getString("email",
       (error, email) => {
@@ -94,32 +119,10 @@ class LaunchCarousel extends React.Component {
   }
 
   render() {
-    var pages = [
-      <View style={styles.image} key={1}>
-        <Image style={styles.image} source={require('image!eiffel')}>
-          <View style={styles.headerContainer}>
-            <Text style={[styles.text, styles.header]}> Know the venue. </Text>
-            <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
-            <Text style={[styles.text, styles.subheader]}> Food? Check.  </Text>
-            <Text style={[styles.text, styles.subheader]}> Drinks? Checkmate.  </Text>
-          </View>
-        </Image>
-      </View>,
-      <View style={styles.image} key={2}>
-        <Image style={styles.image} source={require('image!party')}>
-          <View style={styles.headerContainer}>
-            <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
-              <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>
-              <Text style={[styles.text, styles.subheader]}> Before anybody else. </Text>
-          </View>
-        </Image>
-      </View>
-    ];
-
     return (
       <View style={styles.container}>
         <Carousel delay={3000} style={styles.carousel}>
-          {pages}
+          {this.pages}
         </Carousel>
         <View style={[styles.loginButtonsContainer, styles.loginButtonsContainerTop]}>
           <TouchableHighlight style={[styles.loginButton, styles.topLoginButton]} 
