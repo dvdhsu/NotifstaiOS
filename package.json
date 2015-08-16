@@ -9,7 +9,7 @@
     "geolib": "^2.0.14",
     "humanize-duration": "^2.6.0",
     "moment": "^2.10.2",
-    "react-native": "0.7.1",
+    "react-native": "0.9.0",
     "react-native-icons": "^0.2.0",
     "react-native-looped-carousel": "dvdhsu/react-native-looped-carousel",
     "react-timer-mixin": "^0.13.2",
