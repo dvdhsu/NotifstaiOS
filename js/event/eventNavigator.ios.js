@@ -121,7 +121,7 @@ class EventNavigator extends React.Component {
   }
 
   updateSubscriptions(wasSubscbibed, eventId) {
-    this.props.updateSubscriptions(wasSubscbibed, eventId);
+    this.props.updateSubscriptions(wasSubscbibed, eventId, false);
     if (eventId == this.props.event.id) {
       this.setState({
         subscription: !this.state.subscription,

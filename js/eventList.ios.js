@@ -4,11 +4,21 @@ var React = require('react-native');
 var Dimensions = require('Dimensions');
 var Geolib = require('geolib');
 var Moment = require('moment');
+var Modal = require('react-native-modal');
+var HumanizeDuration = require('humanize-duration');
+var { Icon, } = require('react-native-icons');
+
+var Line = require('./lib/line.ios');
+var EventInfo = require('./event/eventInfo.ios');
+
+var ModalStyle = require('./styles/modal.ios.js');
 
 var _ = require('underscore');
 var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
 
 var ajax = require('./lib/ajax.ios');
+
+var {width, height} = Dimensions.get('window');
 
 var {
   StyleSheet,
@@ -21,7 +31,6 @@ var {
   ListView,
 } = React;
 
-var {width, height} = Dimensions.get('window');
 
 class EventList extends React.Component {
   constructor(props) {
@@ -71,12 +80,14 @@ class EventList extends React.Component {
     );
 
     this.state = {
+      isModalOpen: false,
       dataSource: dataSource.cloneWithRowsAndSections({
         "Your Events": subscribedEventsWithTime,
         "All Events": unsubscribedEventsWithTime
       }),
       subscribedEvents: subscribedEventsWithTime,
       unsubscribedEvents: unsubscribedEventsWithTime,
+      selectedEvent: {},
     }
   }
 
@@ -122,7 +133,7 @@ class EventList extends React.Component {
     return events;
   }
 
-  updateSubscriptions(wasSubscribed, eventId) {
+  updateSubscriptions(wasSubscribed, eventId, insidePreview) {
     if (wasSubscribed) {
       var [newSubscribed, toUnsubscribe] = _.partition(this.state.subscribedEvents, (e) => e.id != eventId);
       var newUnsubscribed = this.state.unsubscribedEvents;
@@ -131,9 +142,13 @@ class EventList extends React.Component {
       var [newUnsubscribed, toSubscribe] = _.partition(this.state.unsubscribedEvents, (e) => e.id != eventId);
       var newSubscribed = this.state.subscribedEvents;
       newSubscribed.push(toSubscribe[0]);
+
+      if (insidePreview) {
+        // close the modal, and transition to event
+        this._closeModal();
+        this._transitionToEventOrOpenModal(toSubscribe[0]);
+      }
     }
-    console.log(newUnsubscribed);
-    console.log(newSubscribed);
     var subscribedEventsWithTime = this._extendEventsWithTime(newSubscribed);
     var unsubscribedEventsWithTime = this._extendEventsWithTime(newUnsubscribed);
 
@@ -146,10 +161,23 @@ class EventList extends React.Component {
       unsubscribedEvents: unsubscribedEventsWithTime,
     })
   }
+  
+  _openModal(event) {
+    this.setState({
+      selectedEvent: event,
+      isModalOpen: true,
+    });
+  }
+
+  _closeModal() {
+    this.setState({
+      isModalOpen: false,
+    });
+  }
 
   _renderEvent(event) {
     return(
-      <TouchableOpacity onPress={() => this._transitionToEvent(event)} key={event.id} activeOpacity={.9}>
+      <TouchableOpacity onPress={() => this._transitionToEventOrOpenModal(event)} key={event.id} activeOpacity={.9}>
         <Image source={{uri: event.cover_photo_url}} style={styles.coverPhoto}>
           <View style={styles.event}>
             <Text style={[styles.eventName, styles.eventText]}> {event.name} </Text>
@@ -161,15 +189,18 @@ class EventList extends React.Component {
     )
   }
 
-
-  _transitionToEvent(event) {
-    this.props.navigator.push({
-      email: this.props.email,
-      token: this.props.token,
-      event: event,
-      updateSubscriptions: this.updateSubscriptions.bind(this),
-      id: 'EventNavigator',
-    });
+  _transitionToEventOrOpenModal(event) {
+    if (event.subscribed) {
+      this.props.navigator.push({
+        email: this.props.email,
+        token: this.props.token,
+        event: event,
+        updateSubscriptions: this.updateSubscriptions.bind(this),
+        id: 'EventNavigator',
+      });
+    } else {
+      this._openModal(event);
+    }
   }
 
   _renderSectionHeader(data, section) {
@@ -181,6 +212,19 @@ class EventList extends React.Component {
   }
 
   render() {
+    var event = this.state.selectedEvent;
+    var startTime = Moment(event.start_time);
+    var endTime = Moment(event.end_time);
+    var delta = HumanizeDuration(endTime.diff(startTime));
+
+    var modal = 
+        <Modal isVisible={this.state.isModalOpen} style={ModalStyle}
+          onClose={() => this._closeModal()} backdropType="blur">
+          <EventInfo event={this.state.selectedEvent} isPreview={true}
+            dimensions={{height: height, width: width - 40}}
+            subscribeMethod={this.updateSubscriptions.bind(this)}/>
+        </Modal>;
+
     return(
       <View style={styles.container}>
         <ListView
@@ -189,6 +233,7 @@ class EventList extends React.Component {
           renderRow={this._renderEvent.bind(this)}
           renderSectionHeader={this._renderSectionHeader}
         />
+        {modal}
       </View>
     )
   }
@@ -253,8 +298,15 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     flexDirection: 'column',
   },
-  container: {
-    backgroundColor: '#F5F6F5',
+  modalHeaderText: {
+    fontWeight: '600',
+    fontSize: 22,
+    color: 'red',
+    paddingVertical: 100,
+    alignSelf: 'center',
+  },
+  modalText: {
+    margin: 100,
   },
 });
 

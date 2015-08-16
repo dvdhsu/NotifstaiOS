@@ -12,6 +12,7 @@
     "react-native": "0.7.1",
     "react-native-icons": "^0.2.0",
     "react-native-looped-carousel": "dvdhsu/react-native-looped-carousel",
+    "react-native-modal": "^0.3.8",
     "react-timer-mixin": "^0.13.2",
     "underscore": "^1.8.3"
   }

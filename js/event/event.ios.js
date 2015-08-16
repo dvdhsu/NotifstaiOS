@@ -104,8 +104,9 @@ class Event extends React.Component {
       case 'info':
         return (
           <ScrollView>
-            <EventInfo event={this.state.event} coverPhoto={this.props.coverPhoto}
-              subscribed={this.state.subscribed}
+            <EventInfo event={this.state.event}
+              subscribed={this.state.subscribed} isPreview={false}
+              dimensions={{height: height, width: width}}
               subscribeMethod={this._updateSubscription.bind(this)}/>
           </ScrollView>
       );
