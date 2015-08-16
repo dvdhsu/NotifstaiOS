@@ -132,8 +132,6 @@ class EventList extends React.Component {
       var newSubscribed = this.state.subscribedEvents;
       newSubscribed.push(toSubscribe[0]);
     }
-    console.log(newUnsubscribed);
-    console.log(newSubscribed);
     var subscribedEventsWithTime = this._extendEventsWithTime(newSubscribed);
     var unsubscribedEventsWithTime = this._extendEventsWithTime(newUnsubscribed);
 
