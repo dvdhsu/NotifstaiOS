@@ -155,7 +155,7 @@ class EventNavigator extends React.Component {
 var styles = React.StyleSheet.create({
   container: {
     backgroundColor: '#F5F6F5',
-    paddingTop: 48,
+    paddingTop: 60,
     marginTop: -20,
   },
   navBar: {
@@ -170,13 +170,11 @@ var styles = React.StyleSheet.create({
     alignItems: 'center',
   },
   backButton: {
-    height: 10,
-    padding: 20,
+    height: 8,
+    padding: 8,
   },
   navBarText: {
     color: '#fd474c',
-    padding: 15,
-    paddingTop: 10,
     fontWeight: '600',
     fontSize: 15,
     fontFamily: 'Avenir Next',
