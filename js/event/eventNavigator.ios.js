@@ -31,7 +31,7 @@ class EventNavigator extends React.Component {
       LeftButton: function(route, navigator, index, navState) {
         var pop = () => (route.id == 'Help' ? navigator.pop() : self.props.navigator.pop());
         return (
-          <TouchableOpacity style={styles.backButton}
+          <TouchableOpacity style={styles.navButtons}
             onPress={() => pop()}>
             <Text style={[styles.navBarText, styles.navBarTitleText]}>
               Back
@@ -43,7 +43,7 @@ class EventNavigator extends React.Component {
       RightButton: function(route, navigator, index, navState) {
         if (route.id != 'Help') {
           return (
-            <TouchableOpacity style={styles.backButton}
+            <TouchableOpacity style={styles.navButtons}
               onPress={() => navigator.push({
                 id: 'Help',
                 subscription: route.event.subscription,
@@ -60,7 +60,7 @@ class EventNavigator extends React.Component {
       Title: function(route, navigator, index, navState) {
         if (route.id == 'Help') {
           return(
-            <TouchableOpacity style={styles.backButton}
+            <TouchableOpacity style={styles.navButtons}
               onPress={() => navigator.pop()}>
               <Text style={[styles.navBarText, styles.navBarTitleText]}>
                 {route.name}
@@ -69,7 +69,7 @@ class EventNavigator extends React.Component {
           )
         } else {
           return (
-            <TouchableOpacity style={styles.backButton}
+            <TouchableOpacity style={styles.navButtons}
               onPress={() => navigator.replace(route)}>
               <Text style={[styles.navBarText, styles.navBarTitleText]}>
                 {route.event.name}
@@ -170,7 +170,7 @@ var styles = React.StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  backButton: {
+  navButtons: {
     height: 8,
     padding: 8,
   },
