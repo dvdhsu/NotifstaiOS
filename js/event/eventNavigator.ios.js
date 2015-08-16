@@ -29,9 +29,10 @@ class EventNavigator extends React.Component {
     var self = this;
     this.routeMapper = {
       LeftButton: function(route, navigator, index, navState) {
+        var pop = () => (route.id == 'Help' ? navigator.pop() : self.props.navigator.pop());
         return (
           <TouchableOpacity style={styles.backButton}
-            onPress={() => self.props.navigator.pop()}>
+            onPress={() => pop()}>
             <Text style={[styles.navBarText, styles.navBarTitleText]}>
               Back
             </Text>
