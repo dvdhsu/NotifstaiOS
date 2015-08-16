@@ -173,6 +173,7 @@ var styles = React.StyleSheet.create({
   navButtons: {
     height: 8,
     padding: 8,
+    paddingHorizontal: 15,
   },
   navBarText: {
     color: '#fd474c',
