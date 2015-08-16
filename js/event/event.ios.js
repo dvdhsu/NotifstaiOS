@@ -9,6 +9,7 @@ var ajax = require('../lib/ajax.ios');
 var Channel = require('./channel.ios');
 var EventInfo = require('./eventInfo.ios');
 var Subevent = require('./subevent.ios');
+var EventMap = require('./eventMap.ios.js');
 var Admin = require('./admin.ios');
 
 var PushSubscriptionManager = require('NativeModules').PushSubscriptionManager;
@@ -21,7 +22,6 @@ var {
   View,
   ScrollView,
   Component,
-  Image,
   PushNotificationIOS,
   TextInput,
 } = React;
@@ -120,13 +120,7 @@ class Event extends React.Component {
       );
       case 'map':
         return (
-          <ScrollView contentContainerStyle={styles.map}
-            maximumZoomScale={2.0}>
-            <Image source={{uri: this.state.event.event_map_url}} style={styles.eventMap}
-              resizeMode={Image.resizeMode.contain} defaultSource={require('image!loading')}>
-
-            </Image>
-          </ScrollView>
+          <EventMap eventMapUrl={this.state.event.event_map_url}></EventMap>
         );
       case 'admin':
         return (
@@ -231,16 +225,5 @@ class Event extends React.Component {
     )
   }
 }
-
-var styles = StyleSheet.create({
-  map: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: -50,
-  },
-  eventMap: {
-    height: height,
-  },
-});
 
 module.exports = Event;
