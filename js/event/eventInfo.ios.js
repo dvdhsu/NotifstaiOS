@@ -66,8 +66,9 @@ class EventInfo extends React.Component {
           <Line style={styles.line}/>
           <View style={styles.row}>
             <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
-            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}>
-              <Text style={[styles.information, {color: '#fd474c'}]}> {facebook_url} </Text>
+            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}
+              style={[styles.information, {alignSelf: 'flex-end'}]}>
+              <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {facebook_url} </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -80,8 +81,9 @@ class EventInfo extends React.Component {
           <Line style={styles.line}/>
           <View style={styles.row}>
             <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
-            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}>
-              <Text style={[styles.information, {color: '#fd474c'}]}> {event_url} </Text>
+            <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}
+              style={[styles.information, {alignSelf: 'flex-end'}]}>
+              <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {event_url} </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -120,8 +122,9 @@ class EventInfo extends React.Component {
         <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|ios-navigate-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
-          <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}>
-            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.address} </Text>
+          <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}
+            style={[styles.information, {alignSelf: 'flex-end'}]}>
+            <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {this.props.event.address} </Text>
           </TouchableOpacity>
         </View>
         <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true}
