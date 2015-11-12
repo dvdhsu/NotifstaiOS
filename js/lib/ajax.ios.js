@@ -1,7 +1,7 @@
 /** Contains all AJAX calls
  * for Notifsta. **/
 
-var API_BASE = 'http://api.notifsta.com/v1/';
+var API_BASE = 'https://api.notifsta.com/v1/';
 
 exports = module.exports = {};
 

@@ -30,7 +30,7 @@ var {width, height} = Dimensions.get('window');
 class EventInfo extends React.Component {
   _linkToMap(address) {
     address = address.replace(/\s/g, '+');
-    var appleMapsLink = `http://maps.apple.com/?q=${address}`;
+    var appleMapsLink = `https://maps.apple.com/?q=${address}`;
     var googleMapsLink = `comgooglemaps://?q=${address}`;
 
     LinkingIOS.canOpenURL(googleMapsLink, (supported) => {
@@ -68,7 +68,7 @@ class EventInfo extends React.Component {
             <Icon name='ion|social-facebook-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
             <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.facebook_url)}
               style={[styles.information, {alignSelf: 'flex-end'}]}>
-              <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {facebook_url} </Text>
+              <Text style={[styles.information, {color: '#fd474c'}]}> {facebook_url} </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -83,7 +83,7 @@ class EventInfo extends React.Component {
             <Icon name='ion|link' size={25} color='#8c8c8c' style={styles.informationIcon} />
             <TouchableOpacity onPress={() => LinkingIOS.openURL(this.props.event.website_url)}
               style={[styles.information, {alignSelf: 'flex-end'}]}>
-              <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {event_url} </Text>
+              <Text style={[styles.information, {color: '#fd474c'}]}> {event_url} </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -124,7 +124,7 @@ class EventInfo extends React.Component {
           <Icon name='ion|ios-navigate-outline' size={25} color='#8c8c8c' style={styles.informationIcon} />
           <TouchableOpacity onPress={() => this._linkToMap(this.props.event.address)}
             style={[styles.information, {alignSelf: 'flex-end'}]}>
-            <Text style={{color: '#fd474c', alignSelf: 'flex-end'}}> {this.props.event.address} </Text>
+            <Text style={[styles.information, {color: '#fd474c'}]}> {this.props.event.address} </Text>
           </TouchableOpacity>
         </View>
         <MapView style={styles.map} annotations={[region]} region={region} showUserLocation={true}

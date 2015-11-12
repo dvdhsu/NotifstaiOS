@@ -26,7 +26,7 @@ class LaunchCarousel extends React.Component {
     super(props);
     this.pages = [
       <View style={styles.image} key={1}>
-        <Image style={styles.image} source={require('image!eiffel')}>
+        <Image style={styles.image} source={{uri: "https://cdn.notifsta.com/images/eiffel6.jpg" }}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Know the venue. </Text>
             <Text style={[styles.text, styles.subheader]}> Bathrooms? Check. </Text>
@@ -36,7 +36,7 @@ class LaunchCarousel extends React.Component {
         </Image>
       </View>,
       <View style={styles.image} key={2}>
-        <Image style={styles.image} source={require('image!party')}>
+        <Image style={styles.image} source={{uri: "https://cdn.notifsta.com/images/party.jpg" }}>
           <View style={styles.headerContainer}>
             <Text style={[styles.text, styles.header]}> Receive notifications. </Text>
               <Text style={[styles.text, styles.subheader]}> Get in on the action. </Text>

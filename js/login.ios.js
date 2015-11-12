@@ -81,7 +81,7 @@ class Login extends React.Component {
   render() {
     var loginButtonText = this.props.register ? "Sign up" : "Login";
     return (
-      <Image source={{uri: "http://cdn.notifsta.com/images/login1.png"}} style={styles.backgroundPhoto}>
+      <Image source={{uri: "https://cdn.notifsta.com/images/login1.png"}} style={styles.backgroundPhoto}>
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps={false}
           bounces={false} keyboardDismissMode='onDrag'>
           <TouchableHighlight style={[styles.closeIcon, styles.closeButton]}

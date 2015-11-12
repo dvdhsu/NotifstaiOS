@@ -46,7 +46,7 @@ class Settings extends React.Component {
         <Line style={styles.line}/>
         <View style={styles.row}>
           <Icon name='ion|lock-combination' size={25} color='#8c8c8c' style={styles.settingsIcon} />
-          <TouchableOpacity onPress={() => LinkingIOS.openURL("http://notifsta.com/#/privacy")}>
+          <TouchableOpacity onPress={() => LinkingIOS.openURL("https://notifsta.com/#/privacy")}>
             <Text style={[styles.settings, {color: '#fd474c'}]}> Privacy Policy </Text>
           </TouchableOpacity>
         </View>
